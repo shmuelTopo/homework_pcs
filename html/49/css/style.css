@@ -1,0 +1,14 @@
+html {
+    text-align: center;
+    background-color: #ffcccb;
+}
+
+nav {
+    border-top: 3px ridge gray;
+    border-bottom: 3px ridge gray;
+}
+
+h1 {
+    color: red;
+
+}
