@@ -4,6 +4,6 @@ git add .
 git commit -m "%massage%"
 git push
 echo done
-TIMEOUT /T 10
+TIMEOUT /T 7
 
  
