@@ -3,6 +3,7 @@ git pull
 git add .
 git commit -m "%massage%"
 git push
+echo done
 TIMEOUT /T 10
-set /p massage=Press Enter to exit: 
+
  
