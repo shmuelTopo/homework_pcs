@@ -15,7 +15,7 @@ nav ul, nav li {
     display: inline;
 }
 
-nav {
+header nav  {
     border-top: 3px ridge gray;
     border-bottom: 3px ridge gray;
     padding: .5em;
@@ -23,6 +23,10 @@ nav {
     background-color: rgb(233, 180, 180);
     font-weight: bold;
     text-decoration: ;
+}
+
+#menu_nav {
+    margin-top: 1.5em;
 }
 
 h1 {
@@ -47,6 +51,11 @@ h2 {
 
 img {
     filter: drop-shadow(0px 0px 3px rgb(150, 30, 130));
+}
+
+img:hover {
+    transition: 1s;
+    transform: rotate(-2deg);
 }
 
 .main-image {
