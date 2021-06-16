@@ -1,0 +1,424 @@
+﻿.ArticleContainer {
+    padding: 15px 0 0 0!important;
+    display: block;
+    margin-bottom: 0;
+    clear: both;
+}
+/* Template More Start */
+/* for id=3 start */
+.ArticleBox img {
+    display: block;
+    height: 172px!important;
+    width: 100%;
+    padding-bottom: 0;
+    -moz-transition: all 0.6s ease;
+    -o-transition: all 0.6s ease;
+    -webkit-transition: all 0.6s ease;
+    transition: all 0.6s ease;
+    -moz-transform: scale(0.9,0.9);
+    -ms-transform: scale(0.9,0.9);
+    -o-transform: scale(0.9,0.9);
+    -webkit-transform: scale(0.9,0.9);
+    transform: scale(0.9,0.9);
+    /*object-fit:cover;
+    object-position:top left;*/
+}
+.ArticleBox a{
+    color:#fff;
+}
+.ArticleBox:hover a{
+    color:#fff;
+}
+.ArticleBox a:focus{
+    outline:none!important;
+}
+.ArticleBox{
+    min-height: 260px!important;
+    margin: 0 0 5px 0!important;
+    padding: 0 10px 0 15px!important;
+}
+.thumbnailBG{
+    background-color: #fff!important;
+    border: none!important;
+    margin-bottom: 0!important;
+    overflow: hidden;
+    /*height: 260px;*/
+}
+.ArticleReadMore1Container{
+    display:none;
+    -moz-transition: padding 0.6s ease;
+    -o-transition: padding 0.6s ease;
+    -webkit-transition: padding 0.6s ease;
+    transition: padding 0.6s ease;
+}
+.ArticleReadMore1{
+    position: absolute;
+    top: 32%;
+    background-color:#3d3d3d;
+    padding: 3px;
+}
+
+.caption{
+    padding: 0 9px 0 9px!important;
+    margin-top:0!important;
+}
+.articleH3{
+    margin-top:0!important;
+    color:#333!important;
+    font-size:16px;
+}
+
+@media(min-width:992px){
+    .ArticleBox:hover img {
+        -moz-transition: all 0.6s ease;
+        -o-transition: all 0.6s ease;
+        -webkit-transition: all 0.6s ease;
+        transition: all 0.6s ease;
+        -moz-transform: scale(1,1);
+        -ms-transform: scale(1,1);
+        -o-transform: scale(1,1);
+        -webkit-transform: scale(1,1);
+        transform: scale(1,1);
+    }
+    .thumbnailBG:hover{
+        box-shadow: 0 0 10px #cacaca;
+        -webkit-transition: box-shadow 0.2s ease-in-out;
+        -moz-transition: box-shadow 0.2s ease-in-out;
+        -o-transition: box-shadow 0.2s ease-in-out;
+        transition: box-shadow 0.2s ease-in-out;
+    }
+    .ArticleBox:hover .ArticleReadMore1Container{
+        padding-right: 20px;
+        -moz-transition: padding 0.6s ease;
+        -o-transition: padding 0.6s ease;
+        -webkit-transition: padding 0.6s ease;
+        transition: padding 0.6s ease;
+    }
+    .ArticleBox:hover .articleH3{
+        -moz-transition: color 0.6s ease;
+        -o-transition: color 0.6s ease;
+        -webkit-transition: color 0.6s ease;
+        transition: color 0.6s ease;
+        color:#3d3d3d!important;
+    }
+}
+/* for id=3 end */
+/* for id=0 start */
+/*.imageboxDIV{
+    margin-bottom: 25px;
+}
+.imageboxDIV .imagebox {
+    width: 100%;
+    height: 150px;
+    margin: 0 0 0 0;
+    position: relative;
+    border: 1px solid #a30001;
+    overflow: hidden;
+    background-color: #fff;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    -ms-align-content: center;
+    -webkit-align-content: center;
+    align-content: center;
+    align-items: center;
+    align-self: center;
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.imageboxDIV .imagebox a .imageboxIMG {
+    width: 100%;
+    height: 150px;
+    margin: 0 auto!important;
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -moz-transition: transform 0.3s ease;
+    -o-transition: transform 0.3s ease;
+    -webkit-transition: transform 0.3s ease;
+    transition: transform 0.3s ease;
+}
+.imageboxDIV:hover .imagebox a .imageboxIMG {
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    -moz-transition: transform 0.3s ease;
+    -o-transition: transform 0.3s ease;
+    -webkit-transition: transform 0.3s ease;
+    transition: transform 0.3s ease;
+}
+.imageboxDIV .imagebox a .imagebox-desc {
+    overflow: hidden;
+    display: block;
+    text-align: center;
+    background-color: rgba(51, 51, 51, 1);
+    padding: 5px 0 5px 0;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    -moz-transition: background 0.3s ease-in-out;
+    -o-transition: background 0.3s ease-in-out;
+    -webkit-transition: background 0.3s ease-in-out;
+    transition: background 0.3s ease-in-out;
+    color: #fff;
+    font-weight: 400;
+    font-size: 14px;
+    margin: 0 0 0 0!important;
+}
+.imageboxDIV:hover .imagebox a .imagebox-desc{
+    background-color: rgba(214, 31, 49, 0.9);
+    -moz-transition: background 0.3s ease-in-out;
+    -o-transition: background 0.3s ease-in-out;
+    -webkit-transition: background 0.3s ease-in-out;
+    transition: background 0.3s ease-in-out;
+    margin: 0 0 0 0;
+}
+
+.imageboxDIV2InRow{
+    margin-bottom: 25px;
+    max-width: 450px;
+}
+.imageboxDIV2InRow .imagebox {
+    width: 100%;
+    height: 210px;
+    margin: 0 0 0 0;
+    position: relative;
+    border: 1px solid #a30001;
+    overflow: hidden;
+    background-color: #fff;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    -ms-align-content: center;
+    -webkit-align-content: center;
+    align-content: center;
+    align-items: center;
+    align-self: center;
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.imageboxDIV2InRow .imagebox a .imageboxIMG {
+    width: 100%;
+    height: 210px;
+    margin: 0 auto!important;
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -moz-transition: transform 0.3s ease;
+    -o-transition: transform 0.3s ease;
+    -webkit-transition: transform 0.3s ease;
+    transition: transform 0.3s ease;
+}
+.imageboxDIV2InRow:hover .imagebox a .imageboxIMG {
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    -moz-transition: transform 0.3s ease;
+    -o-transition: transform 0.3s ease;
+    -webkit-transition: transform 0.3s ease;
+    transition: transform 0.3s ease;
+}
+.imageboxDIV2InRow .imagebox a .imagebox-desc {
+    overflow: hidden;
+    display: block;
+    text-align: center;
+    background-color: rgba(51, 51, 51, 1);
+    padding: 5px 0 5px 0;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    -moz-transition: background 0.3s ease-in-out;
+    -o-transition: background 0.3s ease-in-out;
+    -webkit-transition: background 0.3s ease-in-out;
+    transition: background 0.3s ease-in-out;
+    color: #fff;
+    font-weight: 400;
+    font-size: 14px;
+    margin: 0 0 0 0!important;
+}
+.imageboxDIV2InRow:hover .imagebox a .imagebox-desc{
+    background-color: rgba(214, 31, 49, 0.9);
+    -moz-transition: background 0.3s ease-in-out;
+    -o-transition: background 0.3s ease-in-out;
+    -webkit-transition: background 0.3s ease-in-out;
+    transition: background 0.3s ease-in-out;
+    margin: 0 0 0 0;
+}*/
+
+
+
+.imageboxDIV{
+    padding: 15px 15px 15px 15px!important;
+}
+.imageboxDIV2InRow-1{
+    padding: 15px 15px 15px 15px!important;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.imageboxDIV2InRow-2{
+    padding: 15px 15px 15px 15px!important;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.imageboxDIVSingle{
+    padding: 15px 15px 15px 15px!important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.imageboxDIV .imageboxA{
+    width:100%;
+}
+.imageboxDIV2InRow-1 .imageboxA{
+    min-width: 260px;
+    width: auto;
+}
+.imageboxDIV2InRow-2 .imageboxA{
+    min-width: 260px;
+    width: auto;
+}
+.imageboxDIVSingle .imageboxA{
+    min-width: 260px;
+    width: auto;
+}
+.imageboxDIV .imageboxA .imagebox{
+    height: 150px;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative!important;
+        background-size: 95%;
+    border: 1px solid #f58638;
+    overflow: hidden;
+    background-color: #fff;
+    margin: 0 auto 0 auto!important;
+    padding: 0 0 0 0!important;
+}
+.imageboxDIV .imageboxA .imagebox .imageboxDesc{
+    overflow: hidden;
+    display: block;
+    text-align: center;
+    background-color: rgba(51, 51, 51, 1);
+    padding: 5px 0 5px 0;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    -moz-transition: background 0.3s ease-in-out;
+    -o-transition: background 0.3s ease-in-out;
+    -webkit-transition: background 0.3s ease-in-out;
+    transition: background 0.3s ease-in-out;
+    color: #fff;
+    font-weight: 400;
+    font-size: 13px;
+    margin: 0 0 0 0!important;
+}
+.imageboxDIV .imageboxA .imagebox:hover .imageboxDesc{
+    background-color:#f58638;
+    -moz-transition: background 0.3s ease-in-out;
+    -o-transition: background 0.3s ease-in-out;
+    -webkit-transition: background 0.3s ease-in-out;
+    transition: background 0.3s ease-in-out;
+    margin: 0 0 0 0;
+}
+/* for id=0 end */
+/* for id=1 Start */
+.ArticleMedia {
+    min-height: 40px;
+    padding: 5px 15px;
+    /* border: 1px solid rgba(0, 0, 0, 0.1); */
+    /* background-color: rgba(214, 214, 214, 0.1); */
+    -moz-transition: background-color 0.1s ease-in-out;
+    -o-transition: background-color 0.1s ease-in-out;
+    -webkit-transition: background-color 0.1s ease-in-out;
+    transition: background-color 0.1s ease-in-out;
+}
+.orangeHead {
+    color: #f58638;
+    font-weight: 400;
+}
+.ArticleMedia:hover {
+    text-decoration:underline;
+    /*border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: rgba(117, 117, 117, 0.1);
+    -moz-transition: background-color 0.1s ease-in-out;
+    -o-transition: background-color 0.1s ease-in-out;
+    -webkit-transition: background-color 0.1s ease-in-out;
+    transition: background-color 0.1s ease-in-out;*/
+}
+.ArticleMedia a{
+    color:#333;
+}
+.ArticleMedia a:hover{
+    color:#141414;
+}
+.ArticleMedia a:focus{
+    outline:none!important;
+}
+.ArticleMedia .media-left .media-object{
+    height: 120px;
+}
+/* for id=1 END */
+/* for id=2 Start */
+.ArticleMediaNoPicture{
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color:rgba(214, 214, 214, 0.1);
+    -moz-transition: background-color 0.1s ease-in-out;
+    -o-transition: background-color 0.1s ease-in-out;
+    -webkit-transition: background-color 0.1s ease-in-out;
+    transition: background-color 0.1s ease-in-out;
+    padding: 15px;
+    display: flex;
+}
+.ArticleMediaNoPicture:hover{
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color:rgba(117, 117, 117, 0.1);
+    -moz-transition: background-color 0.1s ease-in-out;
+    -o-transition: background-color 0.1s ease-in-out;
+    -webkit-transition: background-color 0.1s ease-in-out;
+    transition: background-color 0.1s ease-in-out;
+}
+.ArticleMediaNoPicture a{
+    color:#333;
+}
+.ArticleMediaNoPicture a:hover{
+    color:#141414;
+}
+.ArticleMediaNoPicture a:focus{
+    outline:none!important;
+}
+/* for id=2 Start */
+
+
+
+@media(max-width: 992px){
+    .imageboxDIV2InRow-1{
+        padding: 15px 15px 15px 15px!important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .imageboxDIV2InRow-2{
+        padding: 15px 15px 15px 15px!important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+/* Template More END */

@@ -1,0 +1,114 @@
+html {
+    text-align: center;
+    background-color: #f5baba;
+    margin: auto;
+    background: url("../images/background.jpg");
+    background-repeat: repeat;
+    background-size: 100px 100px;
+}
+
+
+
+body {
+    padding-top: 40px;
+    background-color: rgba(182, 65, 65, 0.75);
+    margin: auto;
+    min-width: 500px;
+    max-width: 70%;
+    justify-content: center;
+}
+
+nav ul, nav li {
+    display: inline;
+}
+
+header nav  {   
+    border: 3px ridge gray;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    background-color: rgb(233, 180, 180);
+    font-weight: bold;
+    top: 0;
+}
+
+footer {
+    color: red;
+    border: .2rem solid;
+    background: rgb(218, 197, 191);
+    background: linear-gradient(90deg, rgba(218, 197, 191) 0%, rgb(157, 157, 231) 50%, rgba(139,186,96,1) 100%);
+    bottom: 0;
+    padding: 5px
+}
+
+footer p {
+    margin: 0;
+}
+
+header nav, footer {
+    box-sizing: border-box;
+    position: fixed;
+    min-width: 500px;
+    max-width: 70%;
+    right: 0;
+    left: 0;
+    margin: auto;
+    z-index: 99;
+}
+
+
+
+
+#menu_nav {
+    margin-top: 1.5em;
+}
+
+h1 {
+    margin: 10px;
+    color: red;
+    font-size: 3em;
+    text-shadow: 1px 1px 4px black;
+}
+
+h2 {
+    text-shadow: 0px 0px 3px rgb(112, 24, 24);
+}
+
+
+
+img {
+    margin: 10px;
+    filter: drop-shadow(0px 0px 3px rgb(150, 30, 130));
+}
+
+video {
+    margin: ;
+}
+
+img:hover {
+    transition: 1s;
+    transform: rotate(-2deg);
+}
+
+.main-image {
+    transform: rotate(2deg);
+    filter: drop-shadow(5px 5px 3px rgb(141, 56, 56));
+}
+
+.menu-catagory {
+    text-shadow: 1px 1px 2px red;
+    text-decoration: underline 2px;
+}
+
+p {
+    line-height: 2em;
+}
+
+nav a:hover {
+    color: rgb(106, 138, 17);
+}
+
+video {
+    border: rgba(0, 0, 0, .5) solid 10px;
+}
+
+

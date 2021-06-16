@@ -1,0 +1,496 @@
+﻿$(document).ready(function () {
+
+    jQuery(document).ready(function () {
+        $(".chosen-select").chosen({ width: "100%", max_selected_options: 15 });
+    });
+
+    let isMaritalClicked = 0;
+    $(function () {
+        $("#MaritalStatus").change(function () {
+            var maritalStatusId = this.value;
+
+            if (maritalStatusId != 1622) {
+                isMaritalClicked = 1;
+                $(".chapterBBar").css("display", "block");
+                $(".chapterBNext").addClass("js-btn-next");
+                $(".chapterBPrev").addClass("js-btn-prev");
+
+                $(".chapterBBar").addClass("multisteps-form__progress-btn");
+                $(".skipPhase").removeClass("skipAnotherPhase");
+
+                startAgain();
+            }
+            else {
+                $(".chapterBBar").css("display", "none");
+
+                if (isMaritalClicked != 0) {
+                    $(".skipPhase").addClass("skipAnotherPhase");
+                }
+                //$(".chapterBNext").removeClass("js-btn-next");
+                //$(".chapterBPrev").removeClass("js-btn-prev");
+
+                $(".chapterBBar").removeClass("multisteps-form__progress-btn");
+                isMaritalClicked = 0;
+                //startAgain();
+            }
+        });
+    });
+
+
+
+    $.datepicker.setDefaults($.datepicker.regional["he"]);
+    $(".datepicker").datepicker({
+        changeMonth: true,
+        showButtonPanel: true,
+        numberOfMonths: 1
+
+    });
+    $("#BirthDateStr").datepicker({
+        //dateFormat: "dd-mm-yy",
+        //defaultDate: "+1w",
+        changeYear: true,
+        changeMonth: true,
+        numberOfMonths: 1,
+        yearRange: '1945:' + (new Date).getFullYear(),
+        showButtonPanel: true,
+        onSelect: function (selectedDate) {
+            selectedDate = selectedDate.split(/\-|\s/)
+            $("#BirthDateStr , #dateStart").datepicker("option", "minDate", new Date(selectedDate.slice(0, 3).reverse().join('/')));
+        }
+    });
+
+
+
+
+    let num = 0;
+    let errListItems = "";
+
+    $(".BigFormSubmit").click(() => {
+        errListItems = "";
+        let num = 0;
+        $(".formRequired").each(function (i, obj) {
+            if ($(this).val() < 1) {
+
+                $(this).addClass('not-valid');
+                errListItems += ($(this).siblings('label').text()) + "\n ";
+                num++;
+            }
+            else {
+                $(this).removeClass('not-valid');
+            }
+        });
+        if (num > 0) {
+            //alert(errList + errListItems);
+            $(".modal-body").html("");
+            $(".modal-body").append(errListItems);
+            $('#myModal').modal('show');
+            $(".formErrors").css("display", "block");
+        }
+        else {
+            $(".formErrors").css("display", "none");
+            $("#AddCandidateForm").submit();
+        }
+    });
+
+    $(".formRequired").keyup(function (i, obj) {
+        if ($(this).val().length < 1) {
+
+            $(this).addClass('not-valid');
+
+        }
+        else {
+            $(this).removeClass('not-valid');
+        }
+    });
+
+    $("#AddCandidateForm").submit(() => {
+        $(".BigFormSubmit").hide();
+    });
+
+    $(".paymentSum").click(function () {
+        if ($(this).hasClass("selected")) {
+
+        }
+        else {
+            $(".paymentSum").removeClass("selected");
+            $(this).addClass("selected");
+        }
+        $("#SignaturePayment").val($(this).attr("data-txt"));
+        //alert($(this).attr("data-txt"));  
+    });
+});
+
+$(function () {
+
+    //DOM elements
+    const DOMstrings = {
+        stepsBtnClass: 'multisteps-form__progress-btn',
+        stepsBtns: document.querySelectorAll(`.multisteps-form__progress-btn`),
+        stepsBar: document.querySelector('.multisteps-form__progress'),
+        stepsForm: document.querySelector('.multisteps-form__form'),
+        stepsFormTextareas: document.querySelectorAll('.multisteps-form__textarea'),
+        stepFormPanelClass: 'multisteps-form__panel',
+        stepFormPanels: document.querySelectorAll('.multisteps-form__panel'),
+        stepPrevBtnClass: 'js-btn-prev',
+        stepNextBtnClass: 'js-btn-next'
+    };
+
+
+    //remove class from a set of items
+    const removeClasses = (elemSet, className) => {
+
+        elemSet.forEach(elem => {
+
+            elem.classList.remove(className);
+
+        });
+
+    };
+
+    //return exect parent node of the element
+    const findParent = (elem, parentClass) => {
+
+        let currentNode = elem;
+
+        while (!currentNode.classList.contains(parentClass)) {
+            currentNode = currentNode.parentNode;
+        }
+
+        return currentNode;
+
+    };
+
+    //get active button step number
+    const getActiveStep = elem => {
+        return Array.from(DOMstrings.stepsBtns).indexOf(elem);
+    };
+
+    //set all steps before clicked (and clicked too) to active
+    const setActiveStep = activeStepNum => {
+
+        //remove active state from all the state
+        removeClasses(DOMstrings.stepsBtns, 'js-active');
+
+        //set picked items to active
+        DOMstrings.stepsBtns.forEach((elem, index) => {
+
+            if (index <= activeStepNum) {
+                elem.classList.add('js-active');
+            }
+
+        });
+    };
+
+    //get active panel
+    const getActivePanel = () => {
+
+        let activePanel;
+
+        DOMstrings.stepFormPanels.forEach(elem => {
+
+            if (elem.classList.contains('js-active')) {
+
+                activePanel = elem;
+
+            }
+
+        });
+
+        return activePanel;
+
+    };
+
+    //open active panel (and close unactive panels)
+    const setActivePanel = activePanelNum => {
+
+        //remove active class from all the panels
+        removeClasses(DOMstrings.stepFormPanels, 'js-active');
+
+        //show active panel
+        DOMstrings.stepFormPanels.forEach((elem, index) => {
+            if (index === activePanelNum) {
+
+                elem.classList.add('js-active');
+
+                setFormHeight(elem);
+
+            }
+        });
+
+    };
+
+    //set form height equal to current panel height
+    const formHeight = activePanel => {
+
+        const activePanelHeight = activePanel.offsetHeight;
+
+        DOMstrings.stepsForm.style.height = `${activePanelHeight}px`;
+
+    };
+
+    const setFormHeight = () => {
+        const activePanel = getActivePanel();
+
+        formHeight(activePanel);
+    };
+
+    //STEPS BAR CLICK FUNCTION
+    DOMstrings.stepsBar.addEventListener('click', e => {
+
+        //check if click target is a step button
+        const eventTarget = e.target;
+
+        if (!eventTarget.classList.contains(`${DOMstrings.stepsBtnClass}`)) {
+            return;
+        }
+
+        //get active button step number
+        let activeStep = getActiveStep(eventTarget);
+        if (eventTarget.classList.contains("skipChapterB")) {
+            activeStep++;
+            //const activeStepNew = activeStep + 1;
+            //setActiveStep(activeStepNew);
+            //setActivePanel(activeStepNew);
+            //$(".multisteps-form__progress-btn").removeClass("skipChapterB");
+            //return;
+           
+        }
+
+        //set all steps before clicked (and clicked too) to active
+        setActiveStep(activeStep);
+
+        //open active panel
+        setActivePanel(activeStep);
+    });
+
+    //PREV/NEXT BTNS CLICK
+    DOMstrings.stepsForm.addEventListener('click', e => {
+
+        const eventTarget = e.target;
+
+        //check if we clicked on `PREV` or NEXT` buttons
+        if (!(eventTarget.classList.contains(`${DOMstrings.stepPrevBtnClass}`) || eventTarget.classList.contains(`${DOMstrings.stepNextBtnClass}`))) {
+            return;
+        }
+
+        //find active panel
+        const activePanel = findParent(eventTarget, `${DOMstrings.stepFormPanelClass}`);
+
+        let activePanelNum = Array.from(DOMstrings.stepFormPanels).indexOf(activePanel);
+
+        //set active step and active panel onclick
+        if (eventTarget.classList.contains(`${DOMstrings.stepPrevBtnClass}`)) {
+            activePanelNum--;
+            if (eventTarget.classList.contains(`skipPhase`)) {
+                activePanelNum--;
+            }
+
+        } else {
+
+            activePanelNum++;
+            if (eventTarget.classList.contains(`skipPhase`)) {
+                activePanelNum++;
+            }
+            if (eventTarget.classList.contains(`skipAnotherPhase`)) {
+                activePanelNum++;
+            }
+
+        }
+
+        setActiveStep(activePanelNum);
+        setActivePanel(activePanelNum);
+
+    });
+
+    //SETTING PROPER FORM HEIGHT ONLOAD
+    window.addEventListener('load', setFormHeight, false);
+
+    //SETTING PROPER FORM HEIGHT ONRESIZE
+    window.addEventListener('resize', setFormHeight, false);
+});
+
+function startAgain() {
+
+    //DOM elements
+    const DOMstrings = {
+        stepsBtnClass: 'multisteps-form__progress-btn',
+        stepsBtns: document.querySelectorAll(`.multisteps-form__progress-btn`),
+        stepsBar: document.querySelector('.multisteps-form__progress'),
+        stepsForm: document.querySelector('.multisteps-form__form'),
+        stepsFormTextareas: document.querySelectorAll('.multisteps-form__textarea'),
+        stepFormPanelClass: 'multisteps-form__panel',
+        stepFormPanels: document.querySelectorAll('.multisteps-form__panel'),
+        stepPrevBtnClass: 'js-btn-prev',
+        stepNextBtnClass: 'js-btn-next'
+    };
+
+
+    //remove class from a set of items
+    const removeClasses = (elemSet, className) => {
+
+        elemSet.forEach(elem => {
+
+            elem.classList.remove(className);
+
+        });
+
+    };
+
+    //return exect parent node of the element
+    const findParent = (elem, parentClass) => {
+
+        let currentNode = elem;
+
+        while (!currentNode.classList.contains(parentClass)) {
+            currentNode = currentNode.parentNode;
+        }
+
+        return currentNode;
+
+    };
+
+    //get active button step number
+    const getActiveStep = elem => {
+        return Array.from(DOMstrings.stepsBtns).indexOf(elem);
+    };
+
+    //set all steps before clicked (and clicked too) to active
+    const setActiveStep = activeStepNum => {
+
+        //remove active state from all the state
+        removeClasses(DOMstrings.stepsBtns, 'js-active');
+
+        //set picked items to active
+        DOMstrings.stepsBtns.forEach((elem, index) => {
+
+            if (index <= activeStepNum) {
+                elem.classList.add('js-active');
+            }
+
+        });
+    };
+
+    //get active panel
+    const getActivePanel = () => {
+
+        let activePanel;
+
+        DOMstrings.stepFormPanels.forEach(elem => {
+
+            if (elem.classList.contains('js-active')) {
+
+                activePanel = elem;
+
+            }
+
+        });
+
+        return activePanel;
+
+    };
+
+    //open active panel (and close unactive panels)
+    const setActivePanel = activePanelNum => {
+
+        //remove active class from all the panels
+        removeClasses(DOMstrings.stepFormPanels, 'js-active');
+
+        //show active panel
+        DOMstrings.stepFormPanels.forEach((elem, index) => {
+            if (index === activePanelNum) {
+
+                elem.classList.add('js-active');
+
+                setFormHeight(elem);
+
+            }
+        });
+
+    };
+
+    //set form height equal to current panel height
+    const formHeight = activePanel => {
+
+        const activePanelHeight = activePanel.offsetHeight;
+
+        DOMstrings.stepsForm.style.height = `${activePanelHeight}px`;
+
+    };
+
+    const setFormHeight = () => {
+        const activePanel = getActivePanel();
+
+        formHeight(activePanel);
+    };
+
+    //STEPS BAR CLICK FUNCTION
+    DOMstrings.stepsBar.addEventListener('click', e => {
+
+        //check if click target is a step button
+        const eventTarget = e.target;
+
+        if (!eventTarget.classList.contains(`${DOMstrings.stepsBtnClass}`)) {
+            return;
+        }
+
+        //get active button step number
+        const activeStep = getActiveStep(eventTarget);
+
+        //set all steps before clicked (and clicked too) to active
+        setActiveStep(activeStep);
+
+        //open active panel
+        setActivePanel(activeStep);
+    });
+
+    //PREV/NEXT BTNS CLICK
+    DOMstrings.stepsForm.addEventListener('click', e => {
+
+        const eventTarget = e.target;
+
+        //check if we clicked on `PREV` or NEXT` buttons
+        if (!(eventTarget.classList.contains(`${DOMstrings.stepPrevBtnClass}`) || eventTarget.classList.contains(`${DOMstrings.stepNextBtnClass}`))) {
+            return;
+        }
+
+        //find active panel
+        const activePanel = findParent(eventTarget, `${DOMstrings.stepFormPanelClass}`);
+
+        let activePanelNum = Array.from(DOMstrings.stepFormPanels).indexOf(activePanel);
+
+        //set active step and active panel onclick
+        if (eventTarget.classList.contains(`${DOMstrings.stepPrevBtnClass}`)) {
+            activePanelNum--;
+            if (eventTarget.classList.contains(`skipAnotherPhase`)) {
+                activePanelNum--;
+            }
+
+        } else {
+
+            activePanelNum++;
+          
+            if (eventTarget.classList.contains(`skipAnotherPhase`)) {
+                activePanelNum++;
+            }
+
+        }
+        //if (eventTarget.classList.contains(`${DOMstrings.stepPrevBtnClass}`)) {
+        //    activePanelNum--;
+
+        //} else {
+
+        //    activePanelNum++;
+
+        //}
+
+        setActiveStep(activePanelNum);
+        setActivePanel(activePanelNum);
+
+    });
+
+    //SETTING PROPER FORM HEIGHT ONLOAD
+    window.addEventListener('load', setFormHeight, false);
+
+    //SETTING PROPER FORM HEIGHT ONRESIZE
+    window.addEventListener('resize', setFormHeight, false);
+};

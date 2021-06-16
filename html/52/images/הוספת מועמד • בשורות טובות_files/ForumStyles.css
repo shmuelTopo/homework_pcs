@@ -1,0 +1,627 @@
+﻿/* All Forums Page Start */
+.parallax-window {
+    min-height: 500px!important;
+    background: transparent;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: -20px;
+}
+.ForumContainer{
+    padding: 20px 0 20px 0;
+    margin-top:20px;
+}
+.ForumContainerTitle{
+    border-radius: 10px 10px 0px 0px;
+    padding: 5px;
+    color: #44525b;
+    font-size: 32px;
+    font-weight: 600;
+}
+.ForumRow{
+    -moz-transition: box-shadow 0.3s ease;
+    -o-transition: box-shadow 0.3s ease;
+    -webkit-transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
+    background-color: #fff;
+    padding: 10px 10px 10px 10px;
+    box-shadow: 0 0 5px #cacaca;
+    margin: 1px 1px 15px 1px;
+}
+.ForumRow:hover {
+    -moz-transition: box-shadow 0.3s ease;
+    -o-transition: box-shadow 0.3s ease;
+    -webkit-transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
+    background-color: #fff;
+    box-shadow: 0 0 20px #b0b0b0;
+}
+.ForumA{
+
+}
+.ForumContentHolder {
+    display: flex;
+    align-items: flex-start;
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.ForumImgHolder{
+    padding-left: 15px;
+}
+.ForumImg{
+    display: block;
+    width: 100%;
+    height:110px;
+}
+.ForumBody{
+    color: #44525b;
+    padding-top: 13px;
+    padding-bottom: 10px;
+}
+.ForumHeading{
+    font-size: 18px;
+    font-weight: 400;
+}
+.ForumContent{
+    font-size: 16px;
+    font-weight: 400;
+    max-height: 65px;
+    min-height: 65px;
+    overflow: hidden;
+}
+/* All Forums Page END */
+
+
+
+/* Forum Index Page Start */
+.ForumIndexContainer{
+    margin-top: 85px;
+    padding: 0 15px 70px 15px!important;
+    position:relative!important;
+}
+.ForumIndexHeadline {
+    min-height:80px;
+}
+.ForumIndexHeadline .ForumIndexH1 {
+    margin-bottom: 10px;
+    padding: 7px 0;
+    font-size: 36px;
+    color: #44525b;
+    font-weight:600;
+}
+.ForumIndexH2{
+    color:#44525b;
+    display: inline-block;
+    margin-bottom: 30px;
+    margin-top: 0;
+    font-size: 24px;
+}
+.management {
+    margin-top: 10px;
+}
+.management .cd-signin{
+    -moz-transition: color 0.1s linear;
+    -o-transition: color 0.1s linear;
+    -webkit-transition: color 0.1s linear;
+    transition: color 0.1s linear;
+    background-color: #44525b;
+    color: #fff!important;
+    text-align: center;
+    -moz-border-radius: 4px!important;
+    -webkit-border-radius: 4px!important;
+    border-radius: 4px!important;
+    padding: 2px 15px 2px 15px;
+    cursor: pointer;
+    font-size: 12px;
+    float: left;
+}
+.management .cd-signin:hover{
+    -moz-transition: color 0.1s linear;
+    -o-transition: color 0.1s linear;
+    -webkit-transition: color 0.1s linear;
+    transition: color 0.1s linear;
+    color: #f3b43e!important;
+}
+.management .cd-signin:focus{
+    -moz-transition: color 0.1s linear;
+    -o-transition: color 0.1s linear;
+    -webkit-transition: color 0.1s linear;
+    transition: color 0.1s linear;
+    color: #f3b43e!important;
+}
+#search-form {
+    display: inline-block;
+    position: relative;
+    float: right;
+}
+#search-form .search2 {
+    outline: none;
+    border: 1px solid #44525b;
+    color: #44525b;
+    border-radius: 4px!important;
+    z-index: 2;
+    position: relative;
+    width: 150px;
+    font-size: 14px;
+    padding: 5px 3px 5px 22px;
+    margin-left: 15px;
+    height: 25px;
+}
+#search-form input[type=submit] {
+    background-image: url(/../img/magnifieing-glass.jpg);
+    width: 19px;
+    height: 18px;
+    position: absolute;
+    top: 3.5px;
+    left: 2px;
+    z-index: 2;
+    cursor: pointer;
+    border: none;
+    margin-left: 15px;
+}
+.forum-btn{
+    -moz-transition: color 0.1s linear;
+    -o-transition: color 0.1s linear;
+    -webkit-transition: color 0.1s linear;
+    transition: color 0.1s linear;
+    background-color: #44525b;
+    color: #fff!important;
+    text-align: center;
+    -moz-border-radius: 4px!important;
+    -webkit-border-radius: 4px!important;
+    border-radius: 4px!important;
+    padding: 3px 20px 3px 20px;
+    cursor: pointer;
+    font-size: 18px;
+    float: left;
+}
+.forum-btn:hover{
+    -moz-transition: color 0.1s linear;
+    -o-transition: color 0.1s linear;
+    -webkit-transition: color 0.1s linear;
+    transition: color 0.1s linear;
+    color: #f3b43e!important;
+    background-color: #44525b;
+}
+.forum-btn:focus{
+    color: #f3b43e!important;
+    background-color: #44525b;
+    outline:none!important;
+}
+.paging{
+    padding-top: 5px;
+    color: #44525b;
+}
+.paging a{
+    color: #44525b;
+    font-size:16px;
+    font-weight:400;
+}
+.paging strong{
+    color: #44525b;
+    font-size:16px;
+}
+.paging:hover{
+    color: #44525b;
+}
+.paging:focus{
+    color: #44525b;
+    outline:none!important;
+}
+.paging .start-end{
+
+}
+
+
+
+
+
+/* Each Post Title Start */
+.forum-container {
+    border-top: 1px solid #cbc9ca;
+    margin-top: 75px;
+    min-height: 500px;
+}
+.forumMessageContainer {
+    padding: 5px 0 5px 0;
+    border-bottom: 1px dashed #cbc9ca;
+    direction: rtl;
+}
+.forumMessageContainer .forumDot {
+    background: url(/../img/ForumOrange.png)no-repeat;
+    margin-top: 3px;
+    margin-left: 5px;
+    width: 17px;
+    height: 17px;
+    float: right;
+    padding-right: 10px;
+}
+.forumHeaderText{
+    padding-bottom: 3px;
+    display: flex;
+    align-items: center;
+}
+.forumHeaderText:hover{
+    cursor:pointer;
+}
+.forumHeaderText .forumHeaderTextA {
+    font-size: 15px;
+    color: #44525b;
+    display: flex;
+    -ms-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    align-items: center;
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.forumHeaderText .forumHeaderTextA:hover{
+    -moz-transition: color 0.1s linear;
+    -o-transition: color 0.1s linear;
+    -webkit-transition: color 0.1s linear;
+    transition: color 0.1s linear;
+    color: #f3b43e;
+}
+.forumHeaderText .forumHeaderTextA:focus{
+    outline:none!important;
+    color: #f3b43e;
+}
+.forumHeaderText .s2{
+    font-size: 11px;
+    margin-right: 5px;
+}
+.forumDate {
+    width: 115px;
+    color: #9f9e9f;
+    font-size: 12px;
+    margin-top: 5px;
+    display: flex;
+    -ms-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    justify-content: flex-end;
+}
+/* Each Post Title Start */
+
+
+
+
+/* Each Post Message Start */
+.forumMessage{
+    margin: 1px 26px 5px 0;
+    padding: 10px;
+    border-radius: 0 0 5px 5px;
+    display: none;
+}
+.forumMessage p {
+    line-height: 16px;
+    font-size: 14px;
+    text-decoration: none;
+}
+.ForumMessagecontent {
+    width: 30vw;
+    color:#44525b;
+}
+.editedMessage{
+    margin: 0 0 0 14px;
+    width: 100%;
+    height: 109px;
+    background-color: #f7f7f7;
+    border: none;
+    resize: none;
+    line-height: 16px;
+    font-size: 14px;
+    text-decoration: none;
+}
+.eachMessageBtns{
+    padding: 25px 0px 0px 0px;
+}
+.eachMessageBtns .Add-comment{
+    -moz-transition: color 0.1s linear;
+    -o-transition: color 0.1s linear;
+    -webkit-transition: color 0.1s linear;
+    transition: color 0.1s linear;
+    background-color: #44525b;
+    color: #fff!important;
+    text-align: center;
+    -moz-border-radius: 4px!important;
+    -webkit-border-radius: 4px!important;
+    border-radius: 4px!important;
+    padding: 3px 20px 3px 20px;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 16px;
+    font-size: 14px;
+}
+.eachMessageBtns .Add-comment:hover{
+    -moz-transition: color 0.1s linear;
+    -o-transition: color 0.1s linear;
+    -webkit-transition: color 0.1s linear;
+    transition: color 0.1s linear;
+    color: #f3b43e!important;
+    background-color: #44525b;
+}
+.eachMessageBtns .Add-comment:focus{
+    color: #f3b43e!important;
+    background-color: #44525b;
+    outline:none!important;
+}
+.eachMessageBtns .delete-message{
+    -moz-transition: color 0.1s linear;
+    -o-transition: color 0.1s linear;
+    -webkit-transition: color 0.1s linear;
+    transition: color 0.1s linear;
+    background-color: #44525b;
+    color: #fff!important;
+    text-align: center;
+    -moz-border-radius: 4px!important;
+    -webkit-border-radius: 4px!important;
+    border-radius: 4px!important;
+    padding: 3px 20px 3px 20px;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 16px;
+    font-size: 14px;
+}
+.eachMessageBtns .delete-message:hover{
+    -moz-transition: color 0.1s linear;
+    -o-transition: color 0.1s linear;
+    -webkit-transition: color 0.1s linear;
+    transition: color 0.1s linear;
+    color: #f3b43e!important;
+    background-color: #44525b;
+}
+.eachMessageBtns .delete-message:focus{
+    color: #f3b43e!important;
+    background-color: #44525b;
+    outline:none!important;
+}
+.eachMessageBtns .edit-message{
+
+}
+.eachMessageBtns .save-message{
+
+}
+.eachMessageBtns .cancel-message{
+
+}
+.eachMessageBtns .close-btn {
+    -moz-transition: color 0.1s linear;
+    -o-transition: color 0.1s linear;
+    -webkit-transition: color 0.1s linear;
+    transition: color 0.1s linear;
+    width: 45px;
+    height: 18px;
+    background-repeat: no-repeat;
+    background-position: right center;
+    float: left !important;
+    color: #44525b;
+}
+.eachMessageBtns .close-btn:hover {
+    -moz-transition: color 0.1s linear;
+    -o-transition: color 0.1s linear;
+    -webkit-transition: color 0.1s linear;
+    transition: color 0.1s linear;
+    color: #f3b43e;
+}
+.eachMessageBtns .close-btn:focus{
+    outline:none!important;
+    color: #f3b43e;
+}
+.forumMessageContainer .forumMessageContainer {
+    border-bottom: none;
+    padding-right: 30px;
+}
+.forumMessageContainer .forumMessageContainer .forumDot {
+    background: url(/../img/ForumGrayCircle.png)no-repeat;
+    margin-top: 10px;
+    margin-left: 5px;
+    width: 7px;
+    height: 7px;
+}
+
+/* Each Post Message END */
+@media(max-width:768px){
+    .forumHeaderText {
+        padding-bottom: 3px;
+        display: flex;
+        align-items: flex-start;
+    }
+    .ForumMessagecontent {
+        width: 100%;
+        color: #44525b;
+    }
+}
+/* Forum Index Page END */
+
+
+
+
+/* forum Compose Page Start */
+.forumrightdiv{
+
+}
+.forumComposeContainer{
+    margin-top:0px;
+    padding: 0 15px!important;
+}
+.text{
+
+}
+.text .forumComposeTitle{
+    margin-bottom: 0;
+    margin-top: 30px;
+    padding: 10px 0 0 0;
+    font-size: 36px;
+    color: #44525b;
+    font-weight: 300;
+    text-align: center;
+}
+.forumComposeTitle2{
+    font-size: 24px;
+    color: #44525b;
+    font-weight: 400;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    text-align: center;
+}
+.forumComposeTXT{
+    font-size: 16px;
+    color: #44525b;
+    font-weight: 400;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.forumComposeTXT2{
+    font-size: 16px;
+    color: #44525b;
+    font-weight: 400;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.Add-Comment-Forum{
+    position: relative!important;
+    color: #44525b;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 30px;
+}
+.Add-Comment-Forum:before{
+    content: '';
+    background: #f3b43e;
+    position: absolute;
+    bottom: 0;
+    width: 60px;
+    height: 2px;
+    display: block;
+    border-radius: 4px;
+    margin: 0 auto;
+}
+.Add-a-message-in-forum{
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+    margin: 10px 0 10px 0!important;
+    color: #44525b;
+}
+
+
+.ForumContactUSIMG{
+    padding: 0!important;
+}
+.ForumContactUSContainer {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 50px 0;
+    min-height: 660px;
+}
+.ForumContactUSRow{
+    max-width:100%!important;
+}
+.ForumContactFormContentHolder{
+    padding: 0!important;
+}
+.ForumFormHolder{
+
+}
+.forumComposeForm {
+    direction: rtl;
+}
+.BTNGroup {
+    position: relative;
+    min-height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+#ForumloadingGif {
+    position: absolute;
+    width: 50px;
+    top: 0;
+}
+.MyForumFormBTN {
+    height: 50px;
+    font-size: 20px !important;
+    padding: 0 !important;
+    z-index: 10;
+    position: relative;
+    display: block;
+    background-color: #8b1825 !important;
+    border-color: #8b1825 !important;
+    border-radius: 25px !important;
+    color: #fff !important;
+    -moz-transition: background-color 0.3s ease;
+    -o-transition: background-color 0.3s ease;
+    -webkit-transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease;
+}
+    .MyForumFormBTN:hover {
+        color: #fff;
+        -moz-transition: background-color 0.3s ease;
+        -o-transition: background-color 0.3s ease;
+        -webkit-transition: background-color 0.3s ease;
+        transition: background-color 0.3s ease;
+        background-color: #da9e23 !important;
+        border-color: #da9e23 !important;
+    }
+    .MyForumFormBTN:focus {
+        color: #fff;
+        outline: none !important;
+        background-color: #da9e23 !important;
+        border-color: #da9e23 !important;
+    }
+/* forum Compose Page END */
+
+#forumComposeForm .not-valid {
+    background: transparent!important;
+    border-bottom: 1px solid #a94442!important;
+    border-radius: 0!important;
+}
+
+.hideForumBTN{
+    display:none!important;
+}
+
+
+
+
+.ForumbreadcrumbsHolder{
+    background-color: rgb(245, 245, 245)!important;
+    position: relative!important;
+    top: 85px;
+    padding: 0!important;
+    margin: 0!important;
+    width: 100%;
+    height: 50px;
+}
+.breadcrumbBGForum{
+    position: relative!important;
+    display: block;
+}
+.breadcrumbForum{
+
+}
+
+
+
+
+
+@media (max-width: 992px){
+    .ForumIndexContainer {
+        margin-top: 70px;
+        padding: 0 15px 50px 15px!important;
+    }
+    .paging {
+        padding-top: 5px;
+        color: #44525b;
+        display: inline-block;
+    }
+}

@@ -1,0 +1,327 @@
+﻿html,body{}
+
+    body.isbigPointerBlack * {
+       
+        cursor: url('images/icon-bigPointerBlack.png'), auto;
+    }
+    body.isbigPointerWhite * {
+
+        cursor: url('images/icon-bigPointerWhite.png'), auto;
+    }
+   
+    
+   body.isNavigationKeyboard *:focus
+    {
+           box-shadow: 0 0 6px 3px #333, 0 0 2px #333 inset !important;
+                background-color: #ffffcc !important;
+                color:red !important;                                           
+    }
+   
+div.accessibileLinks{position:absolute; right:0; top:0; z-index:999999;}
+div.accessibileLinks button{
+    cursor:pointer;	
+    font-family:Arial !important;
+    border:none;	
+    overflow: hidden; 
+    height: 0px;
+    width: 0px; 
+    margin:0;
+    padding:0;
+    border:0; 
+    background-color:#333;
+    color:#fff;
+    font-size:18px;
+    display:block;
+}
+div.accessibileLinks button:focus{
+    height: auto;
+    width: auto; 
+    padding:15px;
+    outline:none!important;
+}
+div.accessibileMenu{
+    position:fixed; left:-290px;
+    bottom:15px!important;
+    font-family:Arial !important;
+    z-index: 9999!important;
+}
+div.accessibileMenu button.open {
+    position: absolute;
+    /*background: url('images/accessibility-icon.png') no-repeat center;*/
+    background-size: 34px 36px;
+    right: -39px;
+    bottom: 20px;
+    cursor: pointer;
+    background-color: white;
+    width:40px;
+    height: 45px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    border: 0px solid #666666;
+    border-radius: 0px 15px 15px 0px!important;
+    -webkit-box-shadow: 8px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 8px 0 10px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 8px 0 10px 0 rgba(0, 0, 0, 0.2);
+    color:white;
+    border: 1px solid #a5a1a1;
+    outline: none!important;
+}
+@media(max-width: 992px){
+    div.accessibileLinks{position:absolute; right:0; top:0; z-index:999;}
+    div.accessibileMenu{position:fixed; left:-290px; bottom:15px!important; font-family:Arial !important; z-index: 999!important;}
+}
+@media (max-width: 768px){
+    div.accessibileMenu{position:fixed; left:-290px; bottom:15px!important; font-family:Arial !important; z-index: 999!important;}
+    div.accessibileMenu button.open {
+    position: absolute;
+    background: none;
+    background-size: 30px 30px;
+    right: -37px;
+    bottom: 3px;
+    cursor: pointer;
+    background-color: white;
+    width: 38px;
+    height: 35px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: white;
+    color: white;
+    box-shadow: none;
+    border: 1px solid #a5a1a1;
+    }
+}
+.close {
+    float: left;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #333;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: .2;
+}
+/*div.accessibileMenu{position:fixed; left:-290px; bottom:15px!important; font-family:Arial !important; z-index: 99999!important;}
+    div.accessibileMenu button.open {
+          position: absolute;
+    bottom: 20px;
+    right: -58px;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    color: #0066a4;
+    text-align: center;
+    width: 58px;
+    height: 40px;
+    overflow: hidden;
+    background: url('images/icon-decleration.png') no-repeat center;
+    background-size: cover;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    -moz-border-radius: 0 5px 5px 0;
+    -webkit-border-radius: 0 5px 5px 0;
+    display: block;
+    border: 1px solid #0066a4;
+    border-left: none;
+    -webkit-box-shadow: 8px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 8px 0 10px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 8px 0 10px 0 rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    background: white;
+    font-size: 16px;
+    font-weight: bold;
+        background-color: #013331;
+        padding:5px;
+            padding-right: 8px;
+    }*/
+div.accessibileMenu nav{display:block; background:#fff; border:1px solid #333; padding:20px!important; border-left:none;
+    width:290px;
+    height: 420px;
+	border-radius:0 5px 5px 0; 
+	-moz-border-radius:0 5px 5px 0; 
+	-webkit-border-radius:0 5px 5px 0; 
+	-webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);;
+	-moz-box-shadow:    0 0 10px 0 rgba(0, 0, 0, 0.2);;
+	box-shadow:         0 0 10px 0 rgba(0, 0, 0, 0.2);;	
+}
+div.accessibileMenu nav button{font-family:Arial !important; cursor:pointer;}
+div.accessibileMenu nav button.close{
+font-size: 15px;
+    color: black;
+    opacity: 1;
+
+}
+div.accessibileMenu nav ul{display:block; margin:0; padding:0;}
+div.accessibileMenu nav li{display:block; margin:0; padding:0;text-align: left;}
+div.accessibileMenu nav div.title{font-size:18px; border-bottom:1px solid #333; color:#333; font-weight:bold; padding-bottom:5px; margin-bottom:10px;}
+/*div.accessibileMenu nav li.on{background:url(images/icon-v.png) no-repeat left center;}*/
+div.accessibileMenu nav li.on a{color:red}
+div.accessibileMenu nav li.on button{color:red}
+div.accessibileMenu nav li button{margin-bottom:10px; text-align:right; background:#fff no-repeat right center; background-size:auto 100%; border:none; padding-right:25px; height:20px; font-size:16px;}
+div.accessibileMenu nav li a{
+    margin-bottom: 0;
+    text-align: left;
+    background: #fff no-repeat right center;
+    background-size: auto 100%;
+    border: none;
+    height: 15px;
+    font-size: 15px!important;
+    padding: 0!important;
+}
+div.accessibileMenu nav li button:hover{text-decoration:underline;}
+div.accessibileMenu nav li a:hover,div.accessibileMenu nav li a:focus{text-decoration:underline;color:black}
+
+div.accessibileMenu nav li button.magnifying{background-image:url(images/icon_magnifying.png); }
+div.accessibileMenu nav li button.bigFont{background-image:url(images/icon_bigFont.png);}
+div.accessibileMenu nav li button.fontFamily{background-image:url(images/icon-font.png);}
+div.accessibileMenu nav li button.bgLight{background-image:url(images/icon-light.png);}
+div.accessibileMenu nav li button.bgDark{background-image:url(images/icon-dark.png);}
+div.accessibileMenu nav li button.bgDefault{background-image:url(images/icon-default.png);}
+div.accessibileMenu nav li button.linkHighlight{background-image:url(images/icon_link.png);}
+div.accessibileMenu nav li button.backToSorce{background-image:url(images/icon-reset.png);}
+div.accessibileMenu nav li button.accDecleration{background-image:url(images/icon-decleration.png);}
+div.accessibileMenu nav li a.statement{
+    background-image:url(images/icon-decleration.png);
+    padding-right: 25px!important;
+    color: #333;
+    font-weight: 400;
+}
+div.accessibileMenu nav li a.feedback {background-image: url('images/icon-feedback.png');}
+
+div.accessibileMenu nav li button.bigPointerBlack {background-image: url('images/icon-bigPointerBlack.png');}
+div.accessibileMenu nav li button.bigPointerWhite {background-image: url('images/icon-bigPointerWhite.png');}
+div.accessibileMenu nav li button.bigZoom {background-image: url('images/icon-bigZoom.png');}
+div.accessibileMenu nav li button.navigationKeyboard {background-image: url('images/icon-navigationKeyboard.png');background-size: 20px;}
+
+
+div.accessibileMenu nav li button.accHelp{background-image:url(images/icon-help.png);}
+div.accessibileMenu div.rights{border-top:1px solid #333; padding-top:10px; font-size:12px; line-height:18px;}
+div.accessibileMenu div.page{display:none;
+position:absolute; border:1px solid #333; top:0; left:0; width:100%; height:100%; background:#fff;
+padding:20px;	
+	border-radius:0 5px 5px 0; 
+	-moz-border-radius:0 5px 5px 0; 
+	-webkit-border-radius:0 5px 5px 0; 
+}
+div.accessibileMenu div.page h1{font-size:18px; border-bottom:1px solid #333; color:#333; font-weight:bold; padding-bottom:5px; margin-bottom:10px;}
+div.accessibileMenu div.page button.closePage{position:absolute; left:10px; top:10px; width:30px; height:30px; 
+color:rgba(0,0,0,0);
+text-align:right;
+background:url(images/icon_close.png) #fff no-repeat center; background-size:cover; border:none;}
+div.accessibileMenu div.declerationPage{}
+div.accessibileMenu div.helpPage{}
+
+
+
+/*magnifying*/
+.ui-tooltip{
+background: black;
+border: 2px solid white;
+width:100%;
+padding:15px;
+color: white;
+font-size:30px;
+box-shadow: 0 0 7px black;
+width:auto !important;
+max-width:1333px !important;
+}
+
+.toolTipDetails {
+    width:  1200px !important;
+    max-width: 1200px !important;
+    overflow:auto !important;
+  } 
+
+
+
+
+
+
+
+
+
+
+
+/*transition*/
+div.accessibileMenu
+{
+-webkit-transition: all 0.5s ease;
+-moz-transition: all 0.5s ease;
+-o-transition: all 0.5s ease;
+transition: all 0.5s ease;
+}
+
+
+@media only screen and (max-width: 950px) {
+	div.accessibileMenu{bottom:90px;}
+	div.accessibileMenu nav ul.navMenu{height:390px; overflow:auto;}
+}
+
+.popup-accessibility {
+    background: white;
+    padding: 20px 30px;
+    max-width: 500px;
+    min-height:300px;
+    margin: 40px auto;
+    position: relative;
+     text-align: center;
+     direction:rtl;
+     z-index: 999999999!important;
+
+}
+.popup-accessibility iframe{
+      width: 100%;
+       min-height:220px;
+}
+
+
+
+
+#accesability-shortcuts {
+    direction:rtl;
+     text-align:right;
+     display: none;
+    background: rgba( 18, 34, 49, 0.7 );
+    border: 1px solid #fff;
+    border-radius: 0 0 5px 5px;  
+    height: auto;
+    margin-top: -1px;
+    padding: 5px;
+    position: fixed;
+    text-align: center;
+    width: auto;
+    z-index: 2147483640;
+    font-size: 18px;
+    font-family: Arial,Helvetica,sans-serif;
+    right: 342px;
+    top: 0;
+    line-height: 18px;
+    box-sizing: border-box;
+}
+
+#accesability-shortcuts-in {
+    position: relative;
+    background: white;
+    border-radius: 3px;
+    padding: 2px 4px;
+}
+
+#accesability-shortcuts ul {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1rem;
+}
+#accesability-shortcuts li {
+    display: inline-block;
+    background-image: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box;
+}
+#accesability-shortcuts a {
+    width: auto;
+    right: 0;
+    padding: 4px 10px;
+    display: inline-block;
+    color: #17384c;
+    font-size: 15px;
+}

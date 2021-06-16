@@ -1,0 +1,114 @@
+﻿@media print {
+    body {
+    }
+
+    .facebook-likebox,
+    .lost-likebox,
+    .up-banner,
+    .newsLetter,
+    .side,
+    .additionals,
+    .Ads-btn,
+    .video-containerArticle,
+    nav, header, .SocialBarRow, .sideTabPhone, .printHide,
+    .articleDetails,
+    .AdsItem.selected .print-bar,
+    .scroll-wrapper,
+    .wrapper > .footer, .bottomLinks, .coffeeBTN, .ContactUSIMG, .accessibileMenu,
+    .colorTip, .big-form, .headline h2, .owlv1, .div-big-form, .serbar, .navbar-nav, .topbar, .footer-v2, .English-top, .phon-big {
+        display: none;
+    }
+
+    .footer-v1 {
+        display: none;
+    }
+
+    .header .logo img {
+        padding-top: 15px;
+        height: 90px !important;
+        margin: 0 auto !important;
+        display: block !important;
+    }
+
+    .headline {
+        padding-top: 80px;
+    }
+
+    .margin-bottom-20, .topbar, .breadcrumbs, .navbar-toggle, #topcontrol, .overflow-h {
+        display: none !important;
+    }
+
+    .breadcrumbs-v3 {
+        display: none;
+    }
+
+    .wrapper > .header {
+        height: 120px;
+        min-height: 0;
+    }
+
+        .wrapper > .header.logo {
+            float: none;
+            margin: 0 auto;
+        }
+
+            .wrapper > .header.logo img {
+                margin: 0 auto;
+            }
+
+            .wrapper > .header .logo * {
+                display: block;
+            }
+
+    .h1OnVideoArticle {
+        display: block;
+        color: black;
+        margin-top: 50px;
+    }
+
+    .txt {
+        margin-top: 50px;
+        font-size:40px;
+    }
+
+    h1 {
+        display: block !important;
+        color: black;
+    }
+
+    .p-t-300 {
+        display: block !important;
+        color: black;
+    }
+
+    .articleTitle2 {
+        display: block !important;
+        color: black;
+    }
+
+    .H1OnVideo {
+        display: block !important;
+        color: black;
+    }
+    .ProductPagesGalleryA{
+        display:none!important;
+    }
+   
+
+    .rightShare{
+        display:none;
+    }
+    .ProductBrothersTitle{
+        display:none;
+    }
+    .ContactUSContainerFluid{
+        display:none;
+    }
+    .FooterLinksContainerFluid{
+        display:none;
+    }
+    .ContactUSContainer{
+        display:none;
+            
+    }
+}
