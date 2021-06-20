@@ -173,6 +173,7 @@ video {
 }
 
 
+
 @media screen and (max-width: 750px) {
     
     #main-image {
@@ -182,6 +183,8 @@ video {
     body {
         margin: 0;
         max-width: 100%;
+        padding: 0px;
+        margin: 0px;
     }
 
     header {

@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <style>
         #location, #phone {
@@ -26,20 +27,21 @@
 </head>
 <body>
     <header>
+        <img src="images/logo.png" alt="">
         <nav>
-            <ul>
-                <li><a href="index.html">Home</a> |</li>
-                <li><a href="menu.html">Our Menu</a> |</li>
-                <li><a href="about_us.html">About us</a> |</li>
-                <li><a href="https://www.opentable.com/prime-ninety-five" target="_blank">OpenTable ↗</a></li>
+            <ul class="big-screen-nav">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="menu.html">MENU</a></li>
+                <li><a href="about_us.html">ABOUT US</a></li>
+                <li><a id="order_now" href="order_now.html">ORDER NOW</a></li>
             </ul>
         </nav>
-        <h1>Prime Ninety Five</h1>
-        <div class="main-image">
-            <img src="images/inside.jpg" width="300" alt="inside the resturant">
-        </div>
     </header>
-    
+
+    <div class="main-image">
+        <img src="images/inside.jpg" alt="inside the resturant">
+    </div>
+
     <div class="about">
         <h3>Location <div id="location"></span></h2>
         <p>95 E kenedy blvd, Lakewood NJ, 08701</p>
