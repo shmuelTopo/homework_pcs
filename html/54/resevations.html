@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resturant</title>
+    <link rel="icon" href="images/logo.png">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        #form_page {
+            font-size: .8em;;
+            width: 80%;
+            height: 700px;
+            background-color: rgba(194, 161, 117, 0.94);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            padding-top: 12em;
+            z-index: 98;
+            overflow-y: scroll;
+            height: 95%;
+        }
+
+        input:not([type="radio"]) {
+            display: block;
+            width: 70%;
+            margin: auto;
+            box-sizing: border-box;
+            margin-bottom: 1em;
+        }
+
+        #table_radio {
+            display: block;
+            padding-bottom: 1em;
+        }
+
+
+        select option:first-child {
+            color: gray;
+        }
+
+        label[for="numPeople"]~input {
+            display: inline;
+            width: 5em;
+        }
+
+        button {
+            display: block;
+            margin: auto;
+            margin-top: 1em;
+        }
+
+    </style>
+
+</head>
+<body>
+    <header>
+        <img src="images/logo.png" alt="">
+        <nav>
+            <ul class="big-screen-nav">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="menu.html">MENU</a></li>
+                <li><a href="about_us.html">ABOUT US</a></li>
+                <li><a href="resevations.html" id="order_now">ORDER NOW</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div id="form_page">
+        <form action="index.html">
+            <label for="fullName">Full Name:</label>
+            <input id="fullName" name="fullName" placeholder="Enter Full Last Name" required>
+                    
+            <label for="age">Age:</label>
+            <input type="number" name="age" id="age" min="1" max="120" step="any">
+        
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email">
+                    
+            <label for="reservationDate">Date Of reservation:</label>
+            <input type="date" name="reservationDate" id="reservationDate" value="2021-06-24" min="2021-06-24" max="2021-07-24">
+        
+            <label for="phone">Phone:</label>
+            <input type="tel" name="phone" id="phone" pattern="[0-9]{10}">
+
+            <label id="table_radio">Do you want big/small table?
+                <input type="radio" name="table" value="smallTable">Small Table
+                <input type="radio" name="table" value="bigTable" checked>Big Table
+            </label>
+
+            <label for="numPeople">Number of people:</label>
+            <input type="number" name="numPeople" id="numPeople" min="1" max="15" step="any">
+
+            <br>
+            <label for="drink">Drink:</label>
+            <select name="drink" id="drink">
+                <option>-- No Drink --</option>
+                <option>Coke</option>
+                <option>Pepsi</option>
+                <option>Sprite</option>
+            </select>
+            <button>Place Order!</button>
+        </form>
+    </div>
+    <img id="main-image" src="images/resturant.jpg" alt="resturant inside">
+    <main>
+        <section>
+            <h2>Brief Overview</h2>
+            <p>
+                A fine dining experience with creativity and professionalism.
+                The menu reflects the experience of our Chef,
+                with his strong culinary touc
+                Contact us today to make a reservation in our fine dining glatt kosher restaurant.
+            </p>
+            <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi quasi nobis expedita vel aut
+                distinctio earum reprehenderit illum tenetur accusamus, at repellendus recusandae tempore perferendis.
+                Odit consequatur magnam tempora minus itaque ullam expedita laudantium, dolores ducimus sed similique
+                asperiores
+            </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Day</th>
+                        <th>Breakfest</th>
+                        <th>Lunch</th>
+                        <th>Supper</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sunday</td>
+                        <td>10:00am - 12:00pm</td>
+                        <td>12:30pm - 4:00pm</td>
+                        <td>5:00pm - 10:00pm</td>
+                    </tr>
+                    <tr>
+                        <td>Monday</td>
+                        <td>9:00am - 12:00pm</td>
+                        <td>12:30pm - :00pm</td>
+                        <td>5:00pm - 11:00pm</td>
+                    </tr>
+                    <tr>
+                        <td>Tuesday</td>
+                        <td>9:00am - 12:00pm</td>
+                        <td>12:30pm - 4:00pm</td>
+                        <td>5:00pm - 11:00pm</td>
+                    </tr>
+                    <tr>
+                        <td>Wednesday</td>
+                        <td>9:00am - 12:00pm</td>
+                        <td>1:00pm - 4:00pm</td>
+                        <td>5:00pm - 11:00pm</td>
+                    </tr>
+                    <tr>
+                        <td>Thursday</td>
+                        <td>9:00am - 12:00pm</td>
+                        <td>12:30pm - 4:00pm</td>
+                        <td>5:00pm - midnight</td>
+                    </tr>
+                    <tr>
+                        <td>Friday</td>
+                        <td>9:00am - 12:00pm</td>
+                        <td>12:30pm - Sunset</td>
+                        <td>Closed</td>
+                    </tr>
+                    <tr>
+                        <td>Shabbos</td>
+                        <td>Closed</td>
+                        <td>Closed</td>
+                        <td>Darkness - midnight</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <div id="first-section">
+            <div>
+
+            </div>
+            <img src="images/inside.jpg" alt="">
+        </div>
+        <section>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo quia assumenda at reiciendis dolores
+                aspernatur
+                ipsam minus placeat laborum asperiores mollitia, quo omnis labore illo ullam, adipisci suscipit. Numquam
+                neque
+                assumenda debitis nostrum veritatis laudantium consectetur ad reiciendis possimus voluptates minima
+                nemo,
+                perferendis similique corrupti fuga velit, alias molestiae, consequatur sit id qui ex suscipit veniam
+                placeat?
+                Commodi reiciendis assumenda at consequuntur debitis tenetur delectus alias blanditiis natus dolore
+                minus similique
+                porro recusandae sequi ipsa, cumque rem magni quaerat? Architecto perferendis nihil iusto? Magni
+                veritatis non
+                expedita, at harum nisi quos minima alias distinctio, sit fugiat quod maxime voluptatibus eius.
+            </p>
+        </section>
+        <hr>
+        <h2 class="video-header">Happy Chanuka massage!</h2>
+        <video controls width="400">
+            <source src="../videos/happy-chanuka.mp4">
+            Happy Chanuka massage from johny the sushi Chef
+        </video>
+    </main>
+    <footer>
+        <p id="copyright">Copyright &copy; Prime Ninety Five 2021</p>
+    </footer>
+
+</body>
+
+</html>
