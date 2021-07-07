@@ -1,0 +1,243 @@
+
+
+/*Taking care of header and footer*/
+
+header nav, footer {
+    background-color: black;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+}
+
+header nav{
+    top: 0;
+    left: 0;
+}
+
+
+footer {
+    bottom: 0;
+    left: 0;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+ul li, ul {
+    display: inline;
+    margin-right: 1em;
+}
+
+nav a, footer p {
+    text-decoration: none;
+    color: white;
+    font-size: 1.6em;
+}
+
+nav a:hover {
+    text-decoration: underline;
+    color: red;
+}
+
+
+/*layout the page*/
+ul, body, footer{
+    padding-left: 6em;
+    padding-right: 6em;
+}
+
+/*If page too small to make sure that
+the nave will not go onto the next line*/
+ul {
+    padding-right: 2em;
+}
+
+
+main {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: stretch;
+    padding-bottom: 4em;
+}
+
+
+
+section {
+    display: grid;
+    justify-items: center;
+}
+
+@media screen and (min-width: 1000px) {
+    #procucts-items {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        margin: 1em 0em 2em 0em;
+    }
+
+    #procucts-items div{
+        padding: 1em;
+        border-right: black solid 1px;
+        text-align: center;
+    }
+
+    #procucts-items div:last-child {
+        border-right: none;
+    }
+
+    #products h3 {
+        margin: 0px;
+        padding: 0px;
+    }
+
+}
+
+
+img, video, table {
+    max-width: 100%;
+    width: 100%;
+}
+
+#page-description, #sign-up {
+    background-color: lightgray;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    padding: 5em 0em 2em 0em;
+    border-radius: 0px 0px 5px 5px;
+}
+
+#sign-up {
+    scroll-margin: 3em;
+    padding: 0em 0em 1em 0em;
+    margin-top: .5em;
+    border-radius: 5px;
+} 
+
+#sign-up input {
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px 3px #313030;
+}
+
+#sign-up form {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+}
+
+@media screen and (min-width: 1000px) {
+    #sign-up form {
+        display: grid;
+        grid-template-columns: 1fr 1fr .5fr;
+        margin: 1em 0em 2em 0em;
+    }
+
+    #sing-up button {
+        margin: 5px;
+    }
+
+}
+
+#profits-table {
+    overflow: scroll;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td, th{
+    padding: .2em;
+    border: 1px solid black;
+    font-size: 1.3em;
+}
+
+tr:nth-child(2n) {
+    background: lightblue;
+}
+
+tbody tr:hover {
+    background: rgba(0, 0, 255, 0.322);
+}
+
+/*Font size and layout and more*/
+body {
+    font-family: helvetica, arial, sans-serif;
+}
+
+#products {
+    text-align: justify;
+}
+
+caption {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin: 1em;
+}
+
+table {
+    text-align: right;
+}
+
+td:first-child, th{
+    text-align: center;
+}
+
+td:first-child {
+    font-weight: bold;
+}
+
+section h2 {
+    justify-self: left;
+}
+
+
+header h1 {
+    margin-top: 1.5em;
+    font-size: 2.8em;
+    text-transform: uppercase;
+}
+
+header h2 {
+    margin-top: 0.2em;
+    margin-bottom: 1.5em;
+}
+
+.pcs-text {
+    font-style: italic;
+}
+
+
+input, button, label, img, video {
+    margin: .1em;
+    font-size: 1.2em;
+}
+
+p {
+    font-size: 1.5em;
+}
+
+h3{
+    margin-top: 3em;
+    font-size: 2em;
+    text-align: center;
+}
+
+#sign-up h3 {
+    margin-top: 1.5em;
+}
+
+
+h2 {
+    font-size: 2em;
+}
+
+/* Fix scrolling under sticky header*/
+#products, #sign-up, #financials, #about-us {
+    scroll-margin-top: 4em;
+}
+
+
+
+
+
