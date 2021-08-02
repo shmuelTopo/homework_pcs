@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
+    <style>
+        .navbar {
+            font-size: 1.2em;
+            font-weight: 300;
+        }
+
+        .navbar-nav a:hover, .navbar-nav a:focus, .navbar-nav a:active {
+            color: rgb(255, 86, 128) !important;
+        }
+        section:nth-child(1){
+            background-color: rgb(215, 243, 255);
+        }
+
+        section:nth-child(2){
+            background-color: rgb(183, 233, 255);
+        }
+
+        section:nth-child(3){
+            background-color: rgb(215, 243, 255);
+        }
+
+        #about-me, #projects, #contact {
+            scroll-margin: 2em;
+        }
+
+        #about-me p, pre {
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 300;
+            font-size: calc(.2em + 1.7vw)
+        }
+
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-md text-white text-uppercase navbar-dark bg-dark fixed-top">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav text-white px-lg-4 px-xl-5">
+                <a class="nav-item nav-link px-3 px-md-4 text-white" href="#about-me">About</a>
+                <a class="nav-item nav-link px-3 px-md-4 text-white" href="#projects">Projects</a>
+                <a class="nav-item nav-link px-3 px-md-4 text-white" href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+    <main class="py-5">
+        <section class="container-fluid py-4">
+            <h1 class="fw-bold text-center">Shmuel Toporowitch</h1>
+            <h5 class="text-center">Software Developer</h5>
+        </section>
+        <section id="about-me" class="container-fluid p-4 text-center text-md-start">
+            <h2 class="text-decoration-underline display-5">About Me</h2>
+            <p class="font-monospace">
+                <pre>I am 21 years old and I live in New Jersey,</pre>
+                <pre>I LOVE coding and problem solving </pre>
+                <pre>I attend software development bootcamp in Lakewood NJ,</pre> 
+                <pre>The bootcamp is due to finish in about 6 months.</pre>
+            </p>
+        </section>
+
+        <section id="projects" class="container-fluid p-4 text-center text-md-start">
+            <h2 class="display-5 text-decoration-underline ">Projects</h2>
+            <div class="row gy-3">
+                <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                    <div class="card">
+                        <img class="card-img-top" src="images/othelo.png" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Othleo Game
+                            </h5>
+                            <p class="card-text">This game was build using Java and Swing Library</p>
+                            <a href="#" class="btn btn-primary">Github</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                    <div class="card">
+                        <img class="card-img-top" src="images/car-racing.jpeg" alt="Card image cap">
+                        <div id="card1" class="card-body card123">
+                            <h5 class="card-title">Car Turtle Game
+                            </h5>
+                            <p class="card-text">This game was build using Pyhton and Turtle Library</p>
+                            <a href="#" class="btn btn-primary">Github</a>
+                        </div>
+                    </div>
+                </div><div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                    <div class="card">
+                        <img class="card-img-top" src="images/pong.png" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Pong Game
+                            </h5>
+                            <p class="card-text">This game was build using Pyhton and Turtle Library</p>
+                            <a href="#" class="btn btn-primary">Github</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                    <div class="card">
+                        <img class="card-img-top" src="images/battleship.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Battleship Game
+                            </h5>
+                            <p class="card-text">This game was build using Java</p>
+                            <a href="#" class="btn btn-primary">Github</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                    <div class="card">
+                        <img class="card-img-top" src="images/hangman.png" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Hangman
+                            </h5>
+                            <p class="card-text">This game was build using pyhton</p>
+                            <a href="#" class="btn btn-primary">Github</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+                    <div class="card">
+                        <img class="card-img-top" src="images/snake.png" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Snake Game
+                            </h5>
+                            <p class="card-text">This game was build using Python and Turtle Library</p>
+                            <a href="#" class="btn btn-primary">Github</a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+        <section id="contact" class="container-fluid py-5 mt-5 ">
+            <h2 class="display-4 text-decoration-underline text-center text-md-start">Contact Me</h2>
+            <form class="row g-3">
+
+                <div class="col-md-6">
+                    <label for="nameInput" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="e.g. Joho Smith">
+                </div>
+
+                <div class="col-md-6">
+                    <label for="subjectInput" class="form-label">Subject</label>
+                    <input type="text" class="form-control" id="subjectInput">
+                </div>
+
+                <div class="col-12">
+                    <label for="emailInput" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="emailInput" placeholder="name@example.com">
+                </div>
+
+                <div class="col-12">
+                    <label for="textareaInput" class="form-label">Message</label>
+                    <textarea class="form-control" id="textareaInput" placeholder="I will try to get back to you as soon as possible" rows="3"></textarea>
+                </div>
+
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </section>
+        
+    </main>    
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
