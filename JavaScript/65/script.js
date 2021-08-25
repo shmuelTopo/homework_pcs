@@ -26,5 +26,12 @@
         } else {
             winnerMsg.innerText = 'Draw!';
         }
+
     });
+
+    setInterval(() => {
+        let body = document.querySelector('body');
+        body.style.backgroundColor = window.diceApp.utils.getRandomColorString();
+    }, 2000);
+
 })();

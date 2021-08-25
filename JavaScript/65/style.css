@@ -5,6 +5,7 @@ body {
     background-color: #393E46;
     width: 80%;
     margin: auto;
+    transition: background-color 2000ms ease-in;
 }
 
 h1 {
@@ -12,6 +13,7 @@ h1 {
     font-size: 5em;
     color: #4ECCA3;
     text-align: center;
+    line-height: 1em;
 }
 
 section {
@@ -44,14 +46,35 @@ p, button {
     font-size: 2em;
 }
 
-button {
+/* button {
     font-size: 1.3em;
     background-color: #4ecca24d;
     width: fit-content;
     margin: auto;
     padding: 2px 10px;
-    border-radius: 5px;
     display: block;
+} */
+
+button {
+    font-size: 1.5em;
+    display: block;
+    margin: auto;
+	color: #fff !important;
+	text-decoration: none;
+	background: #b4516a;
+	padding:.5em .7em;
+	border-radius: 5px;
+	border: none;
+	transition: all 0.4s ease 0s;
+}
+
+button:hover {
+	background: #b44964;
+	-webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+	-moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+	box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+	transition: all 0.4s ease 0s;
+    transform: translateY(2px);
 }
 
 .dice {
