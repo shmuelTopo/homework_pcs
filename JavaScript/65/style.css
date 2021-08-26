@@ -5,7 +5,7 @@ body {
     background-color: #393E46;
     width: 80%;
     margin: auto;
-    transition: background-color 2000ms ease-in;
+    transition: background-color 20000ms ease-in;
 }
 
 h1 {
