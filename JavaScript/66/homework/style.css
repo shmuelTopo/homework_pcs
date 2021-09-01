@@ -14,7 +14,7 @@ table {
 }
 
 #tableSection {
-    width: 80%;
+    width: 90%;
     margin: auto;
 }
 
@@ -32,7 +32,6 @@ th {
 }
 
 .scroll {
-    max-width: 15vw;
     margin: 0;
     padding: 0;
     overflow: auto;
@@ -115,6 +114,10 @@ td:nth-child(-1) {
 
 button {
     cursor: pointer;
+}
+
+div, html, button, tr,body, section, table, thead, tbody, tfoot {
+    max-width: 100%;
 }
 
 
