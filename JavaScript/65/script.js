@@ -32,6 +32,7 @@
     setInterval(() => {
         let body = document.querySelector('body');
         body.style.backgroundColor = window.diceApp.utils.getRandomColorString();
+        console.log("HI");
     }, 2000);
 
 })();

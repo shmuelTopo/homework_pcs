@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+
+    <section id="tableSection">
+        <button class="shadow buttonTop" id="addContact">Add contact</button>
+        <button class="shadow buttonTop" id="addRandom">Add Random</button>
+
+        
+        <table class="shadow" id="contactsTable">
+            <thead>
+                <tr class="contactsGrid">
+                    <th>First</th>
+                    <th>Last</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <tr id="contactsEmpty">
+                    <td colspan="5">no contacts loaded</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    
+    <form class="shadow" id="addContactForm">
+        <div class="formGroup">
+            <label for="first">First:</label>
+            <input id="first" type="text" required>
+        </div>
+        <div class="formGroup">
+            <label for="last">Last:</label>
+            <input id="last" type="text" required>
+        </div>
+        <div class="formGroup">
+            <label for="email">Email</label>
+            <input id="email" type="email">
+        </div>
+        <div class="formGroup">
+            <label for="phone">Phone</label>
+            <input id="phone" type="text">
+        </div>
+        <div class="buttons">
+            <button>Add</button>
+            <button type="button" id="cancel">Cancel</button>
+        </div>
+    </form>
+
+    <script src="utils.js"></script>
+    <script src="contacts.js"></script>
+</body>
+</html>

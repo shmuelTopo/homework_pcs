@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html class="bg-light" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <style>
+
+        .centered {
+            position: fixed;
+            left: 50%;
+            transform: translate(-50%, 0);
+            width: 350px;
+            display: none;
+        }
+    </style>
+</head>
+<body id="body" class="my-3">
+    <main class="bg-light mx-3">
+        <div id="messageBox" class="alert alert-success centered">
+            <h2 class="text-center">This is an Alert</h2>
+            <p id="messageText">No Text yet </p>
+            <div class="text-center">
+                <button id="okButton" class=" btn btn-secondary">Ok</button>
+            </div>
+        </div>
+        <button id="bidenAlert" class="btn btn-primary">Biden</button>
+        <button id="trumpAlert" class="btn btn-primary">Trump</button>
+
+        <form id="customAlert" class="my-3 w-50" id=""> 
+            <textarea id="customAlertText" class="form-control" name="" id="" cols="10" rows="5"></textarea>
+            <button class="my-3 btn btn-danger">Submit Alert</button>
+        </form>
+    </main>
+    
+    <script  src="messageBox.js"></script>
+</body>
+</html>
