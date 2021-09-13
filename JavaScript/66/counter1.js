@@ -6,10 +6,12 @@ window.app.counter = (function (myModule) {
     let counterNumber = 0;
 
     myModule.increment = () => {
-        counterNumber++;
+        counterNumber++; // SL - nice candidate for 1 liner here...
     };
     myModule.getCount = () => counterNumber;
 
     return myModule;
 
 })(window.app.counter || {});
+
+// SL - nice

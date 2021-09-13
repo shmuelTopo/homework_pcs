@@ -2,6 +2,7 @@
 for(let i = 0; i < 10; i++){
     window.app.counter.increment();
 }
+// SL - I asked for this at end - to prove nobody else changes it before then...
 console.log('window.app.counter.getCount()', window.app.counter.getCount());
 
 //Stuff for counter 2
@@ -11,6 +12,7 @@ const counterNum2 = window.app.counterGenerator.getCounter();
 for (let i = 0; i < 5; i++) {
     counterNum1.increment();
 }
+// SL - I asked for this at end - to prove nobody else changes it before then...
 console.log('counterNum1.getCount()', counterNum1.getCount());
 
 for (let i = 0; i < 15; i++) {

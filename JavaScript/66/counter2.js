@@ -8,7 +8,7 @@ window.app.counterGenerator = (function (myModule) {
     myModule.getCounter = () => {
         let counterNumber = 0;
         countOfCounters++;
-        
+
         return {
             increment: () => {
                 counterNumber++;
@@ -17,9 +17,12 @@ window.app.counterGenerator = (function (myModule) {
         };
 
     };
-    
+
     myModule.getCountOfCounters = () => countOfCounters;
 
     return myModule;
 
 })(window.app.counterGenerator || {});
+
+// SL - nice
+// SL - grade - 97 (clearly you have the understanding to have gotton 100 - but you dodnt follow directins carefully enough...)
