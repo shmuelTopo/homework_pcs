@@ -1,30 +1,31 @@
 <!DOCTYPE html>
 <html class="bg-light" lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="">
+    <title>Message Box</title>
 </head>
-<body id="body" class="my-3">
-    <main class="bg-light mx-3">
-        <div id="messageBox" class="alert alert-success centered">
-            <h2 class="text-center">This is an Alert</h2>
-            <p id="messageText">No Text yet </p>
-            <div class="text-center">
-                <button id="okButton" class=" btn btn-secondary">Ok</button>
-            </div>
-        </div>
-        <button id="bidenAlert" class="btn btn-primary">Biden</button>
-        <button id="trumpAlert" class="btn btn-primary">Trump</button>
 
-        <form id="customAlert" class="my-3 w-50" id=""> 
-            <textarea id="customAlertText" class="form-control" name="" id="" cols="10" rows="5"></textarea>
-            <button class="my-3 btn btn-danger">Submit Alert</button>
-        </form>
-    </main>
-    
-    <script  src="messageBox.js"></script>
+<body>
+    <input id="messageText">
+    <input type="checkbox" id="modal"> modal
+    <button id="show">show</button>
+    <hr>
+
+
+    <script src="messageBox.js"></script>
+    <script>
+        const messageText = document.getElementById('messageText');
+        const modal = document.getElementById('modal');
+        document.getElementById('show').addEventListener('click', () => {
+            shmuel.messageBox.show(messageText.value, modal.checked);
+        });
+        shmuel.messageBox.show('Is this enough homework?', false, ['Yes', 'No','Maybe'], usersChoice => console.log('You picked ' + usersChoice));
+
+
+    </script>
 </body>
+
 </html>
