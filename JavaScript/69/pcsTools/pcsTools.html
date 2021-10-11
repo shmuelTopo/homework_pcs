@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+
+  <body>
+    <h1 id="joe">Joe Biden</h1>
+    <h1 id="kamala">Kamala Harris</h1>
+
+    <script src="pcsTools.js"></script>
+    <script>
+      const joe = pcs('joe')
+        .css('color', 'pink')
+        .click(() => {
+          joe.flashColors(10000, 400, 400);
+        });
+
+      const kamala = pcs('kamala');
+      kamala.css('color', 'yellow');
+      console.log(kamala.css('color'));
+      kamala.click(() => console.log('kamala was clicked'));
+
+      console.log(kamala.value('country'));
+      kamala.value('country', 'USA');
+      console.log(kamala.value('country'));
+      
+      
+    </script>
+  </body>
+
+</html>

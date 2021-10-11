@@ -1,0 +1,7 @@
+p {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: rgb(78, 61, 175);
+    background-color: antiquewhite;
+    padding: 7px 10px;
+    display: inline-block;
+}

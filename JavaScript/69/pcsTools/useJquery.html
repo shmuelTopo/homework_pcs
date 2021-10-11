@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      /*#name:hover {
+        background-color: yellow;
+      }*/
+
+      .hover {
+        background-color: yellow !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1 class="gov" id="joe">Joe Biden</h1>
+    <h1 class="gov" id="kamala">Kamala Harris</h1>
+    <h1 class="gov">Gen Milley</h1>
+
+    <hr>
+    <input id="name" style="background-color: green">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+      const joe = $('#joe')
+        .css('color', 'pink')
+        .click(() => {
+          console.log('joe was clicked');
+          joe.hide();
+          setTimeout(() => joe.show(), 2000);
+        })
+        .hide();
+      setTimeout(() => joe.show(), 2000);
+
+      const kamala = $('#kamala');
+      kamala.css('color', 'yellow');
+      console.log(kamala.css('color'));
+      kamala.click(() => console.log('kamala was clicked'));
+
+      const theH1s = $('h1').css('background-color', 'black');
+      console.log(theH1s);
+
+      console.log(theH1s.get()); //real array
+
+      //////////
+
+      const theNameElem = $('#name');
+      /*$('#name')*/theNameElem.change(event => console.log(event, event.target.value))
+        //.mouseenter(() => /*$('#name')*/theNameElem.css('background-color', 'yellow'))
+        //.mouseleave(() => /*$('#name')*/theNameElem.css('background-color', 'white'));
+        //.mouseenter(() => theNameElem.addClass('hover'))
+        //.mouseleave(() => theNameElem.removeClass('hover'));
+        .hover(() => theNameElem.addClass('hover'), () => theNameElem.removeClass('hover'))
+
+      ////
+
+      theH1s.click(function () {
+        /*$(this)
+          .append('<button>Click me!</button>')
+          .click(() => console.log('button was clicked'));*/
+
+        $('<button>Click me!</button>')
+          .appendTo($(this))
+          .click(event => {
+            console.log('button was clicked');
+            event.stopPropagation();
+          });
+      });
+
+      $('.gov').css('font-style', 'italic');
+
+      const theDivs = $('div').css('color', 'green');
+      console.log(theDivs);
+    </script>
+  </body>
+
+</html>

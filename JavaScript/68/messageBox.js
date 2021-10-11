@@ -3,7 +3,7 @@ window.shmuel = window.shmuel || {};
 window.shmuel.messageBox = (function () {
     'use strict';
 
-    const offsetIncrement = 3;
+    const offsetIncrement = 10;
     let leftOffset = -150;
     let topOffset = -110;
     const width = 300;
