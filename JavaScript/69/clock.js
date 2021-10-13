@@ -18,9 +18,14 @@ window.clock = (function() {
         return clock;
     }
 
+    function updateClock(clock){
+        clock.text(getCurrentTime());
+    }
+
     function getClock(){
         const clock = clockElem();
-        setInterval(() => clock.text(getCurrentTime()), 1000);
+        updateClock(clock);
+        setInterval(() => updateClock(clock), 1000);
         return clock;
     }
 
@@ -28,8 +33,8 @@ window.clock = (function() {
         let time = [0, 0, 0];
         let stopwatch = clockElem();
         setInterval(() => {
-            stopwatch.text(getTimeInString(time));
             time = incrementTime(time);
+            stopwatch.text(getTimeInString(time));
         }, 1000);
         return stopwatch;
     }

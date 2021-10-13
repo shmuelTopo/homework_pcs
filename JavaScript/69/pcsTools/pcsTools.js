@@ -57,17 +57,17 @@ window.pcs = function (id) {
       setCss(theElem, 'display', 'block');
       return this;
     },
-    flashColors: function(howLong, flashTime, transition) {
+    flash: function(duration=2000, speed=100, transition=50) {
       const oldColor = this.css('color');
       if(transition){
         this.css('transition', `color ${transition}ms`);
       }
-      let handler = setInterval(() => this.css('color', randomColor()), flashTime);
+      let handler = setInterval(() => this.css('color', randomColor()), speed);
       setTimeout(() => {
         clearInterval(handler);
         this.css('color', oldColor);
         this.css('transation', 'initial')
-      }, howLong)
+      }, duration)
       return this;
     }, 
     value: function(key, value){
