@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,33 +52,30 @@
         }
     </style>
 </head>
-<body id="hi">
-    <!-- <header>
+<body>
+    <header>
         <p>Your Name is</p>
-        <p id="nameElem">unknown,</p>
-        <p>Address</p>
-        <p id="addressElem">unknown</p>
+        <p id="nameDisplay" class="unknown">unknown</p>
+        <br>
+        <p>Your Address is</p>
+        <p id="addressDisplay" class="unknown">unknown</p>
     </header>
-    <form action="">
-        <label>
-            Full Name
-            <input class="inputText" id="name" type="text" placeholder="Type your Name...">
-        </label>
 
-        <label>
-            Address
-            <input class="inputText" id="address" type="text" placeholder="Type your Address...">
-        </label>
+    <form id="theForm">
+        <label for="fullName">Full Name</label>
+        <input class="inputText" id="fullName" type="text" placeholder="Type your Name...">
+        
+        <label for="address">Address</label>
+        <input class="inputText" id="address" type="text" placeholder="Type your Address...">
 
         <div id="submitArea">
-           <button type="submit">Submit</button>
-            <label>
-                <input type="checkbox">
-                Sure you want to Submit?
-            </label> 
+            <button disabled id="theButton" type="submit">Submit</button>
+            <lable>
+                <input id="agree" type="checkbox">
+                I Agree to terms and conditions
+            </lable>
         </div>
-        
-    </form> -->
+    </form>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="form.js"></script>
