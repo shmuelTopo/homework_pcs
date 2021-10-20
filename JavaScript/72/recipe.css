@@ -1,0 +1,38 @@
+body {
+    background-color: rgb(212, 212, 255);
+    text-align: center;
+}
+
+h2 {
+    display: inline-block;
+    color: brown;
+    margin: 10px;
+    margin-bottom: 0;
+}
+
+#recipeContainer {
+    text-align: left;
+    width: 80%;
+    margin: auto;
+    border: 1px solid rgb(236, 141, 141);
+    border-radius: 5px;
+    padding: 1em;
+    background-color: rgb(203, 255, 119);
+    display: none;
+}
+
+#generalInformation {
+    display: flex;
+    gap: 2em;
+    margin: 10px;
+}
+
+#generalInformation p {
+    font-weight: bold;
+}
+
+#generalInformation span {
+    margin: 1em;
+    font-weight: normal;
+}
+

@@ -1,6 +1,6 @@
 html {
     font-family: sans-serif;
-    background-color: rgba(255, 255, 112, 0.288);
+    background-color: rgb(194, 214, 196);
 }
 
 table {
@@ -103,12 +103,12 @@ td button {
     padding: .5em .7em;
     border-radius: 5px;
     border: none;
-    background-color: rgb(255, 136, 136);
+    background-color: rgb(0, 182, 24);
     color: white;
 }
 
 .shadow {
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.40);
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.40);
 }
 
 .center {
