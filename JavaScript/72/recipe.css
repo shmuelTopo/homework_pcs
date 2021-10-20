@@ -4,7 +4,6 @@ body {
 }
 
 h2 {
-    display: inline-block;
     color: brown;
     margin: 10px;
     margin-bottom: 0;
@@ -21,6 +20,14 @@ h2 {
     display: none;
 }
 
+#sourseElem {
+    margin: 10px;
+}
+
+#sourseElem p {
+    display: inline;
+}
+
 #generalInformation {
     display: flex;
     gap: 2em;
@@ -29,6 +36,7 @@ h2 {
 
 #generalInformation p {
     font-weight: bold;
+
 }
 
 #generalInformation span {

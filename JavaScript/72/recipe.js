@@ -41,7 +41,7 @@
         $('#recipeContainer').show();
         console.log("jjj", recipe);
         $('#name').text(recipe.name);
-        $('#source').attr("href", recipe.source);
+        $('#source').text(recipe.source);
         if(recipe.cooktime){
             $('#cookTime').text(`${recipe.cooktime / 60}m`);
         }
