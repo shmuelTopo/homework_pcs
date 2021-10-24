@@ -8,33 +8,39 @@
     <link rel="stylesheet" href="recipe.css">
 </head>
 <body>
-    <h1>Recipes For Everyone</h1>
-    <p>Very soon result will pop up as you type alone, now you can search for whatever you want, 'hot', 'strawberry' or you can just write 1 letter so for sure something will pop op</p>
+    <nav>
+        <img src="myRecipe.png" alt="">
+        
+    <div id="dropdown">
+        <div id="searchBar">
+            <img src="search.png" alt="">
+            <input type="text" id="searchInput" placeholder="Search.." >
+        </div>
+        
+        <div id="dropdownContent">
+   
+        </div>
+    </div>
 
-    <label for="search">Enter Recipe Name</label>
-    <input id="search" type="text">
-    <hr>
+    </nav>
+
 
     <div id="recipeContainer">
         <h2 id="name">Name Goes Here</h2> 
-        <span id="sourseElem"><strong>Source:</strong><p id="source">Source</p></span>
+        <!-- <span id="sourseElem"><strong>Source:</strong><p id="source">Source</p></span> -->
         
         <div id="generalInformation">
-            <p>Prep Time<span id="prepTime">0m</span></p> 
-            <p>Cook Time<span id="cookTime">0m</span></p> 
+            <p>Prep Time<span id="preptime">0m</span></p> 
+            <p>Cook Time<span id="cooktime">0m</span></p> 
             <p>Servings<span id="servings">0</span></p> 
         </div>
         <hr>
         <h3>Ingredients:</h3>
         <ul id="ingredients">
-            <li>example</li>
-            <li>example</li>
-            <li>example</li>
-            <li>example</li>
-            <li>example</li>
+
         </ul>
         <h3>Instructions:</h3>
-        <p id="instructions">Instructions goes here</p>
+        <pre id="instructions">Instructions goes here</pre>
 
     </div>
 
