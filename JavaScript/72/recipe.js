@@ -91,7 +91,7 @@
         let ingredientsElem = $('<ul></ul>');
         recipe.ingredients.forEach((i) =>  {
             if(!i.includes('<hr>')){
-                ingredientsElem.append(`<li>${i}</li>`);
+                ingredientsElem.append(`<li><img src="check.png"><span>${i}</span></li><br>`);
             }
         });
 
