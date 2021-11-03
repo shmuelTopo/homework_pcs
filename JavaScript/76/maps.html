@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maps Search</title>
+    <link rel="icon" type="image/png" href="mapIcon.png"/>
+    <link rel="stylesheet" href="maps.css">
+</head>
+<body>
+
+    <main>
+        
+        <div id="sidebar">
+            <form>
+                <div id="rangeDiv">Results <span>10</span><input class="slider" type="range" value="10" id="numResults" min="1" max="30"> </div>
+
+                <div class="slidecontainer" id="search-container">
+                    <input type="text" placeholder="Search for places...">
+                    <button id="search"><img src="search.png" alt=""></button>
+                </div>
+            </form>
+            <div id="places"></div>
+        </div>
+        <div id="map"></div>
+        
+    </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoQnUUW5OWJCBgQvSIQ5n78p0QJMrNeXw&v=weekly&libraries=drawing"></script>
+
+
+    <script src="maps.js"></script>
+</body>
+</html>

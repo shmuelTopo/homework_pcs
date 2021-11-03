@@ -104,7 +104,6 @@
                     <a target=”_blank” href="https://${e.url}">wikipedia</a>
                 </div>
             `).appendTo($('#places')).click(function() {
-                console.log(e.location);
                 map.panTo(e.location);
                 map.setZoom(12);
             });
