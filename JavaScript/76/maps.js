@@ -24,6 +24,7 @@
         });
     }
 
+
     async function searchPlaces(searchTerm){
         try {
             let response = await fetch(`http://api.geonames.org/wikipediaSearch?q=${searchTerm}&maxRows=${$('#numResults').val()}&username=shmueltopo&type=json`);

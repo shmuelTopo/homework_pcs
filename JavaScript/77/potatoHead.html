@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        body {
+            background: url("images/background1.jpg") no-repeat center center fixed;
+            background-size: cover;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            height: 100%;
+            display: flex;
+            flex-direction: row-reverse;
+        }
+
+        #bodyParts {
+            max-height: 100%;
+            display: grid;
+            grid-template-columns: repeat(2, 100px); 
+            background-color: rgba(255, 235, 205, 0.7);
+        }
+
+        #bodyParts div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #bodyParts img {
+            position: absolute;
+            user-select: none;
+        }
+
+        #body {
+            pointer-events: none;
+            user-select: none;
+            z-index: 2;
+            width: 250px;
+            display: block;
+            margin: auto;
+        }
+
+        #reset {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            height: 50px;
+            width: 100px;
+            font-size: 2em;
+            cursor: pointer;
+        }
+        
+
+    </style>
+</head>
+<body>
+    
+    <img id="body" src="media/body.png">
+    <button id="reset">reset</button>
+    <div class="wrapper" id="bodyParts"></div>
+
+
+    <audio id="background" src="media/lockAndKey.mp3"></audio>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="potatoHead.js"></script>
+</body>
+</html>
