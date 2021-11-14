@@ -18,7 +18,6 @@
   "nonew": false, // true: Prohibit use of constructors for side-effects (without assignment)
   "plusplus": false, // true: Prohibit use of `++` and `--`
   "quotmark": false, // Quotation mark consistency:
-  
   //   false    : do nothing (default)
   //   true     : ensure whatever is used is consistent
   //   "single" : require single quotes
@@ -40,7 +39,7 @@
   "boss": false, // true: Tolerate assignments where comparisons would be expected
   "debug": false, // true: Allow debugger statements e.g. browser breakpoints.
   "eqnull": false, // true: Tolerate use of `== null`
-  "esversion": 8, // {int} Specify the ECMAScript version to which the code must adhere.
+  "esversion": 9, // {int} Specify the ECMAScript version to which the code must adhere.
   "moz": false, // true: Allow Mozilla specific syntax (extends and overrides esnext features)
   // (ex: `for each`, multiple try/catch, function expression…)
   "evil": false, // true: Tolerate use of `eval` and `new Function()`
