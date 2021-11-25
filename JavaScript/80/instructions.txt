@@ -1,0 +1,9 @@
+Write a class or constructor to create a Student object. Students will have the following:
+firstName,
+lastName
+age
+grade
+Create an array containing several students
+Write a function printStudents that takes ANY amount of students (but not as an array) and prints their information out to the console. Allow the caller to specify whether to display the name as first, last or last, first. Use the rest operator to allow the variable amount of students to be passed in, as we did in the sum example in class.
+Call the printStudents function passing in your array of students. use the spread operator to pass the array as separate arguments just as we did when passing the numbers array to the sum example in class.
+Write a function that copies student info into a new object but swaps the first and last names (i.e the new object will have the original first name as its last name, and original last as its first). As an exercise in using the new features we saw last class, use destructuring and the rest operator to pull the data out of the original student, use the rest operator to help with creating the copy. This assignment is kind of difficult to explain without giving away the answer but basically try to copy out student info into a new object using all 3 new features while doing so, destructuring, spread operator, and rest operator.
