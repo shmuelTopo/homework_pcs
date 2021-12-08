@@ -23,7 +23,7 @@
         constructor() {
             this.x = window.innerWidth / 2;
             this.y = window.innerHeight / 2;
-            this.size = 20;
+            this.size = 30;
             this.dy = 0;
             this.dx = 0;
             this.resetDirection();
@@ -153,11 +153,9 @@
         return Math.atan2(dx, -dy) * 180 / Math.PI;
     }
 
-    setTimeout(() => {
-        setInterval(() => {
-            ants.push(new Ant());
-        }, 100);
-    }, 10000);
+    setInterval(() => {
+        ants.push(new Ant());
+    }, 150);
     
     
 
