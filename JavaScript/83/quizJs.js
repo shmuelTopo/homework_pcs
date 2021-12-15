@@ -1,6 +1,8 @@
 (async function() {
     'use strict';
 
+    // SL - nice.
+    // Once doing this, why not take it the extra mile and use private variables? #name etc... Worried about not wrking in older browsers?
     class Item {
         constructor(name, price, quantity) {
             this._name = name;
@@ -41,6 +43,7 @@
             return this._items;
         }
 
+        // SL - supposed to be a getter...
         getTotal() {
             let total = 0;
             this._items.forEach(item => {
@@ -49,11 +52,12 @@
             return total;
         }
 
+        // SL - nice
         static async getOrders(ordersJson) {
             let response = await fetch(ordersJson);
             let data = await response.json();
             let orders = [];
-    
+
             data.forEach(order => {
                 orders.push(
                     new Order(
@@ -63,7 +67,7 @@
                     )
                 );
             });
-    
+
             return orders;
         }
     }
@@ -91,7 +95,7 @@
                 Items:
                 ${itemsTemplate(order.getItems())}
             `;
-            
+
         });
         return orderDivContent;
     }
@@ -113,3 +117,5 @@
     console.log('orders', orders);
 
 })();
+
+// SL - nice. 99.99
