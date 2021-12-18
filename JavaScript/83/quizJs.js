@@ -75,7 +75,7 @@
     const ordersContainer = document.getElementById('ordersContainer');
     const orders = await Order.getOrders('sampelOrders.json');
 
-    console.log(ordersTemplate(orders));
+    //console.log(ordersTemplate(orders));
     ordersContainer.innerHTML = ordersTemplate(orders);
 
     function ordersTemplate(orders){

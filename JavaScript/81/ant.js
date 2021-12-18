@@ -1,14 +1,12 @@
 (function() {
     'use strict';
 
-    
     const canvas = document.getElementById('theCanvas');
     const ctx = canvas.getContext('2d');
     const ANT_IMAGE = document.getElementById('antImage');
     const ANT_HOLE = document.getElementById('antHole');
     const DELTA_RANGE = 5;
     const ants = [];
-
 
     function resizeCanvas(){
         canvas.width = window.innerWidth;
@@ -19,7 +17,7 @@
     resizeCanvas();
 
     class Ant {
-        
+         
         constructor() {
             this.x = window.innerWidth / 2;
             this.y = window.innerHeight / 2;
@@ -49,7 +47,7 @@
 
         nearCenter() {
             //check if near center vertically
-            const nearCenterPixels = 25;
+            const nearCenterPixels = 5;
             if(window.innerHeight / 2 - this.y < nearCenterPixels && window.innerHeight / 2 - this.y > -nearCenterPixels){
                 if(window.innerWidth / 2 - this.x < nearCenterPixels && window.innerWidth / 2 - this.x > -nearCenterPixels){
                     if(this.everReseted){
@@ -67,7 +65,7 @@
                 this.resetDirection();
             }
 
-            const diff = 0.2;
+            const diff = .2;
             if(this.newDy > this.dy){
                 this.dy += diff;
             } else if(this.newDy < this.dy){
@@ -79,8 +77,6 @@
             } else if(this.newDx < this.dx){
                 this.dx -= diff;
             }
-
-
 
             if(this.everReseted && this.nearCenter()){
                 this.y = -this.y;
@@ -156,9 +152,6 @@
     setInterval(() => {
         ants.push(new Ant());
     }, 150);
-    
-    
-
 
     setInterval(() => {
         resizeCanvas();
