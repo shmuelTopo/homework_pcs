@@ -3,8 +3,8 @@ window.contactList = window.contactList || {};
 window.contactList.utils = (function (myModule) {
     'use strict';
 
-    const listOfFirstNames = ['Lakeesha', 'Reda', 'Ma', 'Joe', 'Donald', 'Kamla', 'Samuel', 'David', 'Michel', 'Aron', 'Neoma', 'Artie', 'Rachel', 'Harry', 'Judi', 'Jonasan', 'Dinah', 'Dollie', 'Noreen', 'Zita', 'Kalyn', 'Yevette', 'Ronald', 'Joie', 'Gala', 'Stefany', 'Chaya', 'Mali', 'Benjemen', 'Morty', 'Tili', 'Chana', 'Jacky', 'Jung', 'Kim'];
-    const listOfLastNames = ['Lurie', 'Reif', 'Munez', 'Trump', 'Biden', 'Harris', 'Apple', 'Kohn', 'Ragon', 'Ropous', 'Munez', 'Scoffild', 'Potter', 'Wisely', 'Dumbelder', 'Lucena', 'Rowling', 'Perrier', 'Shakespeare', 'Guider', 'Tapp', 'Chaps', 'Lodi', 'Mcgriff', 'Castlman', 'Reandes', 'Sowlinski', 'Kapolov', 'Snow', 'Mitchel', 'Thiry', 'Dressler', 'Deccar', 'Arana', 'Northern'];
+    const listOfFirstNames = ['Lakeisha', 'Rede', 'Ma', 'Joe', 'Donald', 'Kamala', 'Samuel', 'David', 'Michel', 'Aron', 'Noma', 'Artie', 'Rachel', 'Harry', 'Judi', 'Jonathan', 'Dinah', 'Dollie', 'Noreen', 'Zeta', 'Kalyan', 'Cuvette', 'Ronald', 'Joie', 'Gala', 'Stefanie', 'Chaya', 'Mali', 'Benjamin', 'Marty', 'Tili', 'Chana', 'Jacky', 'Jung', 'Kim'];
+    const listOfLastNames = ['Luria', 'Reify', 'Munoz', 'Trump', 'Biden', 'Harris', 'Apple', 'Kahn', 'Radon', 'Robots', 'Munoz', 'Snowfield', 'Potter', 'Wisely', 'Dumbledore', 'Lucent', 'Rowling', 'Perrier', 'Shakespeare', 'Guider', 'Taps', 'Chaps', 'Lodi', 'McGraw', 'Castellan', 'Renames', 'Stalinsk', 'Kapoks', 'Snow', 'Mitchel', 'Dressier', 'Decca', 'Arena', 'Northern'];
     const mailDomains = ['gmail.com', 'mail.com', 'mail.org', 'whitehouse.gov', 'mail.co.il', 'yahoo.com'];
     
     myModule.getRandomPerson = () => {
@@ -114,8 +114,6 @@ window.contactList.utils = (function (myModule) {
         return phone;
 
     };
-
-   
 
     return myModule;
 

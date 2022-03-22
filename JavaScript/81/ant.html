@@ -5,26 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
     <style>
         html, body {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
-            
         }
 
         canvas {
-            background: url(background.jpg) center center fixed;
+            background: url(images/background.jpg) center center fixed;
             background-size: cover;
+        }
+
+        #reset {
+            position: fixed;
+            top: 10px;
+            left: 10px;
         }
 
     </style>
 </head>
 <body>
     <canvas id="theCanvas"></canvas>
-    <img id="antImage" src="antSmall.png" style="display: none;">
-    <img id="antHole" src="Ant-hole.png" style="display: none;">
+    <button class="btn btn-secondary" id="reset">Reset</button>
+    <img id="antImage" src="images/ant.png" style="display: none;">
+    <img id="antHole" src="images/antHole.png" style="display: none;">
     
     <script src="ant.js"></script>
 </body>

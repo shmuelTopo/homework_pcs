@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <h1>Weather In the US</h1>
+        
+        <div id="settings">
+            <label for="temp">Temp</label>
+            <select id="temp">
+                <option value="imperial">Fahrenheit</option>
+                <option value="metric">Celsius</option>
+            </select>
+            <label for="items">Lang</label>
+            <select id="lang">
+                <option value="en">English</option>
+                <option value="he">Hebrew</option>
+                <option value="es">Spanish</option>
+                <option value="fr">French</option>
+            </select>
+
+        </div>
+    </nav>
+    <main>
+        <div id="addCitySection">
+            <label>Add city: <input type="text" placeholder="US Zip Code" id="zip"></label>
+            <button id="addCity">Add City</button>
+        </div>
+
+        <hr>
+        <div id="citiesContainer"></div>
+    </main>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="messagebox.js"></script>
+    <script src="weather.js"></script>
+</body>
+</html>

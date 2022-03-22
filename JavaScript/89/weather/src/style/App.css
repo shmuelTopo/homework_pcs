@@ -1,0 +1,11 @@
+body, html {
+    margin: 0;
+    background-color: rgb(203, 238, 229);
+    max-width: 100%;
+    width: 100%;
+}
+
+main {
+    padding: 1em;
+    max-width: 100%;
+}

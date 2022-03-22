@@ -1,0 +1,67 @@
+body, html {
+    margin: 0;
+    background-color: rgb(203, 238, 229);
+    max-width: 100%;
+    width: 100%;
+}
+
+main {
+    padding: 1em;
+    max-width: 100%;
+}
+
+#citiesContainer {
+    margin-top: 1em;
+    display: grid;
+    height: 100%;
+    grid-template-columns: repeat(auto-fit, 200px);
+    grid-gap: 20px;
+    flex-wrap: wrap;
+    max-width: 100%;
+    justify-content: left;
+}
+
+h1 {
+    margin: 0;
+}
+
+nav {
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(226, 207, 183);
+}
+
+.card {
+    background-color: rgb(185, 185, 185);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    min-width: 200px;
+    border-radius: 5px;
+}
+
+
+
+.card img {
+    width: 7em;
+    transform: scale(1.5);
+}
+
+.card p,
+.card h3 {
+    margin: 4px;
+}
+
+.x {
+    align-self: flex-end;
+    background-color: rgb(219, 219, 219);
+    color: rgb(189, 189, 189);
+    padding: 0 2px 2px 5px;
+    border-radius: 2px;
+    border: none;
+    cursor: pointer;
+}

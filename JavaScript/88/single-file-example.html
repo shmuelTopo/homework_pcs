@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+
+    <script type="text/babel">
+
+      function boxStyle(color) {
+        if(!isColor(color)) {
+          color = 'orange';
+        }
+        
+        return {
+          width: "100px", 
+          height: "100px", 
+          backgroundColor: color,
+          padding: "5px 15px",
+          border: "2px solid black}",
+          borderRadius: "5px"
+        };
+      }
+
+      function gridStyle() {
+        return {
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gridTemplateRows: "repeat(3, 1fr)",
+          gridGap: "10px"
+        };
+      }
+
+      function box(color, message){
+        if(!isColor(color)) {
+          color = 'orange';
+        }
+        return (
+          <div style={boxStyle(color)}>
+            <h3>{message}</h3>
+            <p>{color} box</p>
+          </div>
+        );
+      }
+
+      ReactDOM.render(
+        <>
+          <h1>Hello React World!!!</h1>
+          <div style={gridStyle()}>
+            {box('lightBlue', 'I am using')}{box('orange', 'React')}{box('green', 'successfully')}
+            {box('blue', 'Wish me')}{box('gray', 'all')}{box('red', 'Good lock')}
+            {box}{box}{box}
+          </div>
+        </>,
+        document.getElementById('root')
+      );
+
+
+      function isColor (strColor) {
+        const s = new Option().style;
+        s.color = strColor;
+        return s.color !== '';
+      }
+
+    </script>
+    <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this section for a production-ready setup with JSX:
+      https://reactjs.org/docs/add-react-to-a-website.html#add-jsx-to-a-project
+
+      In a larger project, you can use an integrated toolchain that includes JSX instead:
+      https://reactjs.org/docs/create-a-new-react-app.html
+
+      You can also use React without JSX, in which case you can remove Babel:
+      https://reactjs.org/docs/react-without-jsx.html
+    -->
+  </body>
+</html>

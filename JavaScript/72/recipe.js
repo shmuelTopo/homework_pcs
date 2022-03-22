@@ -3,7 +3,7 @@
 
     //Gat hold of the dom elements
     const input = $('#searchInput');
-    const dropdwonContent = $('#dropdownContent');
+    const dropdownContent = $('#dropdownContent');
     const searchBar = $('#searchBar');
 
     //Get Recipes from the json file
@@ -14,18 +14,18 @@
 
     input.focus(() => {
         getSearchAndUpdateDropdown();
-        dropdwonContent.show();
+        dropdownContent.show();
         searchBar.addClass('focusBorder');
     });
 
     input.focusout(() => {
-        setTimeout(() => dropdwonContent.hide(), 100);
+        setTimeout(() => dropdownContent.hide(), 100);
         
         searchBar.removeClass('focusBorder');
     });
 
     function getSearchAndUpdateDropdown(){
-        const foundRecipes = getRecipeyBySearch(input.val(), recipes);
+        const foundRecipes = getRecipeBySearch(input.val(), recipes);
         displaySearchContent(foundRecipes);
     }
 
@@ -42,7 +42,7 @@
         }
     }
 
-    function getRecipeyBySearch(searchKeyword, recipesObject, numOfResults=5){
+    function getRecipeBySearch(searchKeyword, recipesObject, numOfResults=5){
         if(!searchKeyword || searchKeyword.length < 1){
             return [];
         }
@@ -56,12 +56,12 @@
         return searchResults.slice(0, numOfResults);
     }
 
-    function displaySearchContent(recipsToDisplay){
-        dropdwonContent.empty();
-        recipsToDisplay.forEach((recipe) => {
+    function displaySearchContent(recipesToDisplay){
+        dropdownContent.empty();
+        recipesToDisplay.forEach((recipe) => {
             
-            $(`<a id=${recipe.id}>${recipe.name}</a>`).appendTo(dropdwonContent).click(() => {
-                dispalyRecipe(recipe);
+            $(`<a id=${recipe.id}>${recipe.name}</a>`).appendTo(dropdownContent).click(() => {
+                displayRecipe(recipe);
             });
 
             
@@ -80,7 +80,7 @@
         }
     }
 
-    function dispalyRecipe(recipe){
+    function displayRecipe(recipe){
         $('#recipeContainer').show();
     
         updateRecipeElem(recipe, 'name');

@@ -1,0 +1,93 @@
+Webpack To do list
+
+npm install -D webpack webpack-cli eslint eslint-webpack-plugin  
+npm install webpack-dev-server style-loader css-loader html-webpack-plugin
+
+
+A) ESLint
+    in the webpack.config.js file
+
+	const ESLintPlugin = require(‘eslint-webpack-plugin');
+	module.exports = {
+		plugins: [
+			new ESLintPlugin(),
+		]
+	};
+
+B) Dev Server and build and watch scripts
+	in the package.json file
+
+	"scripts": { 
+		"build": "webpack --progress", 
+		"watch": "webpack --watch --progress", 
+        "start": "webpack-dev-server --progress --open" 
+	},
+
+C) Images and Css Loader
+    module.exports = {
+        module: {
+            rules: [
+                { 
+                    you can add all the files you want (mp3, mp4 etc.)
+                    test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                    type: 'asset/resource'
+                },
+                {
+                    test: /\.css$/i,
+                    use: ['style-loader', 'css-loader']
+                },
+            ]
+        },
+    }
+    
+D) Html Webpack Plugin
+    https://medium.com/dailyjs/inserting-variables-into-html-and-javascript-with-webpack-80f33625edc6
+    in the webpack.config.js file
+
+    const HtmlWebpackPlugin = require('html-webpack-plugin');
+    const path = require('path');
+
+    module.exports = {
+        entry: 'index.js',
+        output: {
+            path: path.resolve(__dirname, './dist'),
+            filename: '[name].bundle.js',
+        },
+        plugins: [
+            new HtmlWebpackPlugin({
+                //If you have variables inside of your html file as follow
+                //<%= htmlWebpackPlugin.options.{your_variable_here} %>
+                title: '{title_of_the_page}',
+                year: new Date().getFullYear(),
+
+                //To template the html use...
+                template: './src/index.html'
+            }),
+        ]
+    };
+
+E) Set mode for production and set the source map
+    in the webpack.config.js file
+
+    module.exports = {
+        mode: 'production',
+        devtool: 'source-map',
+    }
+
+F) Optimize the bundle by combining multiple imports
+    in the webpack.config.js file
+
+    module.exports = {
+        optimization: {
+            splitChunks: {
+                chunks: 'all',
+            }
+        },
+        //Adust the output settings
+        output: {
+            publicPath: '',
+            filename: '[name].bundle.js',
+            path: path.resolve(__dirname, 'dist'),
+            clean: true
+        },
+    }

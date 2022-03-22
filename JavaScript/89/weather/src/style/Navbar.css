@@ -1,0 +1,22 @@
+nav {
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(226, 207, 183);
+}
+
+nav h1 {
+    margin: 0;
+}
+
+#settings {
+    display: flex;
+    gap: 1em;
+}
+
+#settings div {
+    display: flex;
+    gap: 4px;
+}

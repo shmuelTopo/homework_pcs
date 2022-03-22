@@ -13,7 +13,8 @@
         {name: 'handR', size: 110, z: 1}, {name: 'earL', size: 80, z: 1}, {name: 'earR', size: 80, z: 1},
         {name: 'eyes1', size: 120, z: 3}, {name: 'eyes2', size: 120, z: 3}, {name: 'eyes3', size: 120, z: 3},
         {name: 'redEyes', size: 130, z: 3}, {name: 'glasses1', size: 100, z: 3},{name: 'nose1', size: 85, z: 3}, 
-        {name: 'humanNose', size: 100, z: 3}, {name: 'mouse1', size: 100, z: 3}, {name: 'bird1', size: 150, z: 4}, {name: 'mouse2', size: 100, z: 3}, {name: 'redLips', size: 120, z: 4},
+        {name: 'humanNose', size: 100, z: 3}, {name: 'mouse1', size: 100, z: 3}, {name: 'bird1', size: 150, z: 4}, 
+        {name: 'mouse2', size: 100, z: 3}, {name: 'redLips', size: 120, z: 4},
         {name: 'shoe1', size: 150, z: 1}, {name: 'shoe2', size: 150, z: 3}
     ];
 
