@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+  </head>
+  <body class="text-center bg-gray-100 sm:px-2 p-4 flex flex-col items-center flex-1 gap-6">
+    <h1 class="text-5xl">Shmuel Toporowitch Blog</h1>
+    <h2 class="text-3xl">Users</h2>
+    <a id="showUsers" class="text-xl text-blue-700 underline cursor-pointer">Show Users</a>
+    <div class="w-4/5 m-2 bg-blue-300 h-1 round-lg"></div>
+
+    <div id="users" class="w-full grid auto-cols-auto md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4"></div>
+    <div id="posts" class="w-full md:w-4/5 lg:w-3/5 p-3 hidden grid auto-rows-auto gap-4"></div>  </body>
+</html>
+
+
