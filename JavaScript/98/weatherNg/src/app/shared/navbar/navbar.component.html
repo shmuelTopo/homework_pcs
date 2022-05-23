@@ -1,0 +1,8 @@
+<nav>
+  <h1>Weather In the United States</h1>
+
+  <div id="settings">
+      <options-input (valueChange)="langChanged($event)" label="Language" [options]="languages"></options-input>
+      <options-input (valueChange)="tempChanged($event)" label="Temperatures" [options]="temperatures"></options-input>
+  </div>
+</nav>

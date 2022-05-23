@@ -1,0 +1,21 @@
+@import '../../../styles/colors';
+
+.person-container {
+  padding: 1rem;
+  background-color: $lightGray;
+  border-radius: 5px;
+
+  .stat {
+    line-height: 1.5;
+    display: flex;
+
+    .label {
+      width: 70px;
+      font-weight: bold;
+    }
+
+    .value {
+      color: $primaryColor;
+    }
+  }
+}

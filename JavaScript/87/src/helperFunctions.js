@@ -24,11 +24,26 @@ export function withinRange(num1, num2, range){
     return Math.max(num1, num2) - Math.min(num1, num2) <= range;
 }
 
-export function getRandomDelta(){
+export function getRandomDelta(previousDelta){
+    
+    console.log(previousDelta);
     let number;
-    do {
+    let shouldLoop = true;
+
+    while(shouldLoop){
         number = getRandomNumber(DELTA_RANGE, -DELTA_RANGE +1);
-    } while(number === 0);
+
+        if(!previousDelta){
+            return number;
+        }
+        console.log('the number is', number);
+        shouldLoop = false;
+
+        console.log('number', number, 'previous', previousDelta, 'within range', withinRange(number, previousDelta, 3))
+        if(number === 0 || !withinRange(number, previousDelta, 2)){
+            shouldLoop = true;
+        }
+    }
     return number;
 }
 
@@ -38,7 +53,7 @@ export function getAngelFromXY(dx, dy){
 
 const TO_RADIANS = Math.PI/180; 
 
-//Get the cavas element and the it's context
+//Get the canvas element and the it's context
 const canvas = document.getElementById('theCanvas');
 const ctx = canvas.getContext('2d');
 

@@ -1,0 +1,37 @@
+<div class="person-container" *ngIf="person">
+  <div class="stat">
+    <div class="label">Name:</div>
+    <div class="value">{{ person.firstName + ' ' + person.lastName }}</div>
+  </div>
+  <div class="stat">
+    <div class="label">Email:</div>
+    <div class="value">{{ person.email }}</div>
+  </div>
+  <div class="stat">
+    <div class="label">Age:</div>
+    <div class="value">{{ person.age }}</div>
+  </div>
+
+  <div class="stat">
+    <div class="label">Address:</div>
+    <div class="value addressValue">
+        <div>{{ person.address.streetNumber + ' ' + person.address.streetName }}</div>
+        <div>
+            <span> {{ person.address.city }}</span>
+            <span *ngIf="person.address.state !== person.address.country"> {{person.address.state}}</span>
+            <span>, {{ person.address.country}} </span>
+        </div>
+        <div>{{person.address.zipCode}}</div>
+    </div>
+  </div>
+</div>
+<!-- 
+
+"address": {
+    "streetName": "Rabbi Arkiva",
+    "streetNumber": 4,
+    "city": "Modiin Ilit",
+    "state": "Israel",
+    "country": "Israel",
+    "zipCode": "32233209"
+  } -->

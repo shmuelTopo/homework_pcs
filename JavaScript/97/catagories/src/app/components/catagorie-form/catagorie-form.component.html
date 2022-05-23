@@ -1,0 +1,5 @@
+<select (change)="onChange()" [(ngModel)]="selected" class="form-control" id="catagories">
+  <option *ngFor="let catagorie of catagories; let i = index" [value]="i">{{ catagorie.name }}</option>
+</select>
+
+<app-items-list [items]="selectedCatagorie.items"></app-items-list>

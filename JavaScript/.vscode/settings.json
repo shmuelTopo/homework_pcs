@@ -1,12 +1,14 @@
 {
     "liveServer.settings.port": 5502,
     "cSpell.words": [
+        "browserslist",
         "Chaya",
         "cooktime",
         "daisyui",
         "extralight",
         "preptime",
         "tabindex",
+        "userid",
         "whitehouse"
     ]
 }

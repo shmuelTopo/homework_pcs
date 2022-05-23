@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+hr {
+    height: 1px;
+    background-color: rgb(0, 0, 0);
+    border: none;
+}
+
+.hr {
+    background-color: black;
+    border-color: black;
+}
+
+.svg {
+    color: hsl(40, 1%, 53%)
+}
+
+body {
+    margin: auto;
+}
+

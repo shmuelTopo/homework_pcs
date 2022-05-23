@@ -1,0 +1,8 @@
+<div class="card">
+  <button (click)="clickRemove()" class="x">❌</button>
+  <h3>{{ weatherDetails.city }}</h3>
+  <h4>Zip Code: {{ weatherDetails.zip }}</h4>
+  <img alt="weather status" src="{{ weatherDetails.icon }}" />
+  <p>{{ weatherDetails.description }}</p>
+  <p>{{ getTemp() }}</p>
+</div>

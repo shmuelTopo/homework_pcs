@@ -1,0 +1,5 @@
+<label >{{label}}
+  <select value="value" (change)="emit()" [(ngModel)]="selected">
+    <option *ngFor="let option of options; let i = index" [value]="i">{{option.label}}</option>
+  </select>
+</label>

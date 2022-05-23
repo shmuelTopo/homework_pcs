@@ -1,0 +1,15 @@
+  <label class="inputGroup">
+    {{ label }}:
+    <input
+      class="formControl"
+      required
+      minlength="5"
+      [(ngModel)]="inputValue"
+      class="formControl"
+      [placeholder]="placeholder"
+      type="text"
+    />
+  </label>
+  <button [disabled]="inputValue.length < 5" (click)="emit()">Submit</button>
+  <button (click)="randomInput()">Random</button>
+

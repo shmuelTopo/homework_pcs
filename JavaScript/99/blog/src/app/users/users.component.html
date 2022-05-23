@@ -1,0 +1,5 @@
+<div class="w-full gap-2 grid auto-cols-auto md:grid-cols-2 lg:grid-cols-3">
+  <div *ngFor="let user of users" class="userDetails text-center bg-base-content/20 hover:bg-base-content/30 p-4 rounded-xl cursor-pointer">
+    <app-user [user]="user"></app-user>
+  </div>
+</div>

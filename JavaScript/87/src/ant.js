@@ -21,8 +21,8 @@ export default class Ant {
     }
 
     resetDirection() {
-        this.newDy = getRandomDelta();
-        this.newDx = getRandomDelta();
+        this.newDy = getRandomDelta(this.dy);
+        this.newDx = getRandomDelta(this.dx);
         if(!this.everRested){
             this.dy = this.newDy;
             this.dx = this.newDx;
@@ -52,7 +52,6 @@ export default class Ant {
         //Instead of abruptly changing the new dy/dx change it gradually. i.e. every time the direction is being reset
         //Don't change it at once, instead, change it gradually until the current y/x matches the newDy/x
         const diff = 0.2;
-
         
         //To prevent a bug when the current dy/dx is 0.1 close to the newDx/y the ant jumps back and forth 
         if(withinRange(this.newDy, this.dy, diff)){
@@ -105,7 +104,6 @@ export default class Ant {
         //Check the Top side
         if(this.y < (0 -this.size)){
             this.dy = Math.abs(this.dy);
-            //console.log('hit top');
         }
 
         //And finally draw the ant to the screen with the right angel

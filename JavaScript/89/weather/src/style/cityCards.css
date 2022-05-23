@@ -1,14 +1,4 @@
-.cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,
-      minmax(300px, auto));
-    grid-gap: 7px;
-    
-    div {
-      background-color: red;
-      height: 150px;
-    }
-  }
+
 
 
   #citiesContainer {

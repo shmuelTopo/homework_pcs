@@ -27,6 +27,6 @@ export default function SwapThemes() {
     }
 
     return (
-        <button className='z-100 bg-accent p-2 rounded-full' onClick={handleClick} type="button" data-toggle-theme="cupcake,luxury" data-act-class="ACTIVECLASS">{theme === 'dark' ? sunIcon() : moonIcon()}</button>
+        <button className='z-100 bg-accent p-2 rounded-full' onClick={handleClick} type="button" data-toggle-theme="dark,light" data-act-class="ACTIVECLASS">{theme === 'dark' ? sunIcon() : moonIcon()}</button>
     )
 }
