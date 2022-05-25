@@ -1,0 +1,10 @@
+<div *ngFor="let comment of comments | async">
+  <div class="comment flex flex-col justify-between rounded-xl mb-3 px-8 text-left space-y-4">
+    <figcaption class="font-medium">
+      <p class="text-lg font-bold">{{ comment.name }}</p>
+      <div class="text-slate-700 dark:text-slate-500">{{ comment.body }}</div>
+      <div class="text-sky-500 dark:text-sky-400">{{ comment.email }}</div>
+    </figcaption>
+    <div class="w-full my-3 bg-info h-px"></div>
+  </div>
+</div>

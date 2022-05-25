@@ -1,4 +1,4 @@
-<a [routerLink]="['/posts/1']" >
+<a [routerLink]="['/posts', user.id]" >
   <div class="block text-2xl italic">{{user.name}}</div>
   <p class=" link font-bold">www.{{user.website}}</p>
   <div class="bold">{{user.email}}</div>

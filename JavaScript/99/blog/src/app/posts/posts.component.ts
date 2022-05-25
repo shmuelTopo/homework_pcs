@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../models/user';
 import { UsersService } from '../services/users.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-posts',
@@ -10,17 +11,18 @@ import { UsersService } from '../services/users.service';
 export class PostsComponent implements OnInit {
   userId = 1;
   posts: Post[] = [];
-  showComments = false;
-  comments = null;
-  buttonText = 'Show Comments';
 
-  constructor(private usersServices: UsersService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private usersServices: UsersService
+  ) {}
 
   ngOnInit() {
-    this.usersServices.getPosts(this.userId).subscribe((posts) => {
-      this.posts = posts;
-      console.log(this.posts);
-    })
+    this.route.params.subscribe(({ id }) => {
+      this.usersServices.getPosts(id).subscribe((posts) => {
+        this.posts = posts;
+        console.log(this.posts);
+      });
+    });
   }
-
 }

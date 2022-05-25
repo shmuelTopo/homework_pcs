@@ -1,16 +1,5 @@
 <div className="flex flex-col gap-2">
-  <figure
-    *ngFor="let post of posts"
-    class="comment flex flex-col mb-2 justify-between bg-info/20 rounded-xl p-8 text-left space-y-4"
-  >
-    <blockquote>
-      <p class="text-xl font-bold">{{ post.title }}</p>
-      <p class="text-lg font-medium">"{{ post.body }}"</p>
-    </blockquote>
-
-    <div *ngIf="showComments">show comments</div>
-    <div>
-      <button class="btn btn-primary">{{ buttonText }}</button>
-    </div>
-  </figure>
+  <div *ngFor="let post of posts">
+      <app-post [post]="post"></app-post>
+  </div>
 </div>

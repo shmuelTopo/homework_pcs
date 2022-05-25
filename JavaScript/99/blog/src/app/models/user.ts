@@ -5,12 +5,14 @@ export interface User {
     companyName: string;
     companyCatchPhrase: string;
     companyBs: string;
+    id: number;
 }
 
 export interface UserDto {
     name: string;
     website: string;
     email: string;
+    id: number;
     company: {
         name: string;
         catchPhrase: string;
@@ -19,7 +21,13 @@ export interface UserDto {
 }
 
 export interface Post {
-    postId: number;
     title: string;
+    body: string;
+    id: number;
+}
+
+export interface Comment {
+    name: string;
+    email: string;
     body: string;
 }
