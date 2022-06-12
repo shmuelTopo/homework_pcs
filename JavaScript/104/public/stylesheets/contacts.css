@@ -1,0 +1,59 @@
+table {
+    border-collapse: collapse;
+    border-style: hidden; 
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: left;
+    font-size: .8em;
+}
+
+.tableSection {
+    width: 90%;
+    margin: auto;
+}
+
+tbody tr {
+    background-color: white;
+}
+
+tbody tr:nth-child(2n) {
+    background-color: rgb(241, 239, 255);
+}
+
+th {
+    color: white;
+    font-weight: 500;
+}
+
+thead tr {
+    background-color: #007bff;
+}
+
+td, th {
+    padding: 1em;
+    border-right: 1px solid rgba(71, 71, 71, 0.226);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.removeContact {
+    padding: 0;
+}
+
+.removeContact a {
+    padding: 0;
+    margin: 0;
+    font-size: 1.5em;
+    display: inline-block;
+    margin: auto;
+}
+
+.contactsGrid {
+    display: grid;
+    grid-template-columns: 2fr 2fr 4fr 2.5fr 5em;
+    /* grid-template-columns: 2fr 2fr 4fr 2.5fr; */
+}

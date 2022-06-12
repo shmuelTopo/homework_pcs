@@ -11,6 +11,10 @@
     "amd": true
   },
   "rules": {
-    "eqeqeq": "warn"
+    "eqeqeq": "warn",
+    "no-unused-vars": "off"
+  },
+  "globals": {
+    "connection": true
   }
 }

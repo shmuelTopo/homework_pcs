@@ -1,0 +1,54 @@
+extends layout
+
+block content
+  link(rel="stylesheet", href="/stylesheets/contacts.css")
+  
+  section.tableSection
+    a.shadow.btn.btn-primary(href='/contacts/addContact') Add contact
+    a.shadow.btn.btn-primary(href='/contacts/addRandom') Add Random
+
+    table.shadow.table
+      thead.thead-dark
+        tr.contactsGrid
+          th First
+          th Last 
+          th Email 
+          th Phone
+          th 
+      #contacts 
+        if contacts.length
+          each contact, index in contacts
+            tr.contactsGrid
+              td= contact.first
+              td= contact.last
+              td= contact.email 
+              td= contact.phone
+              td.removeContact
+                a(index=index href=`contacts/remove/${contact.id}`) 🗑️
+                a(index=index href=`contacts/edit/${contact.id}`) 🖊️
+
+        else 
+          tr#contactsEmpty
+            td(colspan="4") no contacts loaded
+
+//- <section id="tableSection">
+      <button class="shadow buttonTop" id="addContact">Add contact</button>
+      <button class="shadow buttonTop" id="addRandom">Add Random</button>
+
+      <table class="shadow" id="contactsTable">
+        <thead>
+          <tr class="contactsGrid">
+            <th>First</th>
+            <th>Last</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <tr id="contactsEmpty">
+            <td colspan="5">no contacts loaded</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>

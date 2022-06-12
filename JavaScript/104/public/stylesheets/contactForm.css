@@ -1,0 +1,10 @@
+form {
+    padding: 1em;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+input {
+    width: 200px;
+    margin-left: 10px;
+}

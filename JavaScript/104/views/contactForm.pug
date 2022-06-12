@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  link(rel="stylesheet", href="/stylesheets/contactForm.css")
+  form#addContactForm.shadow(method='POST')
+    .formGroup
+      label(for='first') First:
+      input#first(type='text' required='' name='first' value=contact ? contact.first : '')
+    .formGroup
+      label(for='last') Last:
+      input#last(type='text' required='' name='last' value=contact ? contact.last : '')
+    .formGroup
+      label(for='email') Email
+      input#email(type='email' name='email' value=contact ? contact.email : '')
+    .formGroup
+      label(for='phone') Phone
+      input#phone(type='text' name='phone' value=contact ? contact.phone : '')
+    .buttons
+      button.btn(type='submit') Save
+      a.btn(href='/contacts') Cancel
