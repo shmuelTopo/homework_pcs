@@ -1,0 +1,11 @@
+{
+  "name": "egg salad",
+  "category": "breakfest",
+  "prep_time": 5,
+  "cook_time": 2,
+  "servings": 1,
+  "ingredients": [
+    { "name": "eggs", "quantity": 2 },
+    { "name": "salt", "quantity": "1 spoon" }
+  ]
+}
