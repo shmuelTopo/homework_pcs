@@ -1,0 +1,12 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    nav
+      a(href="/") Home | 
+      a(href="/visits")  Visits
+    h1= title
+    block content
+  script(src="/javascripts/index.js") 

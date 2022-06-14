@@ -1,0 +1,5 @@
+extends layout
+
+block content
+  each val, key in visits 
+    p You have visited the #{key} #{val} #{val === 1 ? "time": "times"}!

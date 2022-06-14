@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h2 Hello #{userName}
+  p Welcome to #{title}
+  form(method='POST')
+    label Name: 
+      input(name="userName" required type="text" minlength="3")
+    button submit  
