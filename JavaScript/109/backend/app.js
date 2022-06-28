@@ -79,7 +79,7 @@ app.post("/login", async (req, res) => {
     req.session.user = null;
     res.clearCookie('username');
     res.clearCookie('userId');
-    return res.status(err.statusCode || 500).end(err.message);
+    return res.status(err.statusCode || 500).end('Something went wrong');
   }
 });
 
@@ -123,6 +123,9 @@ socketIo.on('connection',async (socket) => {
   socket.emit('online', {username: user.username, id:user.id})
 
   activeUsers.push(user);
+  activeUsers.forEach(u => {
+    u.socket.emit('lastseen', {userid: user.id, datetime: 'online'});
+  })
 
   try {
     await usersDb.setOnline(user.id);
@@ -145,6 +148,7 @@ socketIo.on('connection',async (socket) => {
           lastMessageDatetime: conv.lastMessageDatetime
         };
         c.messages = await groupDb.getGroupMessages(conv.groupId);
+        c.groupUsers = await groupDb.getUsersForGroup(conv.groupId);
         return c;
       } else {
         const c = {
@@ -229,19 +233,20 @@ socketIo.on('connection',async (socket) => {
     socket.disconnect();
   }) 
 
-  socket.on('disconnect', () => {
+  socket.on('disconnect', async () => {
     activeUsers = activeUsers.filter(u => u.username !== user.username);
 
-    usersDb.updateLastSeen(user.id, (err) => {
-      if(err) {
-        return console.err('coudn\'t update last seen for contact', user.id);
-      }
-
+    try {
+      const datetime = await usersDb.updateLastSeen(user.id);
+      console.log(user.id, 'leave on', datetime);
       activeUsers.forEach(u => {
-        u.socket.emit('offline', user.id);
+        u.socket.emit('lastseen', {userid: user.id, datetime: datetime});
       })
+    } catch(error) {
+      return console.err('coudn\'t update last seen for contact', user.id);
+    }
 
-    });
+
   });
 
 });

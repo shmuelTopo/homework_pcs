@@ -2,12 +2,16 @@
   import Speech from "./Speech.svelte";
   import UserJoin from './UserJoin.svelte';
   import MdSend from 'svelte-icons/md/MdSend.svelte';
-  import { selectedConversation, userInfo, newConversationS } from './stores';
-  import MessagesNav from './MessagesNav.svelte';
+  import { selectedConversation, userInfo, newConversationS, chatUsers } from './stores';
+  import ConversationInfo from './ConversationInfo.svelte';
 
   export let socket;
 
   let user;
+  let theChatUsers = [];
+  let conversationInfo;
+
+  chatUsers.subscribe(v => theChatUsers = v);
   userInfo.subscribe(v => user = v)
 
   let conversation;
@@ -16,13 +20,50 @@
 
   selectedConversation.subscribe(v => {
     conversation = v;
-    messages = v?.messages || [];
+    if(!v) {
+      return;
+    }
+    let theUser;
+    if(v.type === 'pm') {
+      theUser = theChatUsers.find(u => {
+        return u.id === v.otherUserId
+      });
+    }
+
+    conversationInfo = {
+      type: v.type,
+      conversationId: v.conversationId
+    }
+
+    if(v.type === 'pm') {
+      conversationInfo.otherUser = theUser;
+    } else if(v.type === 'group') {
+      conversationInfo.groupId = v.groupId;
+      conversationInfo.groupName = v.groupName;
+      conversationInfo.groupUsers = v.groupUsers;
+    }
+
+    conversationInfo = conversationInfo;
+    messages = v.messages || [];
     setTimeout(scroll, 10);
   })
 
   newConversationS.subscribe(v => {
     newConversation = v;
-    console.log(v);
+    if(v) {
+      messages = [];
+      user = theChatUsers.find(u => {
+        return u.id === v.otherUserId
+      });
+
+      conversationInfo = {
+        type: 'pm',
+        otherUser: user,
+        otherUserId: v.otherUserId,
+        otherUserName: v.otherUserName
+      }
+      selectedConversation.set(undefined);
+    }
   });
 
   function scroll() {
@@ -44,6 +85,7 @@
     }
 
     if(newMessage.conversationType === 'pm') {
+      const user = users.find();
       newMessage.otherUserId = conversation.otherUserId;
     } else if(newMessage.conversationType = 'group') {
       newMessage.groupId = conversation.groupId;
@@ -65,7 +107,7 @@
 
 <div class="messages">
   <div class="top">
-    <MessagesNav></MessagesNav>
+    <ConversationInfo conversationInfo={conversationInfo}></ConversationInfo>
   </div>
   <div class="speech-wrapper">
     {#each messages || [] as message (message.id) }
@@ -120,8 +162,6 @@
     background-color: darkgrey;
     outline: 1px solid slategrey;
   }
-
-
 
   .icon {
     background: none;

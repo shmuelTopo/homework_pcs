@@ -1,14 +1,16 @@
 <script>
   export let logout;
   import { getCookie } from './utils';
-  import { chatUsers, userConversations, newConversationS } from './stores';
+  import { chatUsers, userConversations, selectedConversation, newConversationS } from './stores';
 
   let newMessageOpen = false;
   let newGroupOpen = false;
   let users = [];
   let conversations = [];
 
-  chatUsers.subscribe(v => users = v);
+  chatUsers.subscribe(v => {
+    users = v;
+  });
   userConversations.subscribe(v => conversations = v);
 
   const toggleNewMessage = () => {
@@ -35,8 +37,7 @@
         otherUserId: userId,
         otherUserName: userName      
       }
-      userConversations.set(conversations)
-      newConversationS.set(oldConversation);
+      newConversationS.set(newConversation);
     }
   }
   
@@ -50,7 +51,6 @@
   } from 'sveltestrap';
 
 import User from './User.svelte';
-import Conversation from './Conversation.svelte';
   let isOpen = false;
 
   const username = getCookie('username');

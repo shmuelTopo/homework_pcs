@@ -6,9 +6,8 @@ module.exports.getUsers = async () => {
   const [rows, fields] = await pool.execute(`
       select id, username,
       case 
-          when (last_seen > NOW()) then 'online'
-          when (last_seen < CURDATE()) then DATE_FORMAT(last_seen, '%Y-%m-%d')
-          else DATE_FORMAT(last_seen,'%H:%i')
+          when (last_seen > NOW()) then 'Online'
+          else last_seen
       end
       as lastseen 
       from users;
@@ -64,6 +63,7 @@ module.exports.updateLastSeen = async function(id, next) {
   const datetime = getDatetime();
   try {
     await pool.execute('UPDATE users SET last_seen=? WHERE id = ?', [datetime, id])
+    return datetime;
   } catch(error) {
     return { error: error };
   }

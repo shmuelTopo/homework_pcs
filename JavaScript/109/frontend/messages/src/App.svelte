@@ -16,7 +16,9 @@
 		conversations = v;
 	})
 
-	chatUsers.subscribe(v => users = v);
+	chatUsers.subscribe(v => {
+		users = v;
+	});
 
 	let user;
 	let socket;
@@ -33,6 +35,14 @@
 		socket = io("ws://localhost", {
 			withCredentials: true,
 		});
+
+		socket.on('lastseen', u => {
+			const user = users.find(us => us.id === u.userid);
+			if(user){
+				user.lastseen = u.datetime;
+			}
+			chatUsers.set(users);
+		})
 
 		socket.on('login', u => {
 			userInfo.set(u)
