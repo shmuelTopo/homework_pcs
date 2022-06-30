@@ -58,7 +58,6 @@ const socketIo = require("socket.io")(server, {
 //Setup Login / Signup using Post
 app.post("/login", async (req, res) => {
   try {
-    console.log(req.body);
     const { username, password, method } = req.body;
     
     const user = await usersDb.login(username, password, method);
@@ -123,6 +122,9 @@ socketIo.on('connection',async (socket) => {
   user.username = session.user.username;
   user.groupsId = await groupDb.getGroupsIdforUser(user.id);
 
+  console.log('connecting user', user.username);
+
+
   socket.emit('login', {username: user.username, id:user.id})
   socket.emit('online', {username: user.username, id:user.id})
 
@@ -131,32 +133,16 @@ socketIo.on('connection',async (socket) => {
     u.socket.emit('lastseen', {userid: user.id, datetime: 'online'});
   })
 
-  if(session.signup) {
-    const newUserMessage = `User ${user.username} had join the group`;
-    socket.broadcast.emit('addUsers', [{ username: user.username, id: user.id }]);
-    session.signup = false;
-    session.save();
-
-    try {
-      console.log('signup');
-      await groupDb.addUserToGroup(user.id, 1);
-      const message = await groupDb.newGroupMessage(user.id, 1, newUserMessage, 'login');
-      message.username = user.username;
-
-      activeUsers.forEach((u) => {
-        if(u.groupsId.includes(message.groupId)){
-          u.socket.emit('message', message)
-        }
-      })
-    }catch(error) {
-      console.error('signup error', error.message);
-    }
-  }
-
   try {
     await usersDb.setOnline(user.id);
   } catch(error) {
     return console.error(`error setting user ${user.id} to online status`)
+  }
+
+  if(session.signup) {
+    socket.broadcast.emit('addUsers', [{ username: user.username, id: user.id }]);
+    await groupDb.addUserToGroup(user.id, 1);
+    user.groupsId.push(1);
   }
 
   try {
@@ -191,6 +177,19 @@ socketIo.on('connection',async (socket) => {
 
     socket.emit('conversations', conversations);
 
+    if(session.signup) {
+      const newUserMessage = `User ${user.username} had join the group`;
+      const message = await groupDb.newGroupMessage(user.id, 1, newUserMessage, 'login');
+      message.username = user.username;
+  
+      activeUsers.forEach((u) => {
+        if(u.groupsId.includes(message.groupId)){
+          u.socket.emit('message', message)
+        }
+      })
+      session.signup = false;
+      session.save();
+    }
   } catch(error) {
     console.error('getting users', error);
   }
