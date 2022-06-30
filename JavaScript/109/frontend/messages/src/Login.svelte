@@ -28,7 +28,6 @@
     })
 
     const data = await response.text();
-    console.log(data);
 
     if(response.ok) {
       errorText = '';

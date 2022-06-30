@@ -31,9 +31,8 @@
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
-    overflow-x: hidden;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background-color: rgb(75, 75, 75);
   }
   

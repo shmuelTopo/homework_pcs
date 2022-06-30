@@ -6,7 +6,6 @@
   userInfo.subscribe(v => user = v);
 
   const self = String(user.id) === String(message.fromUserId || message.userId);
-  console.log('id', user.id, 'message', message);
   const date = new Date(message.datetime);
 </script>
 

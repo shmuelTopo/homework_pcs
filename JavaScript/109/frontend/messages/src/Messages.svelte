@@ -2,25 +2,25 @@
   import Speech from "./Speech.svelte";
   import UserJoin from './UserJoin.svelte';
   import MdSend from 'svelte-icons/md/MdSend.svelte';
-  import { selectedConversation, userInfo, newConversationS, chatUsers } from './stores';
+  import { selectedConversation, userInfo, userConversations, chatUsers } from './stores';
   import ConversationInfo from './ConversationInfo.svelte';
 
   export let socket;
 
   let user;
-  let otherUser;
   let theChatUsers = [];
+  let conversations = [];
   let conversationInfo;
 
   chatUsers.subscribe(v => theChatUsers = v);
   userInfo.subscribe(v => user = v)
+  userConversations.subscribe(v => conversations = v);
 
   let conversation;
   let messages = [];
 
   selectedConversation.subscribe(v => {
     conversation = v;
-    console.log('slected', v);
     if(!v) {
       return;
     }
@@ -62,21 +62,26 @@
     }
 
     if(conversation.newConversation) {
-      console.log('trying to send new message');
       const message = {
         text: messageInput,
         otherUserId: conversation.otherUserId
       }
-      socket.emit('newPmConversation', message, res => {
+      socket.emit('newPmConversation', message, (res, conversation) => {
         if(res) {
           alert(res);
         }
+
+        if(!conversation) {
+          return;
+        }
+
+        conversations.unshift(conversation);
+        userConversations.set(conversations);
+        selectedConversation.set(conversation);
       });
 
       return;
     }
-
-    console.log(conversation);
 
     const newMessage = {
       text: messageInput,
@@ -112,7 +117,7 @@
   <div class="speech-wrapper">
     {#each messages || [] as message (message.id) }
       {#if message.type === 'speech'}
-        <Speech message={message} userid={user.id}></Speech>
+        <Speech message={message}></Speech>
       {:else if message.type === 'login'}
         <UserJoin message={message.text}></UserJoin>
       {/if}

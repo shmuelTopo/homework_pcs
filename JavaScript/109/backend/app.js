@@ -93,6 +93,7 @@ const wrap = (middleware) => {
     return middleware(socket.request, {}, next)
   };
 }
+
 socketIo.use(wrap(sessionMiddleware));
 socketIo.use(async (socket, next) => {
   const session = socket.request.session;
@@ -174,7 +175,7 @@ socketIo.on('connection',async (socket) => {
         return c;
       }
     }));
-
+    console.log('emiting conversations', conversations.length);
     socket.emit('conversations', conversations);
 
     if(session.signup) {
@@ -244,12 +245,16 @@ socketIo.on('connection',async (socket) => {
       }
       const newConversation = await usersDb.newPmConversation(user.id, message);
       console.log(newConversation);
-      socket.emit('conversations', [ newConversation ]);
+      // socket.emit('conversations', [ newConversation ]);
 
       const otherUser = activeUsers.find(u => {
         return u.id === message.otherUserId
       })
-      otherUser.socket.emit('conversations', [ newConversation ]);
+
+      if(otherUser) {
+        otherUser.socket.emit('conversations', [ newConversation ]);
+      }
+      return callback(undefined, newConversation);
       
     } catch(error) {
       console.error('new message', error);

@@ -5,7 +5,7 @@
 	import { io } from "socket.io-client";
 	import ConversationNav from './ConversationNav.svelte';
 	import { getCookie } from './utils';
-	import { selectedConversation, userConversations, userInfo, chatUsers } from './stores';
+	import { selectedConversation, userConversations, userInfo, chatUsers, resetStore } from './stores';
 	import AppInfo from './AppInfo.svelte';
 
   let users = [];
@@ -15,7 +15,6 @@
 
 	userConversations.subscribe(v => {
 		conversations = v;
-		console.log('Conversations was update by store to be', v);
 	})
 
 	chatUsers.subscribe(v => {
@@ -56,10 +55,11 @@
 		})
 
 		socket.on('conversations', c => {
-			console.log(c[0]);
-			if(c[0].type === 'pm' && c[0].otherUserId !== user.id) {
+			//
+			if(c[0].self) {
 				selectedConversation.set(c[0]);
 			}
+			console.log(c.length, conversations.length)
 			userConversations.set(c.concat(conversations));
 		})
 
@@ -113,8 +113,7 @@
     document.cookie = "userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 		socket?.emit('logout', 'logout');
 		socket = undefined;
-  	users = [];
-		userInfo.set(false);
+		resetStore();
 	}
 	
 </script>
@@ -142,6 +141,11 @@
 		height: 100%;
 		width: 100%;
 		overflow: hidden;
+	}
+
+	aside {
+		display: flex;
+		flex-direction: column;
 	}
 
 	.login {
