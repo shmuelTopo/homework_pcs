@@ -3,8 +3,9 @@
   import { getMessageTimeDayOrDate } from './utils';
   
   export let conversation;
-  $: d = new Date(conversation.lastMessageDatetime);
-  $: datetime =  getMessageTimeDayOrDate(d);
+  console.log(conversation.messages);
+  $: lastMessageDatetime = conversation?.messages[0]?.datetime;
+  $: datetime =  getMessageTimeDayOrDate(new Date(lastMessageDatetime));
   $: lastMsg = conversation?.messages[0]?.text || ''
   let selectedId;
 
