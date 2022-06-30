@@ -2,14 +2,14 @@
   export let message;
   export let userid;
   const self = String(userid) === String(message.fromUserId || message.userId);
-  const date = new Date(message.time);
+  const date = new Date(message.datetime);
 </script>
 
 <div class="bubble {self ? 'self': 'other'}">
   <div class="txt">
     <p class="name">{self ? 'Me': message.fromUsername || message.username}</p>
     <p class="message">{message.text}</p>
-    <span class="timestamp">{new Date(message.time).toLocaleTimeString([], {hour: 'numeric', minute: '2-digit'})}</span>
+    <span class="timestamp">{new Date(message.datetime).toLocaleTimeString([], {hour: 'numeric', minute: '2-digit'})}</span>
   </div>
   <div 
     class="arrow {self ? 'arrow-self': 'arrow-other'}"

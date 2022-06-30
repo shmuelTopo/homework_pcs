@@ -1,10 +1,10 @@
 <script>
-  export let username;
+  export let message;
 </script>
 
 
 <div>
-  {username} had join the chat
+  {message}
 </div>
 
 

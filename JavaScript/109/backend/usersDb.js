@@ -6,13 +6,12 @@ module.exports.getUsers = async () => {
   const [rows, fields] = await pool.execute(`
       select id, username,
       case 
-          when (last_seen > NOW()) then 'Online'
-          else last_seen
+          when (lastseen > NOW()) then 'Online'
+          else lastseen
       end
-      as lastseen 
-      from users;
+      from \`users\`
+      as lastseen;
   `);
-
   return rows;
 }
 
@@ -22,16 +21,17 @@ module.exports.getConversations = async (userId) => {
       c.user_id_b as userIdB, ub.username as usernameB, 
       c.group_id as groupId, g.name as groupName, 
       c.last_message_datetime as lastMessageDatetime
-    from conversations c
-    left join users u
+    from \`conversations\` c
+    left join \`users\` u
     on c.user_id_a = u.id
-    left join users ub
+    left join \`users\` ub
     on c.user_id_b = ub.id
-    left join groups g
+    left join \`groups\` g
     on c.group_id = g.id
     WHERE c.user_id_a = ? OR c.user_id_b = ?
     ORDER BY c.last_message_datetime DESC
   `,[userId, userId]);
+
   return rows;
 }
 
@@ -50,19 +50,19 @@ module.exports.login = async (username, password, method) => {
 };
 
 module.exports.isUser = async (username) => {
-    const [ rows ] = await pool.execute('SELECT * from users WHERE username = ?', [username]);
+    const [ rows ] = await pool.execute(`SELECT id from \`users\` WHERE username = ?`, [username]);
     return rows.length === 1;
 }
 
 module.exports.getUsername = async (userId) => {
-  const [ rows ] = await pool.execute('SELECT username from users WHERE id = ?', [userId]);
+  const [ rows ] = await pool.execute(`SELECT username from \`users\` WHERE id = ?`, [userId]);
   return rows.length === 1 ? rows[0].username : undefined;
 }
 
 module.exports.updateLastSeen = async function(id, next) {
   const datetime = getDatetime();
   try {
-    await pool.execute('UPDATE users SET last_seen=? WHERE id = ?', [datetime, id])
+    await pool.execute(`UPDATE \`users\` SET lastseen=? WHERE id = ?`, [datetime, id])
     return datetime;
   } catch(error) {
     return { error: error };
@@ -70,20 +70,20 @@ module.exports.updateLastSeen = async function(id, next) {
 }
 
 module.exports.setOnline = async function(id, next) {
-  await pool.execute("UPDATE users SET last_seen= '9999-12-31 23:59:59' WHERE id = ?", [id]);
+  await pool.execute(`UPDATE \`users\` SET lastseen= '9999-12-31 23:59:59' WHERE id = ?`, [id]);
 }
 
 async function addUser(username, password) {
-  const time = '9999-12-31 23:59:59';
+  const datetime = '9999-12-31 23:59:59';
   try {
     let newUser;
     const hash = await bcrypt.hash(password, 10);
-    const [ resutls ] = await pool.query('INSERT INTO users (username, passwordHash, last_seen) VALUES (?, ?, ?)',[username, hash, time]);
+    const [ resutls ] = await pool.query(`INSERT INTO \`users\` (username, psw_hash, lastseen) VALUES (?, ?, ?)`,[username, hash, datetime]);
     ('after');
     return  {
       id: resutls.insertId,
       username,
-      last_seen: time
+      lastseen: datetime
     }
   } catch(error) {
     error.message = error.code === 'ER_DUP_ENTRY' ? 'Username already exists' : error.message;
@@ -93,7 +93,7 @@ async function addUser(username, password) {
 }
 
 async function checkUser(username, password) {
-  const [ rows ] = await pool.execute('SELECT * from users WHERE username = ?', [username]);
+  const [ rows ] = await pool.execute(`SELECT * from \`users\` WHERE username = ?`, [username]);
     
   if(!rows.length){
     const err = new Error('Invalid username or password');
@@ -102,9 +102,9 @@ async function checkUser(username, password) {
   }
 
   const user = Object.assign({}, rows[0]);
-  delete user.passwordHash;
+  delete user.psw_hash;
 
-  const match = await bcrypt.compare(password, rows[0].passwordHash);
+  const match = await bcrypt.compare(password, rows[0].psw_hash);
     
   if(!match) {
     const err = new Error('Invalid username or password');

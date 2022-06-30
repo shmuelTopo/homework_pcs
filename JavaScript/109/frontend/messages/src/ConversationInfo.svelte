@@ -7,7 +7,7 @@
   let lastseenMessage = '';
   
   chatUsers.subscribe(() => {
-    lastseenMessage = getLastseenMessage(conversationInfo?.otherUser.lastseen);
+    lastseenMessage = getLastseenMessage(conversationInfo?.otherUser?.lastseen);
   })
 
   let interval;
@@ -21,6 +21,7 @@
   onDestroy(() => clearInterval(interval));
 
   function updateLastseen() {
+    console.log(conversationInfo);
     if(conversationInfo.otherUser){
       lastseenMessage = getLastseenMessage(conversationInfo?.otherUser.lastseen);
     }

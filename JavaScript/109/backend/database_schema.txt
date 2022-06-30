@@ -1,0 +1,29 @@
+Mysql tables
+
+Table 1: users 
+	id (int, ai) , username (varchar 20), psw_hash (varchar 256), last_seen (datetime)
+
+Table 2: groups
+	id (int ai) ,name (varchar 30)
+
+Table 3: users_groups
+	group_id (int), user_id (int)
+		constrain group_id —> groups id, on delete restrict
+		constrain user_id —> users id, on delete set cascade
+
+Table 4: conversations
+	id (int ai), user_id_a (int / null), user_id_b (int / null), group_id (int / Null),
+	last_message_datetime (datetime)
+		constrain user_id_a  —> users id, on delete set null
+		constrain user_id_b  —> users id, on delete set null
+		constrain group_id —> groups id, on delete cascade
+
+Table 5: pm_messages
+	id (int ai), from_user_id (int), to_user_id (int), text (text), datetime (datetime) , type (varchar(10))
+		constrain from_user_id  —> users id, on delete set null
+		constrain to_user_id  —> users id, on delete set null
+
+Table 6: group_messages
+	id (int ai), group_id (int), user_id (int / null), text (text), datetime (datetime), type (varchar(10))
+		constrain user_id  —> users id, on delete set null
+		constrain group_id —> groups id, on delete restrict

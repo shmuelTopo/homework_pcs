@@ -114,7 +114,7 @@
       {#if message.type === 'speech'}
         <Speech message={message} userid={user.id}></Speech>
       {:else if message.type === 'login'}
-        <UserJoin username={message.username}></UserJoin>
+        <UserJoin message={message.text}></UserJoin>
       {/if}
     {/each}
   </div>

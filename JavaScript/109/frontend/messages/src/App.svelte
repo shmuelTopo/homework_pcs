@@ -14,6 +14,7 @@
 
 	userConversations.subscribe(v => {
 		conversations = v;
+		console.log(v);
 	})
 
 	chatUsers.subscribe(v => {
@@ -45,12 +46,16 @@
 		})
 
 		socket.on('login', u => {
-			userInfo.set(u)
+			userInfo.set(u);
 		})
 
 		socket.on('logout', () => {
 			logout();
 			window.location.reload();
+		})
+
+		socket.on('conversations', c => {
+			userConversations.set(c);
 		})
 
 		socket.on("message", messageToAdd => {
@@ -85,7 +90,7 @@
 			chatUsers.set(users);
 		});
 
-		socket.on('conversetions', c => {
+		socket.on('conversations', c => {
 			userConversations.set(c);
 			selectedConversation.set(c[0]);
 		})
@@ -131,13 +136,11 @@
 	}
 
 	.login {
-		height: 400px;
-		width: 500px;
+		height: 100vh;
+		width: 100vw;
 		position: fixed;
-		top: 50%;
-		left: 50%;
-		margin-top: -200px; /* Negative half of height. */
-		margin-left: -250px; /* Negative half of width. */
+		top: 0;
+		left: 0;
 	}
 
 </style>

@@ -4,12 +4,16 @@ const app = express();
 const http = require('http');
 const server = http.createServer(app);
 const myLogger = require('./logger');
+require("dotenv").config();
 
 //Setup Sessions with MySql
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 const pool = require('./sqlPool');
-const sessionStore = new MySQLStore({}, pool);
+const setUpDb = require('./setupDb');
+setUpDb(pool);
+
+const sessionStore = new MySQLStore({} , pool);
 
 //Comiunicate with Db
 const usersDb = require('./usersDb');
@@ -54,6 +58,7 @@ const socketIo = require("socket.io")(server, {
 //Setup Login / Signup using Post
 app.post("/login", async (req, res) => {
   try {
+    console.log(req.body);
     const { username, password, method } = req.body;
     
     const user = await usersDb.login(username, password, method);
@@ -74,12 +79,12 @@ app.post("/login", async (req, res) => {
       id: user.id
     });
   } catch(err) {
-    console.error(err.message);
+    console.error('login error', err.message);
     req.session.authenticated = false;
     req.session.user = null;
     res.clearCookie('username');
     res.clearCookie('userId');
-    return res.status(err.statusCode || 500).end('Something went wrong');
+    return res.status(err.statusCode || 500).end(err.message || 'Something went wrong');
   }
 });
 
@@ -118,7 +123,6 @@ socketIo.on('connection',async (socket) => {
   user.username = session.user.username;
   user.groupsId = await groupDb.getGroupsIdforUser(user.id);
 
-
   socket.emit('login', {username: user.username, id:user.id})
   socket.emit('online', {username: user.username, id:user.id})
 
@@ -126,6 +130,28 @@ socketIo.on('connection',async (socket) => {
   activeUsers.forEach(u => {
     u.socket.emit('lastseen', {userid: user.id, datetime: 'online'});
   })
+
+  if(session.signup) {
+    const newUserMessage = `User ${user.username} had join the group`;
+    socket.broadcast.emit('addUsers', [{ username: user.username, id: user.id }]);
+    session.signup = false;
+    session.save();
+
+    try {
+      console.log('signup');
+      await groupDb.addUserToGroup(user.id, 1);
+      const message = await groupDb.newGroupMessage(user.id, 1, newUserMessage, 'login');
+      message.username = user.username;
+
+      activeUsers.forEach((u) => {
+        if(u.groupsId.includes(message.groupId)){
+          u.socket.emit('message', message)
+        }
+      })
+    }catch(error) {
+      console.error('signup error', error.message);
+    }
+  }
 
   try {
     await usersDb.setOnline(user.id);
@@ -163,32 +189,15 @@ socketIo.on('connection',async (socket) => {
       }
     }));
 
-    socket.emit('conversetions', conversations);
+    socket.emit('conversations', conversations);
 
   } catch(error) {
-    console.error(error);
+    console.error('getting users', error);
   }
 
   activeUsers.forEach(u => {
     u.socket.emit('online', user.id);
   })
-
-  if(session.signup) {
-
-    const newUserMessage = `User ${user.username} had join the chat`;
-    
-    socket.broadcast.emit('addUsers', [{ username: user.username, id: user.id }]);
-    session.signup = false;
-    session.save();
-
-    try {
-      const message = await messageDb.newMessage(user.id, newUserMessage, 'login');
-      message.username = user.username;
-      socketIo.emit('messages', [message]);
-    }catch(error) {
-      console.error(error.message);
-    }
-  }
 
   socket.on('message', async (message, callback) => {
 
@@ -221,7 +230,7 @@ socketIo.on('connection',async (socket) => {
       }
       
     } catch(error) {
-      console.error(error);
+      console.error('new message', error);
       return callback(error.message);
     }
     
@@ -243,13 +252,20 @@ socketIo.on('connection',async (socket) => {
         u.socket.emit('lastseen', {userid: user.id, datetime: datetime});
       })
     } catch(error) {
-      return console.err('coudn\'t update last seen for contact', user.id);
+      return console.error('coudn\'t update last seen for contact', user.id);
     }
 
 
   });
 
 });
+
+app.use((err,req,res,next)=> {
+  console.error('general error', err);
+  err.statusCode= err.statusCode || 500
+  err.status= err.status || 'error'
+  res.status(err.statusCode).send('Something went wrong')
+})
 
 app.use('/', (req, res, next) => {
   res.end('Hello world');

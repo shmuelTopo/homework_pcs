@@ -2,7 +2,7 @@
   export let logout;
   import { getCookie } from './utils';
   import { chatUsers, userConversations, selectedConversation, newConversationS } from './stores';
-
+  import ThreeDotsVertical from "svelte-bootstrap-icons/lib/threeDotsVertical.svelte"
   let newMessageOpen = false;
   let newGroupOpen = false;
   let users = [];
@@ -46,7 +46,6 @@
     DropdownMenu,
     DropdownToggle,
     Dropdown,
-    Icon,
     Offcanvas
   } from 'sveltestrap';
 
@@ -74,7 +73,7 @@ import User from './User.svelte';
     <Dropdown color="dark" dark {isOpen} toggle={() => (isOpen = !isOpen)}>
       <DropdownToggle tag="div" class="d-inline-block">
         <div class="three-dots">
-          <Icon name="three-dots-vertical"></Icon>
+          <ThreeDotsVertical></ThreeDotsVertical>
         </div>
       </DropdownToggle>
       <DropdownMenu dark>

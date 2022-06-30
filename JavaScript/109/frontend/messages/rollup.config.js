@@ -53,15 +53,7 @@ export default {
 					{ 
 						src: 'node_modules/bootstrap/dist/css/bootstrap.min.css.map', 
 						dest: 'public/build' 
-					},
-					{ 
-						src: 'node_modules/bootstrap-icons/font/bootstrap-icons.css', 
-						dest: 'public/build' 
-					},
-					{ 
-						src: 'node_modules/bootstrap-icons/font/fonts', 
-						dest: 'public/build' 
-					},
+					}
 				]
 		}),
 		// we'll extract any component CSS out into

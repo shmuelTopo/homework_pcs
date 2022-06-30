@@ -1,8 +1,10 @@
 <script>
   import { selectedConversation } from './stores';
+  import { getMessageTimeDayOrDate } from './utils';
+  
   export let conversation;
   $: d = new Date(conversation.lastMessageDatetime);
-  $: datetime = d.toLocaleDateString();
+  $: datetime =  getMessageTimeDayOrDate(d);
   $: lastMsg = conversation?.messages[0]?.text || ''
   let selectedId;
 
