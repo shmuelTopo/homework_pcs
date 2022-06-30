@@ -8,6 +8,7 @@
   export let socket;
 
   let user;
+  let otherUser;
   let theChatUsers = [];
   let conversationInfo;
 

@@ -26,6 +26,7 @@
 
 	userInfo.subscribe(v => {
 		user = v;
+		console.log(v);
 	})
 
 	selectedConversation.subscribe(v => {

@@ -21,7 +21,6 @@
   onDestroy(() => clearInterval(interval));
 
   function updateLastseen() {
-    console.log(conversationInfo);
     if(conversationInfo.otherUser){
       lastseenMessage = getLastseenMessage(conversationInfo?.otherUser.lastseen);
     }
