@@ -9,8 +9,8 @@ module.exports.getUsers = async () => {
           when (lastseen > NOW()) then 'Online'
           else lastseen
       end
+      as lastseen
       from \`users\`
-      as lastseen;
   `);
   return rows;
 }
