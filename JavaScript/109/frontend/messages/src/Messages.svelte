@@ -17,10 +17,10 @@
 
   let conversation;
   let messages = [];
-  let newConversation;
 
   selectedConversation.subscribe(v => {
     conversation = v;
+    console.log('slected', v);
     if(!v) {
       return;
     }
@@ -49,24 +49,6 @@
     setTimeout(scroll, 10);
   })
 
-  newConversationS.subscribe(v => {
-    newConversation = v;
-    if(v) {
-      messages = [];
-      user = theChatUsers.find(u => {
-        return u.id === v.otherUserId
-      });
-
-      conversationInfo = {
-        type: 'pm',
-        otherUser: user,
-        otherUserId: v.otherUserId,
-        otherUserName: v.otherUserName
-      }
-      selectedConversation.set(undefined);
-    }
-  });
-
   function scroll() {
     const speechWrapper = document.querySelector('.speech-wrapper');
     if(speechWrapper) {
@@ -78,6 +60,24 @@
     if(!messageInput) {
       return;
     }
+
+    if(conversation.newConversation) {
+      console.log('trying to send new message');
+      const message = {
+        text: messageInput,
+        otherUserId: conversation.otherUserId
+      }
+      socket.emit('newPmConversation', message, res => {
+        if(res) {
+          alert(res);
+        }
+      });
+
+      return;
+    }
+
+    console.log(conversation);
+
     const newMessage = {
       text: messageInput,
       type: 'speech',
@@ -86,7 +86,6 @@
     }
 
     if(newMessage.conversationType === 'pm') {
-      const user = users.find();
       newMessage.otherUserId = conversation.otherUserId;
     } else if(newMessage.conversationType = 'group') {
       newMessage.groupId = conversation.groupId;

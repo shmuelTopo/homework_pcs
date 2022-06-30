@@ -1,7 +1,7 @@
 <script>
   export let logout;
   import { getCookie } from './utils';
-  import { chatUsers, userConversations, selectedConversation, newConversationS } from './stores';
+  import { chatUsers, userConversations, selectedConversation } from './stores';
   import ThreeDotsVertical from "svelte-bootstrap-icons/lib/threeDotsVertical.svelte"
   let newMessageOpen = false;
   let newGroupOpen = false;
@@ -11,6 +11,7 @@
   chatUsers.subscribe(v => {
     users = v;
   });
+
   userConversations.subscribe(v => conversations = v);
 
   const toggleNewMessage = () => {
@@ -33,11 +34,13 @@
       selectedConversation.set(oldConversation);
     } else {
       const newConversation = {
-        type: 'pm', 
+        type: 'pm',
+        newConversation: true, 
         otherUserId: userId,
         otherUserName: userName      
       }
-      newConversationS.set(newConversation);
+
+      selectedConversation.set(newConversation);
     }
   }
   

@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const pool = require('./sqlPool');
 const getDatetime = require('./datetime');
+const messagesDb = require('./messagesDb');
 
 module.exports.getUsers = async () => {
   const [rows, fields] = await pool.execute(`
@@ -13,6 +14,41 @@ module.exports.getUsers = async () => {
       from \`users\`
   `);
   return rows;
+}
+
+module.exports.newPmConversation = async (fromUserId, firstMessage) => {
+  //endle case where user trying to initialize conversation 
+  //where conversation with other user already exist
+  console.log(firstMessage);
+  const toUserId = firstMessage.otherUserId;
+  console.log(fromUserId, toUserId);
+  const [ results ] = await pool.execute(`
+    SELECT id from \`conversations\` 
+    WHERE user_id_a = ? and user_id_b = ?
+    OR user_id_a = ? and user_id_b = ?
+  `, [fromUserId, firstMessage.otherUserId, firstMessage.otherUserId, fromUserId]);
+
+  if(results.length){
+    throw new Error('Conversation already exists');
+  }
+
+  const message = await messagesDb.newPrivateMessage(fromUserId, toUserId, firstMessage.text, 'speech');
+
+  console.log(fromUserId, toUserId, message.datetime);
+  const [ fields ] = await pool.execute(`
+    INSERT INTO \`conversations\`(user_id_a, user_id_b, last_message_datetime) VALUES(?, ?, ?)
+  `, [fromUserId, toUserId, message.datetime]);
+
+  const otherUserName = await this.getUsername(toUserId);
+  
+  return {
+    conversationId: fields.insertId,
+    otherUserId: toUserId,
+    otherUserName,
+    type: 'pm',
+    lastMessageDatetime: message.datetime,
+    messages: [message]
+  };
 }
 
 module.exports.getConversations = async (userId) => {

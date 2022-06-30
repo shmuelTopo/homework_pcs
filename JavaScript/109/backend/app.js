@@ -235,6 +235,29 @@ socketIo.on('connection',async (socket) => {
     
   })
 
+  socket.on('newPmConversation', async (message, callback) => {
+    console.log(message);
+    try {
+      const isUser = await usersDb.isUser(user.username);
+      if(!isUser) {
+        throw new Error('You are not a real user');
+      }
+      const newConversation = await usersDb.newPmConversation(user.id, message);
+      console.log(newConversation);
+      socket.emit('conversations', [ newConversation ]);
+
+      const otherUser = activeUsers.find(u => {
+        return u.id === message.otherUserId
+      })
+      otherUser.socket.emit('conversations', [ newConversation ]);
+      
+    } catch(error) {
+      console.error('new message', error);
+      return callback(error.message);
+    }
+    
+  })
+
   socket.on('logout', () => {
     activeUsers = activeUsers.filter(u => u.username !== user.username);
     session.destroy();

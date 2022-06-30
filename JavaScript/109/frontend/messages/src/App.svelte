@@ -6,6 +6,7 @@
 	import ConversationNav from './ConversationNav.svelte';
 	import { getCookie } from './utils';
 	import { selectedConversation, userConversations, userInfo, chatUsers } from './stores';
+	import AppInfo from './AppInfo.svelte';
 
   let users = [];
 	let conversations = [];
@@ -14,7 +15,7 @@
 
 	userConversations.subscribe(v => {
 		conversations = v;
-		console.log(v);
+		console.log('Conversations was update by store to be', v);
 	})
 
 	chatUsers.subscribe(v => {
@@ -26,7 +27,6 @@
 
 	userInfo.subscribe(v => {
 		user = v;
-		console.log(v);
 	})
 
 	selectedConversation.subscribe(v => {
@@ -56,7 +56,11 @@
 		})
 
 		socket.on('conversations', c => {
-			userConversations.set(c);
+			console.log(c[0]);
+			if(c[0].type === 'pm' && c[0].otherUserId !== user.id) {
+				selectedConversation.set(c[0]);
+			}
+			userConversations.set(c.concat(conversations));
 		})
 
 		socket.on("message", messageToAdd => {
@@ -91,10 +95,10 @@
 			chatUsers.set(users);
 		});
 
-		socket.on('conversations', c => {
-			userConversations.set(c);
-			selectedConversation.set(c[0]);
-		})
+		// socket.on('conversations', c => {
+		// 	userConversations.set(c);
+		// 	selectedConversation.set(c[0]);
+		// })
 	}
 
   const usernameCookie = getCookie('username');
@@ -125,7 +129,11 @@
 		<Conversations></Conversations>
 	</aside>
 	<main>
-		<Messages bind:scroll={messagesScroll} socket={socket}></Messages>
+		{#if currentConversation}
+			<Messages bind:scroll={messagesScroll} socket={socket}></Messages>
+		{:else}
+			<AppInfo></AppInfo>
+		{/if}
 	</main>
 {/if}
 
