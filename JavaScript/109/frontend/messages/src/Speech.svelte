@@ -18,7 +18,7 @@
 
 <style>
   .bubble {
-    width: 220px;
+    width: 240px;
     height: auto;
     display: block;
     border-radius: 4px;
@@ -54,7 +54,7 @@
   }
 
   .message{
-    font-size: 16px;
+    font-size: 14px;
     margin: 0;
     color: #e3e3e3;
   }
