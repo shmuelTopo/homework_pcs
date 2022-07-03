@@ -81,13 +81,20 @@ module.exports.addUserToGroup = async (userId, groupId) => {
 
   const datetime = getDatetime();
 
-  await pool.execute(`
+  const [ fiedls ] = await pool.execute(`
     INSERT INTO \`conversations\`(user_id_a, group_id, last_message_datetime) VALUES(?, ?, ?)
   `, [userId, groupId, datetime]);
 
+  return {
+    conversationId: fiedls.insertId,
+    groupId,
+    userId,
+    last_message_datetime: datetime
+  }
+
 }
 
-module.exports.createNewGroup = async (groupName, ownerUserId)=> {
+module.exports.createNewGroup = async (groupName, ownerUserId, users)=> {
   const ownerUsername = await userDb.getUsername(ownerUserId);
   if(!ownerUsername) {
     throw new Error('owner id doesn\'t exists');
@@ -97,13 +104,18 @@ module.exports.createNewGroup = async (groupName, ownerUserId)=> {
     INSERT INTO \`groups\`(name, owner_user_id) VALUES (?, ?)`
     ,[groupName, ownerUserId])
 
-  await this.addUserToGroup(ownerUserId, resutls.insertId);
-  await this.newGroupMessage(ownerUserId, resutls.insertId, `group was created by ${ownerUsername}`, 'login')
+  const conv = await this.addUserToGroup(ownerUserId, resutls.insertId);
+  const message = await this.newGroupMessage(ownerUserId, resutls.insertId, `group was created by ${ownerUsername}`, 'login')
   
   return {
-    name: groupName,
+    conversationId: conv.id,
+    groupId: resutls.insertId,
+    groupName: groupName,
+    groupUsers: [ {userid: ownerUserId, username: ownerUsername}],
+    last_message_datetime: message.datetime,
     ownerUserId,
-    id: resutls.insertId
+    type: 'group',
+    messages: [ message ]
   }
 
 }

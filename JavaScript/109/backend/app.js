@@ -200,6 +200,7 @@ socketIo.on('connection',async (socket) => {
   })
 
   socket.on('message', async (message, callback) => {
+    console.log(message);
 
     try {
       const isUser = await usersDb.isUser(user.username);
@@ -251,7 +252,7 @@ socketIo.on('connection',async (socket) => {
       })
 
       if(otherUser) {
-        otherUser.socket.emit('newConversation', [ newConversation ]);
+        otherUser.socket.emit('newConversation', newConversation);
       }
       return callback(undefined, newConversation);
       
@@ -292,6 +293,40 @@ socketIo.on('connection',async (socket) => {
       }
     }
   })
+
+  socket.on('newGroup', async (newGroupInfo) => {
+    const group = await groupDb.createNewGroup(newGroupInfo.name, user.id);
+    const owner = activeUsers.find(u => u.id === user.id);
+
+    const conversationIds = {
+      [owner.id]: group.conversationId
+    }
+
+    for(let id of newGroupInfo.users) {
+      console.log(id, group.groupId);
+      const conv = await groupDb.addUserToGroup(id, group.groupId);
+      const username = await usersDb.getUsername(id);
+      console.log(id, group.groupId, `User ${username} had join the group`);
+      const message = await groupDb.newGroupMessage(id, group.groupId, `User ${username} had join the group`, 'login');
+      
+      conversationIds[id] = conv.id;
+      group.messages.unshift(message);
+      group.groupUsers.unshift({userid: id, username});
+    }
+
+    console.log(group.messages, 'messaages', group.messages.length);
+
+    //push owner id;
+    newGroupInfo.users.push(user.id);
+    activeUsers.forEach(u => {
+      u.groupsId.push(group.groupId);
+      group.conversationId = conversationIds[user.id];
+      if(newGroupInfo.users.includes(u.id)) {
+        console.log('sending group to user', u.id);
+        u.socket.emit('newConversation', group);
+      }
+    });
+  }) 
 
   socket.on('logout', () => {
     activeUsers = activeUsers.filter(u => u.username !== user.username);

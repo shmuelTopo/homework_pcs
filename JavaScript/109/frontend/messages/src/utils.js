@@ -91,6 +91,18 @@ export function timeDiff(time) {
   return timeDiff;
 }
 
+export function getGroupTyping(groupUsers, diffSeconds) {
+  const typingUsers = groupUsers.filter(user => {
+    return timeDiff(user.lastTypingEmit) < 5;
+  }).map(u => u.username);
+
+  if(!typingUsers || typingUsers.length === 0) {
+    return [];
+  }
+
+  return typingUsers;
+}
+
 function getDatetime(secondsAgo, minutesAgo, hoursAgo, daysAgo, weeksAgo, monthsAgo, yearsAgo) {
   const now = new Date();
   const date = new Date(now.getTime() - secondsAgo * 1000 - minutesAgo * 60000 - hoursAgo * 3600000 - daysAgo * 86400000 - weeksAgo * 604800000 - monthsAgo * 2628000000 - yearsAgo * 31536000000);

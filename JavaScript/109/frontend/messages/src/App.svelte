@@ -15,6 +15,7 @@
 
 	userConversations.subscribe(v => {
 		conversations = v;
+		console.log(v);
 	})
 
 	chatUsers.subscribe(v => {
@@ -59,7 +60,6 @@
 			if(c[0].self) {
 				selectedConversation.set(c[0]);
 			}
-			console.log(c.length, conversations.length)
 			userConversations.set(c);
 		})
 
@@ -93,17 +93,17 @@
 			setTimeout(() => {
 				userConversations.set(conversations);
 			}, 5000);
-			console.log(typingConv);
-
 		})
 
 		socket.on('newConversation', c => {
 			//When
 			if(c.self) {
-				selectedConversation.set(c[0]);
+				selectedConversation.set(c);
 			}
-			console.log(c.length, conversations.length)
-			userConversations.set(c.concat(conversations));
+			console.log('newConversation', c);
+			conversations.unshift(c);
+			console.log(conversations);
+			userConversations.set(conversations);
 		})
 
 		socket.on("message", messageToAdd => {
@@ -138,11 +138,6 @@
 			users = users.concat(usersToAdd);
 			chatUsers.set(users);
 		});
-
-		// socket.on('conversations', c => {
-		// 	userConversations.set(c);
-		// 	selectedConversation.set(c[0]);
-		// })
 	}
 
   const usernameCookie = getCookie('username');
@@ -168,7 +163,7 @@
 	</main>
 {:else}
 	<aside>
-		<ConversationNav logout={logout}></ConversationNav>
+		<ConversationNav {socket} logout={logout}></ConversationNav>
 		<Conversations></Conversations>
 	</aside>
 	<main>

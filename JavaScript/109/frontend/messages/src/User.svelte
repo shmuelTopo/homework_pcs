@@ -1,9 +1,13 @@
 <script>
   export let user;
-  export let click;
+  export let click = () => {
+    user.selected = !user.selected;
+  }
+
+
 </script>
 
-<div on:click={click} class="user">
+<div on:click={click} class="user {user.selected ? 'selected' : ''}">
   <img src="{user.img || "../images/no-user.jpg"}" alt="user-avatar">
   <div class="user-info">
     <div class="nameTime">
@@ -30,8 +34,12 @@
     background-color: rgb(100, 100, 100);
   }
 
-  .user:hover {
+  .user:hover:not(.selected)  {
     background-color: rgb(90, 90, 90);
+  }
+
+  .selected {
+    background-color: rgb(60, 60, 60);
   }
 
   * {

@@ -129,7 +129,7 @@ module.exports = async (pool) => {
       datetime DATETIME NOT NULL,
       type VARCHAR(10) NOT NULL,
 
-      FOREIGN KEY (group_id) REFERENCES \`users\`(id)
+      FOREIGN KEY (group_id) REFERENCES \`groups\`(id)
         ON DELETE RESTRICT
         ON UPDATE RESTRICT,
       FOREIGN KEY (user_id) REFERENCES \`users\`(id)

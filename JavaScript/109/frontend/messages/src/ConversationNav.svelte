@@ -1,12 +1,46 @@
 <script>
   export let logout;
+  export let socket;
   import { getCookie } from './utils';
-  import { chatUsers, userConversations, selectedConversation } from './stores';
+  import { chatUsers, userConversations, selectedConversation, userInfo } from './stores';
   import ThreeDotsVertical from "svelte-bootstrap-icons/lib/threeDotsVertical.svelte"
+  import {
+    DropdownItem,
+    DropdownMenu,
+    DropdownToggle,
+    Dropdown,
+    Offcanvas,
+    Button,
+    Input
+  } from 'sveltestrap';
+
+  import User from './User.svelte';
+
   let newMessageOpen = false;
   let newGroupOpen = false;
   let users = [];
   let conversations = [];
+  let newGroupUsers = [];
+  let groupName = '';
+  let user;
+
+  userInfo.subscribe(v => user = v);
+
+  const newGroup = () => {
+    if(newGroupUsers.length < 1) {
+      alert('you most choose at least 1 user');
+    } else {
+      const newGroupInfo = {
+        name: groupName,
+        users: newGroupUsers
+      }
+      console.log(newGroupInfo);
+      socket.emit('newGroup', newGroupInfo);
+      groupName = '';
+
+      togglenewGroup();
+    }
+  }
 
   chatUsers.subscribe(v => {
     users = v;
@@ -19,6 +53,13 @@
   }
 
   const togglenewGroup = () => {
+    if(newGroupOpen) {
+      newGroupUsers.length = 0;
+      users.forEach(u => {
+        u.selected = false;
+      })
+      users = users;
+    }
     newGroupOpen = !newGroupOpen;
   }
 
@@ -39,20 +80,10 @@
         otherUserId: userId,
         otherUserName: userName      
       }
-
       selectedConversation.set(newConversation);
     }
   }
-  
-  import {
-    DropdownItem,
-    DropdownMenu,
-    DropdownToggle,
-    Dropdown,
-    Offcanvas
-  } from 'sveltestrap';
 
-import User from './User.svelte';
   let isOpen = false;
 
   const username = getCookie('username');
@@ -103,8 +134,20 @@ import User from './User.svelte';
     </Offcanvas>
 
     <Offcanvas class="bg-secondary" isOpen={newGroupOpen} toggle={togglenewGroup} placement="start">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua.
+      <form on:submit|preventDefault={newGroup}>
+        <div class="newGroupInputBtn">
+          <input required minlength="4" type="text" bind:value={groupName} />
+          <Button color="primary" type="submit">Create Group</Button>
+        </div>
+        {#each users as u}
+          {#if u.id !== user.id}
+            <label value="">
+              <input class="hiddenCheckbox" bind:group={newGroupUsers} value={u.id} hidden type="checkbox">
+              <User class="user" bind:user={u}></User>
+            </label>
+          {/if}
+        {/each}
+      </form>
     </Offcanvas>
   </div>
 </div>
@@ -122,14 +165,26 @@ import User from './User.svelte';
   padding: 0 10px 0 20px;
 }
 
-:global(.offcanvas-body) {
-    flex-grow: 1;
-    padding: 5px !important;
-    overflow-y: scroll;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
 
+.newGroupInputBtn {
+  display: grid;
+  grid-template-columns:  1fr 140px;
+  gap: 10px;
+  padding: 5px;
+}
+
+:global(.offcanvas-body) {
+  flex-grow: 1;
+  padding: 5px !important;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 :global(.offcanvas-body::-webkit-scrollbar) {

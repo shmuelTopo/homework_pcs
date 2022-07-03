@@ -1,11 +1,14 @@
 <script>
+import { get } from 'svelte/store';
+
   import { selectedConversation } from './stores';
   import { getMessageTimeDayOrDate } from './utils';
-  import { timeDiff } from './utils';
+  import { timeDiff, getGroupTyping } from './utils';
   export let conversation;
   $: lastMessageDatetime = conversation?.messages[0]?.datetime;
   $: datetime =  getMessageTimeDayOrDate(new Date(lastMessageDatetime));
-  $: lastMsg = conversation?.messages[0]?.text || ''
+  $: lastMsg = conversation?.messages[0]?.text || '';
+  $: typingUsers = conversation.type === 'group' ? getGroupTyping(conversation.groupUsers) : undefined;
   let selectedId;
 
   selectedConversation.subscribe(v => {
@@ -15,7 +18,6 @@
   const click = () => {
     selectedConversation.set(conversation);
   };
-  console.log('conversation', conversation);
 </script>
 
 <div on:click={click} class="conversation {conversation.conversationId === selectedId ? 'selected' : ''}">
@@ -28,6 +30,11 @@
     
     {#if conversation.lastTypingEmit && timeDiff(conversation.lastTypingEmit) < 5}
       <p class="typing">typing...</p>
+    {:else if conversation.type === 'group' && typingUsers.length > 0}
+      <p class="typing">
+        <span class="usersTyping">{typingUsers.join(', ')}</span>
+        {typingUsers.length === 1 ? 'is': 'are'} typing...
+      </p>
     {:else}
       <p class="last-msg">{lastMsg}</p>
     {/if}
@@ -104,12 +111,24 @@
     color: rgba(255, 255, 255, 0.4);
   }
 
-  .typing {
-    font-size: 16px;
-    color: rgb(72, 210, 72);
+  .usersTyping {
+    display: inline-block;
+    overflow:hidden;
+    max-width:100px;
+    position:relative;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
+  .typing span {
+    vertical-align: top;
+  }
 
-
+  .typing {
+    font-size: 16px;
+    display: inline-block;
+    vertical-align: top;
+    color: rgb(72, 210, 72);
+  }
 
 </style>

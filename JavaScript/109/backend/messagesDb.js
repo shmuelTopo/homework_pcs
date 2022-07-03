@@ -22,7 +22,7 @@ module.exports.newPrivateMessage = async (fromUserId, toUserId, text, type = 'sp
   await pool.execute(
     `UPDATE \`conversations\` SET last_message_datetime = ?
       WHERE user_id_a = ? AND user_id_b = ? 
-      OR user_id_b = ? AND user_id_a = ?;
+      OR user_id_a = ? AND user_id_b = ?;
     `, [datetime, fromUserId, toUserId, toUserId, fromUserId])
 
     const fromUsername = await userDb.getUsername(fromUserId);
