@@ -18,9 +18,21 @@
 
   let conversation;
   let messages = [];
+  let messageInput = '';
+  let lastTypingEmit;
+
+  const scroll = () => {
+    const speechWrapper = document.querySelector('.speech-wrapper');
+    if(speechWrapper) {
+      speechWrapper.scrollTop = speechWrapper.scrollHeight;
+    }
+  }
 
   selectedConversation.subscribe(v => {
+    messageInput = '';
+    lastTypingEmit = undefined;
     conversation = v;
+
     if(!v) {
       return;
     }
@@ -49,11 +61,28 @@
     setTimeout(scroll, 10);
   })
 
-  function scroll() {
-    const speechWrapper = document.querySelector('.speech-wrapper');
-    if(speechWrapper) {
-      speechWrapper.scrollTop = speechWrapper.scrollHeight;
+  const keypress = () => {
+    if(lastTypingEmit) {
+      const now = new Date();
+      const diffSec = (now.getTime() - lastTypingEmit.getTime()) / 1000;
+      if(diffSec < 3) {
+        return;
+      }
     }
+
+    lastTypingEmit = new Date();
+    const conv = {
+      type: conversation.type,
+      conversationId: conversation.conversationId
+    }
+
+    if(conv.type === 'group') {
+      conv.groupId = conversation.groupId
+    } else if(conv.type === 'pm') {
+      conv.otherUserId = conversation.otherUserId
+    }
+
+    socket.emit('typing', conv);
   }
 
   const sendMessage = () => {
@@ -107,7 +136,7 @@
     messageInput = '';
 
   }
-  let messageInput = '';
+ 
 </script>
 
 <div class="messages">
@@ -124,7 +153,7 @@
     {/each}
   </div>
   <form on:submit|preventDefault={sendMessage}>
-    <input bind:value={messageInput}>
+    <input on:keypress={keypress} bind:value={messageInput}>
     <button class="icon {messageInput.length >= 1 ? 'visible': 'not-visible'}"><MdSend></MdSend></button>
   </form>
 </div>

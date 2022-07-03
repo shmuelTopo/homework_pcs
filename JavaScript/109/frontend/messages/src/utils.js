@@ -81,6 +81,16 @@ export function getMessageTimeDayOrDate(datetime) {
   }
 
 }
+
+export function timeDiff(time) {
+  if(!time) {
+    return;
+  }
+  const now = new Date();
+  const timeDiff = (now.getTime() - time.getTime()) / 1000;
+  return timeDiff;
+}
+
 function getDatetime(secondsAgo, minutesAgo, hoursAgo, daysAgo, weeksAgo, monthsAgo, yearsAgo) {
   const now = new Date();
   const date = new Date(now.getTime() - secondsAgo * 1000 - minutesAgo * 60000 - hoursAgo * 3600000 - daysAgo * 86400000 - weeksAgo * 604800000 - monthsAgo * 2628000000 - yearsAgo * 31536000000);

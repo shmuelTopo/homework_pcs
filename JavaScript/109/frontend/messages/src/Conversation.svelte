@@ -1,7 +1,7 @@
 <script>
   import { selectedConversation } from './stores';
   import { getMessageTimeDayOrDate } from './utils';
-  
+  import { timeDiff } from './utils';
   export let conversation;
   $: lastMessageDatetime = conversation?.messages[0]?.datetime;
   $: datetime =  getMessageTimeDayOrDate(new Date(lastMessageDatetime));
@@ -15,7 +15,7 @@
   const click = () => {
     selectedConversation.set(conversation);
   };
-
+  console.log('conversation', conversation);
 </script>
 
 <div on:click={click} class="conversation {conversation.conversationId === selectedId ? 'selected' : ''}">
@@ -25,9 +25,12 @@
       <p class="user-name">{conversation.otherUserName || conversation.groupName}</p>
       <p>{datetime}</p>
     </div>
-    <div class="last-msg">
-      <p>{lastMsg}</p>
-    </div>
+    
+    {#if conversation.lastTypingEmit && timeDiff(conversation.lastTypingEmit) < 5}
+      <p class="typing">typing...</p>
+    {:else}
+      <p class="last-msg">{lastMsg}</p>
+    {/if}
   </div>
 </div>
 
@@ -94,16 +97,19 @@
 
   .last-msg {
     font-size: 14px;
-    color: rgb(186, 186, 186);    
-  }
-
-  .last-msg p {
     width: 200px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     color: rgba(255, 255, 255, 0.4);
   }
+
+  .typing {
+    font-size: 16px;
+    color: rgb(72, 210, 72);
+  }
+
+
 
 
 </style>

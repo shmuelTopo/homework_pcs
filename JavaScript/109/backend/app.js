@@ -245,14 +245,13 @@ socketIo.on('connection',async (socket) => {
       }
       const newConversation = await usersDb.newPmConversation(user.id, message);
       console.log(newConversation);
-      // socket.emit('conversations', [ newConversation ]);
 
       const otherUser = activeUsers.find(u => {
         return u.id === message.otherUserId
       })
 
       if(otherUser) {
-        otherUser.socket.emit('conversations', [ newConversation ]);
+        otherUser.socket.emit('newConversation', [ newConversation ]);
       }
       return callback(undefined, newConversation);
       
@@ -261,6 +260,37 @@ socketIo.on('connection',async (socket) => {
       return callback(error.message);
     }
     
+  })
+
+  socket.on('typing', conv => {
+    console.log(conv);
+    
+    //If last typing emit was to the same id and it was less than 4 sec ago, return
+    if(user.lastTypingEmit) {
+      if(user.lastTyping.conversationId === conv.conversationId){
+        const now = new Date();
+        const diffSec = (now.getTime() - user.lastTypingEmit.getTime()) / 1000;
+        //Client should only send typing emit not less than 3 seconds anyway
+        if(diffSec < 3) {
+          return;
+        }
+      }
+    }
+
+    if(conv.type === 'group') {
+      conv.userId = user.id;
+      activeUsers.forEach((u) => {
+        if(u.groupsId.includes(conv.groupId)){
+          u.socket.emit('typing', conv)
+        }
+      })
+    } else if(conv.type === 'pm') {
+      const otherUser = activeUsers.find(u => u.id === conv.otherUserId);
+      if(otherUser){
+        conv.otherUserId = user.id;
+        otherUser.socket.emit('typing', conv);
+      }
+    }
   })
 
   socket.on('logout', () => {

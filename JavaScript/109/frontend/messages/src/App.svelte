@@ -60,6 +60,49 @@
 				selectedConversation.set(c[0]);
 			}
 			console.log(c.length, conversations.length)
+			userConversations.set(c);
+		})
+
+		socket.on('typing', conv => {
+			let typingConv;
+			switch(conv.type) {
+				case 'pm':
+					typingConv = conversations.find(c => {
+						return c.conversationId === conv.conversationId;
+					});
+					if(!typingConv) {
+						return;
+					}
+					typingConv.lastTypingEmit = new Date();
+					break;
+				case 'group':
+					typingConv = conversations.find(c => {
+						return c.groupId === conv.groupId;
+					});
+					if(!typingConv) {
+						return;
+					}
+					typingConv.groupUsers.forEach(u => {
+						if(u.userid === conv.userId) {
+							u.lastTypingEmit = new Date();
+						}
+					});
+					break;
+			}
+			userConversations.set(conversations);
+			setTimeout(() => {
+				userConversations.set(conversations);
+			}, 5000);
+			console.log(typingConv);
+
+		})
+
+		socket.on('newConversation', c => {
+			//When
+			if(c.self) {
+				selectedConversation.set(c[0]);
+			}
+			console.log(c.length, conversations.length)
 			userConversations.set(c.concat(conversations));
 		})
 
@@ -74,6 +117,7 @@
 				theConversation = conversations.find(c => {
 					return c.conversationId === messageToAdd.conversationId
 				});
+				theConversation.lastTypingEmit = undefined;
 			}
 
 			const index = conversations.indexOf(theConversation);
