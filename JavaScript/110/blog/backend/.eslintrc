@@ -12,8 +12,8 @@
   },
   "rules": {
     "eqeqeq": "warn",
-    "no-unused-vars": "off",
-    "no-empty": [2, {"includeCatchBlocks": true}]
+    "trailing-comma": "warn",
+    "no-unused-vars": "off"
   },
   "globals": {
     "connection": true
