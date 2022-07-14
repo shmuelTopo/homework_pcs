@@ -1,0 +1,21 @@
+{
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 2022,
+    "sourceType": "module"
+  },
+  "env": {
+    "es6": true,
+    "node": true,
+    "browser": true,
+    "amd": true
+  },
+  "rules": {
+    "eqeqeq": "warn",
+    "trailing-comma": "warn",
+    "no-unused-vars": "off"
+  },
+  "globals": {
+    "connection": true
+  }
+}

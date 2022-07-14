@@ -1,0 +1,24 @@
+{
+  "name": "blogapi",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "connect-mongo": "^4.6.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^16.0.1",
+    "express": "~4.16.1",
+    "express-session": "^1.17.3",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "mongodb": "^4.7.0",
+    "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.19.0"
+  }
+}
