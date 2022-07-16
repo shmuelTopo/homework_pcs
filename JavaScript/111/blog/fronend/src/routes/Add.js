@@ -2,17 +2,16 @@ import React, { useState } from 'react';
 import './Add.css';
 import { useNavigate } from "react-router-dom";
 import { useEffect } from 'react';
-import { useUser } from '../UserContext';
+import { useUser } from '../AppContext';
+import { SERVER_PORT } from '../constants';
 
 export default function Posts() {
   const navigate = useNavigate();
   const [ title, setTitle ] = useState('');
   const [ body, setBody ] = useState('');
   const user = useUser();
-  console.log('user', user);
   useEffect(() => {
     if(!user || !user.authenticated) {
-      console.log('You are not logged in');
       navigate("/login", { replace: true });
     }
   });
@@ -20,9 +19,9 @@ export default function Posts() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    navigate("/", { replace: true });  
+    // navigate("/", { replace: true });  
 
-    const response = await fetch("http://localhost:3000/posts", {
+    await fetch(`http://localhost:${SERVER_PORT}/posts`, {
       method: "POST",
       credentials: "include",
       mode: 'cors',
@@ -36,6 +35,7 @@ export default function Posts() {
         userid: '62cafa2f6aedca0b135f3b43'
       })
     })
+    navigate('/');
   }
 
   return (

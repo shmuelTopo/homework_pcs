@@ -9,7 +9,6 @@ router.post('/', async (req, res, next) => {
     const user = await mongoFunctions.login(email, firstName, lastName, password, method);
     req.session.authenticated = true;
     req.session.userInfo = user;
-    req.session.save();
 
     user.authenticated = true;
     res.cookie('user', user);

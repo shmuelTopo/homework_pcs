@@ -1,18 +1,24 @@
-import React from 'react'
 import SwapThemes from './SwapThemes';
-import { useUser, useUpdateUser } from '../UserContext';
-import { useCookies } from 'react-cookie'
+import { useUser, useUpdateUser } from '../AppContext';
+import { useCookies } from 'react-cookie';
+import { SERVER_PORT } from '../constants';
+import { NavLink, useNavigate } from 'react-router-dom';
+
 export default function Navbar() {
   const user = useUser();
   const updateUser = useUpdateUser();
-  const [ cookies, setCookies ] = useCookies();
+  const navigate = useNavigate();
+  const [ ,, setCookies ] = useCookies();
 
   const logout = async () => {
     updateUser({});
     setCookies('user', '');
-    await fetch("http://localhost:3000/logout", {
-      method: "POST"
+    await fetch(`http://localhost:${SERVER_PORT}/logout`, {
+      method: "POST",
+      credentials: "include",
+      mode: 'cors',
     })
+    navigate('/');
   }
 
   return (
@@ -20,8 +26,11 @@ export default function Navbar() {
       <SwapThemes />
       <div className="navbar">
           <div className='flex-1'>
-            <a href='/' class="btn btn-ghost normal-case text-xl">Shmuel Toporowitch Blog</a>
+            <NavLink to={'/'}>
+              <span className="btn btn-ghost normal-case text-xl">Shmuel Toporowitch Blog</span>
+            </NavLink>
           </div>
+          {user?.authenticated && (<p>{user.firstName + ' ' + user.lastName}</p>)}
           <div className="dropdown dropdown-end">
             <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">

@@ -11,18 +11,7 @@ import { CookiesProvider } from "react-cookie";
 
 render(
   <CookiesProvider>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />}>
-          <Route index element={<Posts />}/>
-          <Route path='/add' element={<Add />}/>
-          <Route path='/login' element={<Login theMethod="login" />}/>
-          <Route path='/signup' element={<Login theMethod="signup" />}/>
-          <Route path="*" element={<h1 className="m-5 text-danger text-3xl">404 Page Not Found!</h1>} />
-        </Route>
-      </Routes>
-      
-    </BrowserRouter>
+    <App></App>
   </CookiesProvider>,
   document.getElementById('root')
 );

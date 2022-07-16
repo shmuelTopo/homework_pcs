@@ -1,37 +1,41 @@
 import { useState, useEffect} from "react";
 
 const useFetch = (dataUrl) => {
-    const [loading, setLoading] = useState(false);
-    const [data, setData] = useState(null);
-    const [error, setError] = useState(null);
-    const [url, setUrl] = useState(dataUrl);
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
   
-    useEffect(() => {
-        if(!url) {
-            setLoading(false);
-            setData(null);
-            setError(null);
-            return;
-        };
+  useEffect(() => {
+    setLoading(true);
+    if(loading || data || error) {
+      return;
+    }
+    const fetchData = async () => {
+      try {
+        const resp = await fetch(dataUrl, {
+          method: "GET",
+          credentials: "include",
+          mode: 'cors',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          }
+        })
+        const data = await resp.json();
+        console.log(data);
+        setData(data);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+        setError(error);
+        setLoading(false);
+      }
+    };
+  
+    fetchData();
+  }, [data, dataUrl, error, loading]);
 
-        setLoading(true);
-        const fetchData = async () => {
-            try {
-                const resp = await fetch(url);
-                const data = await resp.json();
-                
-                setData(data);
-                setLoading(false);
-            } catch (error) {
-                setError(error);
-                setLoading(false);
-            }
-        };
-    
-        fetchData();
-    }, [url]);
-  
-    return { loading, data, error, setUrl };
+  return { loading, data, error };
 };
 
 export default useFetch;

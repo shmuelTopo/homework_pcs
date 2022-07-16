@@ -6,8 +6,10 @@ const uri = "mongodb://localhost:27017";
 
 const client = new MongoClient(uri);
 const database = client.db('blog');
+const sessionsDb = client.db('test');
 const posts = database.collection('posts');
 const users = database.collection('users');
+const sessionsCollection = sessionsDb.collection('sessions')
 
 module.exports.getPosts = async () => {
   await client.connect();
@@ -26,6 +28,19 @@ module.exports.addPost = async (newPost) => {
   }
   newPost.id = results.insertedId;
   return newPost;
+} 
+
+module.exports.addComment = async (newComment) => {
+  await client.connect();
+  console.log(newComment.postId);
+  const results = await posts.updateOne({ _id: newComment.postId}, { $push: { comments: newComment}})
+  await client.close();
+
+  if(!results.acknowledged) {
+    throw new Error('Something went wrong');
+  }
+  newComment.id = results.insertedId;
+  return newComment;
 }
 
 module.exports.login = async (email, firstName, lastName, password, method) => {
@@ -53,6 +68,13 @@ module.exports.login = async (email, firstName, lastName, password, method) => {
   
   return user;
 };
+
+module.exports.removeSession = async function(sessionId) {
+  console.log('removing', sessionId);
+  await client.connect();
+  await sessionsCollection.deleteOne({_id: sessionId});
+  await client.close();
+}
 
 async function isUser(email) {
     await client.connect();

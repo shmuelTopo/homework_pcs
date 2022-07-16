@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, NavLink } from "react-router-dom";
 import useForms from '../hooks/useForm';
 import Input from '../components/Input';
-import { useUser, useUpdateUser } from '../UserContext';
+import { useUser, useUpdateUser } from '../AppContext';
 import './Login.css';
+import { SERVER_PORT } from '../constants';
 
 export default function Login({ theMethod }) {
   const navigate = useNavigate();
@@ -19,12 +20,13 @@ export default function Login({ theMethod }) {
 
   useEffect(() => {
     if(user && user.authenticated) {
-      console.log('You are logged in already');
       navigate("/", { replace: true });
     }
   });
 
   const submit = async (e) => {
+    console.log('login');
+    e.preventDefault();
     const userDetails = {
       method: method,
       email: formData.email,
@@ -35,8 +37,8 @@ export default function Login({ theMethod }) {
       userDetails.firstName = formData.firstName;
       userDetails.lastName = formData.lastName;
     }
-    e.preventDefault();
-    const response = await fetch("http://localhost:3000/login", {
+    
+    const response = await fetch(`http://localhost:${SERVER_PORT}/login`, {
       method: "POST",
       credentials: "include",
       mode: 'cors',
@@ -49,6 +51,7 @@ export default function Login({ theMethod }) {
     if(response.ok) {
       const theUser = await response.json()
       updateUser(theUser);
+      console.log('done');
       navigate("/", { replace: true });
     } else {
       const theText = await response.text();

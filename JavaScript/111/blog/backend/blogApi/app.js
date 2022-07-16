@@ -4,6 +4,7 @@ const app = express();
 const http = require('http');
 const server = http.createServer(app);
 require("dotenv").config();
+const mongoFunctions = require('./mongoFunctions');
 
 //import router
 const postRoute = require('./routes/posts');
@@ -19,8 +20,8 @@ const mongoOptions = {
 
 const sessionMiddleware = session({
   secret: "changeit",
-  resave: false,
-  saveUninitialized: true,
+  resave: true,
+  saveUninitialized: false,
   store: MongoStore.create(mongoOptions),
 });
 
@@ -43,8 +44,8 @@ app.use(cors({
 }));
 
 //Setup Socket.io and enable cors in socket.io
-const { Socket } = require('socket.io');
-const socketIo = require("socket.io")(server, {
+const io = require('socket.io');
+global.socketIo = io(server, {
   cors: {
     origin : process.env.APP_URL.split(','),
     methods: ["GET", "POST"],
@@ -54,11 +55,12 @@ const socketIo = require("socket.io")(server, {
 
 app.use('/posts', postRoute);
 app.use('/login', loginRoute);
-app.use('/logout', (req, res) => {
+app.use('/logout', async (req, res) => {
   req.session.destroy();
-  res.status(204).end();
+  res.clearCookie('connect.sid');
+  res.clearCookie('user');
+  return res.status(202).end();
 });
-
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -73,5 +75,7 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.send(err.message);
 });
+
+server.listen(8000);
 
 module.exports = app;
