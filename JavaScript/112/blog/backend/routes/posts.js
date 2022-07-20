@@ -13,34 +13,75 @@ const posts = database.collection('posts');
 router.get('/', async function(req, res, next) {
 
   await client.connect();
-  const { limit, lastshownpostid } = req.query;
-  const theLimit = !limit ? 0 : Number(limit);
-  let query = {};
-  if(lastshownpostid) {
-    try {
-      const lastPostDatetime = await posts.findOne({_id: ObjectId(lastshownpostid)}, { projection: {datetime: 1, _id: 0}});
-      if(!lastPostDatetime) {
-        return res.status(404).end(`can't find blog post with id ${lastshownpostid}`);
-      }
-      query = { 
-        datetime: { $lt: new Date(lastPostDatetime.datetime) } 
-      };
-    } catch(e) {
-      return res.status(404).end(`wrong fromat id ${lastshownpostid}`);
-    } 
+  const { postsperpage, cursorpostid, direction } = req.query;
+
+  //check if postsperpage is a number
+  if (postsperpage && isNaN(postsperpage)) {
+    return res.status(400).send('postsperpage most be a number');
+  }
+  let limit = Number(postsperpage) || 20;
+  
+  if(limit > 20 || limit < 1) {
+    return res.status(400).send('postsperpage most be between 1 and 20');
   }
 
+  let query = {};
+  if(cursorpostid) {
+    try {
+      const lastPostDatetime = await posts.findOne({_id: ObjectId(cursorpostid)}, { projection: {datetime: 1, _id: 0}});
+      if(!lastPostDatetime) {
+        return res.status(404).end(`can't find blog post with id ${cursorpostid}`);
+      }
+      if(direction === 'next') {
+        query = { 
+          datetime: { $lt: new Date(lastPostDatetime.datetime) } 
+        };
+      } else if(direction === 'prev') {
+        query = { 
+          datetime: { $gt: new Date(lastPostDatetime.datetime) } 
+        };
+      } else {
+        return res.status(400).end(`wrong direction ${direction}`);
+      }
+    } catch(e) {
+      return res.status(404).end(`wrong fromat id ${cursorpostid}`);
+    } 
+  }
   const numOfDocuments = await posts.countDocuments(query);
 
   const postsResponse = {};
-  postsResponse.posts = await posts.find(query).sort({datetime: -1}).limit(theLimit).toArray();
-  if(theLimit) {
-    postsResponse.nextPostsCount = numOfDocuments - theLimit > 0 ? numOfDocuments - theLimit : 0;
+  if(direction === 'next' || !direction) {
+    postsResponse.posts = await posts.find(query).sort({datetime: -1}).limit(limit).sort({datetime: -1}).toArray();
+  } else {
+    postsResponse.posts = await posts.find(query).sort({datetime: 1}).limit(limit).toArray();
+    postsResponse.posts.reverse();
+  }
+
+  const hasMoreOnSameDirection = numOfDocuments > postsResponse.posts.length;
+
+  const lastPostid = postsResponse.posts[postsResponse.posts.length - 1]._id;
+  const firstPostid = postsResponse.posts[0]._id;
+
+  const baseUrl = `${req.protocol}://${req.get('host')}/posts?postsperpage=${limit}`;
+  if(direction === 'next') {
+    postsResponse.prevUrl = `${baseUrl}&direction=prev&cursorpostid=${firstPostid}`;
+    if(hasMoreOnSameDirection) {
+      postsResponse.nextUrl = `${baseUrl}&direction=next&cursorpostid=${lastPostid}`;
+    }
+  } else if(direction === 'prev') {
+    postsResponse.nextUrl = `${baseUrl}&direction=next&cursorpostid=${lastPostid}`;
+    if(hasMoreOnSameDirection) {
+      postsResponse.prevUrl = `${baseUrl}&direction=prev&cursorpostid=${firstPostid}`;
+    }
+  } else  {
+    if(hasMoreOnSameDirection) {
+      postsResponse.nextUrl = `${baseUrl}&direction=next&cursorpostid=${lastPostid}`;
+    }
   }
 
   if(postsResponse.nextPostsCount) {
-    const lastPostId = postsResponse.posts[theLimit -1]._id.toString();
-    postsResponse.nextPageReq = `${req.protocol}://${req.get('host')}/posts?limit=${limit}&lastshownpostid=${lastPostId}`;
+    const lastPostId = postsResponse.posts[limit -1]._id.toString();
+    postsResponse.nextPageReq = `${req.protocol}://${req.get('host')}/posts?postsperpage=${limit}&cursorpostid=${lastPostId}&direction=next`;
   }
 
   client.close();
@@ -75,7 +116,6 @@ router.post('/', async function(req, res, next) {
     socketIo.emit('post', newPost);
 
     res.status(200).send(newPost);
-    console.log('after end');
 
     await client.close();
 

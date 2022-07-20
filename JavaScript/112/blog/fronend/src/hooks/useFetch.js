@@ -4,15 +4,19 @@ const useFetch = (dataUrl) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
+  const [url, setUrl] = useState(dataUrl);
+  const [refresh, setRefresh] = useState(true);
   
   useEffect(() => {
-    setLoading(true);
-    if(loading || data || error) {
+    console.log('inside fetch');
+    if(loading || error || !url || !refresh) {
       return;
     }
+    setLoading(true);
+    
     const fetchData = async () => {
       try {
-        const resp = await fetch(dataUrl, {
+        const resp = await fetch(url, {
           method: "GET",
           credentials: "include",
           mode: 'cors',
@@ -24,17 +28,20 @@ const useFetch = (dataUrl) => {
         const data = await resp.json();
         setData(data);
         setLoading(false);
+        console.log(data);
       } catch (error) {
         console.error(error);
         setError(error);
         setLoading(false);
+      } finally {
+        setRefresh(false);
       }
     };
   
     fetchData();
-  }, [data, dataUrl, error, loading]);
+  }, [ url, refresh ]);
 
-  return { loading, data, error };
+  return { loading, data, setUrl, setRefresh, error };
 };
 
 export default useFetch;

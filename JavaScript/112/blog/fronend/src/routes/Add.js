@@ -4,22 +4,23 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from 'react';
 import { useUser } from '../UserContext';
 import { SERVER_PORT } from '../constants';
+import { PostsProvidor, usePostPagination } from '../PostsContext';
 
 export default function Posts() {
+  const postPagination = usePostPagination();
   const navigate = useNavigate();
   const [ title, setTitle ] = useState('');
   const [ body, setBody ] = useState('');
   const user = useUser();
+
   useEffect(() => {
     if(!user || !user.authenticated) {
       navigate("/login", { replace: true });
     }
   });
 
-
   async function handleSubmit(e) {
     e.preventDefault();
-    // navigate("/", { replace: true });  
 
     await fetch(`http://localhost:${SERVER_PORT}/posts`, {
       method: "POST",
@@ -32,10 +33,11 @@ export default function Posts() {
       body: JSON.stringify({
         title: title,
         body: body,
-        userid: '62cafa2f6aedca0b135f3b43'
       })
     })
+    postPagination.resetPages();
     navigate('/');
+
   }
 
   return (
