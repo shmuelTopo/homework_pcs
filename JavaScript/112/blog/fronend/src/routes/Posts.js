@@ -4,6 +4,7 @@ import { usePosts } from '../PostsContext';
 
 export default function Posts() {
   const posts = usePosts();
+  console.log(posts);
 
   return (
       <>

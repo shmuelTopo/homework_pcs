@@ -1,8 +1,8 @@
 import Navbar from '../components/Navbar';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Posts from '../routes/Posts';
-import Add from '../routes/Add';
-import Login from '../routes/Login';
+import Posts from './Posts';
+import Add from './Add';
+import Login from './Login';
 
 function App() {
   
