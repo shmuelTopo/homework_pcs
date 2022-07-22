@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body, html, #sidebar {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            justify-content: space-between;
+            background-color: rgb(255, 103, 103);
+            align-items: flex-start;
+        }
+
+        @media screen and (max-width: 769px) {
+            body {
+                display: flex;
+                justify-content: space-between;
+                flex-direction: column-reverse;
+                background-color: rgb(255, 103, 103);
+                align-items: flex-start;
+                gap: 1em;
+            }
+
+
+            video {
+                min-width: 100%;
+            }
+        }
+
+        video {
+            width: 75%;
+        }
+
+        #sidebar {
+            overflow-y: auto;
+        }
+
+        #sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #sidebar p {
+            display: inline;
+            margin: 5px;
+        }
+
+        #sidebar li {
+            border: 1px solid black;
+            margin-bottom: 1em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: column-reverse;
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.616);
+        }
+
+        #sidebar img {
+            height: 12vw;
+        }
+
+        .watched {
+            color: gray;
+            font-style: italic;
+        }
+
+        .active {
+            background-color: rgba(255, 255, 0, 0.521) !important;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="sidebar">
+        <ul></ul>
+    </div>
+
+    <video autoplay id="video" controls></video>
+    
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="videos.js"></script>
+</body>
+</html>
